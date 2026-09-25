@@ -49,6 +49,11 @@ final ticketsProvider = FutureProvider.autoDispose<List<SupportTicket>>((ref) =>
 final ticketProvider = FutureProvider.autoDispose.family<SupportTicket, String>((ref, id) => ref.watch(reposProvider).ticket(id));
 final ticketMessagesProvider = FutureProvider.autoDispose.family<List<SupportMessage>, String>((ref, id) => ref.watch(reposProvider).ticketMessages(id));
 
+final claimRequestsProvider = FutureProvider.autoDispose<List<ClaimRequest>>((ref) => ref.watch(reposProvider).claimRequests());
+final myPendingClaimProvider = Provider.autoDispose<ClaimRequest?>((ref) {
+  final uid = ref.watch(currentUserIdProvider);
+  return ref.watch(claimRequestsProvider).value?.where((c) => c.requesterId == uid && c.status == 'pending').firstOrNull;
+});
 final approvedProfilesProvider = FutureProvider.autoDispose<List<Profile>>((ref) => ref.watch(reposProvider).approvedProfiles());
 final allProfilesProvider = FutureProvider.autoDispose<List<Profile>>((ref) => ref.watch(reposProvider).allProfiles());
 

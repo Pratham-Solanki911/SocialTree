@@ -80,7 +80,39 @@ class Repos {
 
   Future<void> deletePerson(String id) => db.from('persons').delete().eq('id', id);
 
-  Future<void> claimPerson(String id) => db.rpc('claim_person', params: {'p': id});
+  // ---------------------------------------------------------- identity
+  Future<List<SelfCandidate>> findMyself({required String firstName, required String lastName, String? village, int? birthYear, String? phone}) async {
+    final rows = await db.rpc('find_myself', params: {'first_name': firstName, 'last_name': lastName, 'village': village, 'birth_year': birthYear, 'phone': phone}) as List;
+    if (rows.isEmpty) return const [];
+    final persons = {for (final p in await personsByIds(rows.map((r) => (r as Map)['person_id'] as String))) p.id: p};
+    return [
+      for (final r in rows.cast<Map>())
+        if (persons[r['person_id']] != null)
+          SelfCandidate(person: persons[r['person_id']]!, score: (r['score'] as num).toInt(), parents: r['parents'] as String?),
+    ];
+  }
+
+  /// Returns 'approved' or 'pending'.
+  Future<String> requestClaim(String personId, {String? message}) async =>
+      await db.rpc('request_claim', params: {'p': personId, 'message': message}) as String;
+
+  Future<void> decideClaim(String requestId, bool approve, {String? reason}) =>
+      db.rpc('decide_claim', params: {'request': requestId, 'approve': approve, 'reason': reason});
+  Future<void> withdrawClaim(String requestId) => db.rpc('withdraw_claim', params: {'request': requestId});
+  Future<void> releaseClaim() => db.rpc('release_claim');
+  Future<void> transferClaim(String personId, String profileId) => db.rpc('transfer_claim', params: {'p': personId, 'who': profileId});
+  Future<void> mergeMyRecords(String keep, String drop) => db.rpc('merge_my_records', params: {'keep_id': keep, 'drop_id': drop});
+  Future<void> setCaretaker(String personId, String? profileId) => db.rpc('set_caretaker', params: {'p': personId, 'who': profileId});
+
+  Future<List<ClaimRequest>> claimRequests() async {
+    final rows = await db.from('claim_requests').select().order('created_at', ascending: false);
+    return rows.map(ClaimRequest.fromMap).toList();
+  }
+
+  Future<List<Person>> myCreatedUnlinked() async {
+    final rows = await db.from('persons').select().eq('created_by', uid).isFilter('claimed_by', null).eq('is_alive', true);
+    return rows.map(Person.fromMap).toList();
+  }
 
   Future<List<Person>> search(String q) async {
     if (q.trim().isEmpty) return const [];

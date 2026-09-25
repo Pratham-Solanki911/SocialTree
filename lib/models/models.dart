@@ -19,6 +19,7 @@ class Profile {
     required this.isSupport,
     this.locale,
     this.successorId,
+    this.onboardingDone = false,
   });
   final String id;
   final String? fullName;
@@ -29,6 +30,7 @@ class Profile {
   final bool isSupport;
   final String? locale; // en | gu | hi, null until chosen on first login
   final String? successorId;
+  final bool onboardingDone;
 
   bool get isApproved => status == 'approved';
   bool get canSupport => isAdmin || isSupport;
@@ -44,6 +46,7 @@ class Profile {
         isSupport: m['is_support'] as bool? ?? false,
         locale: m['locale'] as String?,
         successorId: m['successor_id'] as String?,
+        onboardingDone: m['onboarding_done'] as bool? ?? false,
       );
 }
 
@@ -133,6 +136,7 @@ class Person {
     this.notes,
     this.passportPhotoPath,
     this.claimedBy,
+    this.caretakerId,
     this.createdBy,
   });
   final String id;
@@ -167,6 +171,7 @@ class Person {
   final String? notes;
   final String? passportPhotoPath;
   final String? claimedBy;
+  final String? caretakerId;
   final String? createdBy;
 
   String get fullName => [firstName, middleName, lastName].where((s) => s != null && s.isNotEmpty).join(' ');
@@ -209,8 +214,42 @@ class Person {
         notes: m['notes'] as String?,
         passportPhotoPath: m['passport_photo_path'] as String?,
         claimedBy: m['claimed_by'] as String?,
+        caretakerId: m['caretaker_id'] as String?,
         createdBy: m['created_by'] as String?,
       );
+}
+
+class ClaimRequest {
+  ClaimRequest({required this.id, required this.personId, required this.requesterId, required this.status, this.message, this.reason, this.decidedBy, this.decidedAt, required this.createdAt});
+  final String id;
+  final String personId;
+  final String requesterId;
+  final String status; // pending | approved | rejected | withdrawn
+  final String? message;
+  final String? reason;
+  final String? decidedBy;
+  final DateTime? decidedAt;
+  final DateTime createdAt;
+
+  factory ClaimRequest.fromMap(Map<String, dynamic> m) => ClaimRequest(
+        id: m['id'] as String,
+        personId: m['person_id'] as String,
+        requesterId: m['requester_id'] as String,
+        status: m['status'] as String,
+        message: m['message'] as String?,
+        reason: m['reason'] as String?,
+        decidedBy: m['decided_by'] as String?,
+        decidedAt: parseDate(m['decided_at']),
+        createdAt: parseDate(m['created_at']) ?? DateTime.now(),
+      );
+}
+
+/// A candidate from the guided "are you already in the tree?" search.
+class SelfCandidate {
+  SelfCandidate({required this.person, required this.score, this.parents});
+  final Person person;
+  final int score;
+  final String? parents;
 }
 
 class Relationship {

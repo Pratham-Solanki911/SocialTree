@@ -136,8 +136,12 @@ do $$ begin
 end $$;
 update public.persons set kuldevi = 'Khodiyar Mata, Rajpara' where id = 'a0000000-0000-0000-0000-00000000000d';
 
--- claim + export
-select public.claim_person('a0000000-0000-0000-0000-00000000000d');
+-- identity claims. Ramesh's record was created by user 2, so his own request is approved at once.
+do $$ begin
+  assert public.request_claim('a0000000-0000-0000-0000-00000000000d') = 'approved', 'self-created record auto-approves';
+  assert (select claimed_by from public.persons where id = 'a0000000-0000-0000-0000-00000000000d') = '00000000-0000-0000-0000-000000000002', 'claim applied';
+  assert (select onboarding_done from public.profiles where id = '00000000-0000-0000-0000-000000000002'), 'onboarding done';
+end $$;
 do $$
 declare t jsonb;
 begin
@@ -150,11 +154,59 @@ begin
   assert jsonb_array_length(t -> 'relationships') = 8, 'pdf data edges';
 end $$;
 do $$ begin
-  perform public.claim_person('a0000000-0000-0000-0000-00000000000e');
+  perform public.request_claim('a0000000-0000-0000-0000-00000000000e');
   raise exception 'sentinel';
 exception when others then
   if sqlerrm = 'sentinel' then raise exception 'second claim should have failed'; end if;
 end $$;
+-- deceased Govind can never be claimed
+update public.persons set is_alive = false, dod = '2020-01-15' where id = 'a0000000-0000-0000-0000-00000000000a';
+select set_config('request.jwt.claim.sub', :'u3', false);
+do $$ begin
+  perform public.request_claim('a0000000-0000-0000-0000-00000000000a');
+  raise exception 'sentinel';
+exception when others then
+  if sqlerrm = 'sentinel' then raise exception 'deceased claim should have failed'; end if;
+end $$;
+-- Nita (user 3) finds herself: family member (Ramesh, user 2) confirms
+do $$
+declare st public.claim_status_t; req uuid;
+begin
+  assert (select count(*) from public.find_myself('Nita', 'Rathod', 'Wankaner', 1991)) = 1, 'find_myself finds Nita';
+  st := public.request_claim('a0000000-0000-0000-0000-00000000000f', 'Nita here');
+  assert st = 'pending', 'no email match -> waits for family';
+end $$;
+select set_config('request.jwt.claim.sub', :'u2', false);
+do $$
+declare req uuid;
+begin
+  select id into req from public.claim_requests where status = 'pending';
+  assert public.can_decide_claim('a0000000-0000-0000-0000-00000000000f'), 'spouse in same family may decide';
+  perform public.decide_claim(req, true);
+  assert (select claimed_by from public.persons where id = 'a0000000-0000-0000-0000-00000000000f') = '00000000-0000-0000-0000-000000000003', 'family approval links Nita';
+end $$;
+-- release and re-claim by email match
+select set_config('request.jwt.claim.sub', :'u3', false);
+select public.release_claim();
+update public.persons set email = 'NITA@example.com' where id = 'a0000000-0000-0000-0000-00000000000f';
+do $$ begin
+  assert (select claimed_by is null from public.persons where id = 'a0000000-0000-0000-0000-00000000000f'), 'released';
+  assert public.request_claim('a0000000-0000-0000-0000-00000000000f') = 'approved', 'email match auto-approves';
+end $$;
+-- a member cannot mark a linked living person deceased; an admin can, and the link is released
+do $$ begin
+  update public.persons set is_alive = false where id = 'a0000000-0000-0000-0000-00000000000f';
+  raise exception 'sentinel';
+exception when others then
+  if sqlerrm = 'sentinel' then raise exception 'member marking deceased should have failed'; end if;
+end $$;
+-- admin transfer
+select set_config('request.jwt.claim.sub', :'u1', false);
+select public.transfer_claim('a0000000-0000-0000-0000-00000000000e', :'u1');
+do $$ begin
+  assert (select claimed_by from public.persons where id = 'a0000000-0000-0000-0000-00000000000e') = '00000000-0000-0000-0000-000000000001', 'admin transfer';
+end $$;
+select set_config('request.jwt.claim.sub', :'u2', false);
 
 -- admin merges the duplicate; any member can start a chat
 select set_config('request.jwt.claim.sub', :'u1', false);

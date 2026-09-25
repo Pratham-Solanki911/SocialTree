@@ -46,7 +46,9 @@ class NotificationsScreen extends ConsumerWidget {
                     onTap: () {
                       if (!n.isRead) ref.read(reposProvider).markRead(n.id);
                       final d = n.data;
-                      if (d['person_id'] != null) {
+                      if (d['claim_id'] != null) {
+                        context.push('/claims');
+                      } else if (d['person_id'] != null) {
                         context.push('/persons/${d['person_id']}');
                       } else if (d['conversation_id'] != null) {
                         context.push('/chat/${d['conversation_id']}');

@@ -10,6 +10,7 @@ import '../../core/supabase_providers.dart';
 import '../../core/widgets.dart';
 import '../../data/providers.dart';
 import '../../models/models.dart';
+import '../chat/conversations_screen.dart';
 import '../media/media_grid.dart';
 import '../tree/tree_pdf.dart';
 import 'add_relative_sheet.dart';
@@ -26,6 +27,9 @@ class PersonDetailScreen extends ConsumerWidget {
     final profile = ref.watch(myProfileProvider).value;
     final uid = ref.watch(currentUserIdProvider);
     final myPerson = ref.watch(myPersonProvider).value;
+    final myPending = ref.watch(myPendingClaimProvider);
+    final profiles = ref.watch(approvedProfilesProvider).value ?? const <Profile>[];
+    String memberName(String? id) => profiles.where((x) => x.id == id).firstOrNull?.displayName ?? '';
 
     return AsyncBody<Person>(
       value: person,
@@ -33,7 +37,10 @@ class PersonDetailScreen extends ConsumerWidget {
       builder: (p) {
         // Records are maintained by the whole samaj: any approved member edits.
         final canEdit = profile?.isApproved ?? false;
-        final canClaim = p.claimedBy == null && myPerson == null;
+        final canAskThisIsMe = p.isAlive && p.dod == null && p.claimedBy == null && myPerson == null && myPending == null;
+        // The family's copy of me, found after I already made my own record.
+        final canMergeIntoMine = myPerson != null && p.id != myPerson.id && p.claimedBy == null && p.createdBy == uid;
+        final canSetCaretaker = p.createdBy == uid || p.caretakerId == uid || profile?.isAdmin == true;
         return DefaultTabController(
           length: 5,
           child: Scaffold(
@@ -56,12 +63,33 @@ class PersonDetailScreen extends ConsumerWidget {
                         context.push('/persons/$personId/tree');
                       case 'pdf':
                         await downloadTreePdf(context, ref, p);
-                      case 'claim':
+                      case 'me':
+                        if (!await confirm(context, l.areYouThisPerson)) return;
                         try {
-                          await ref.read(reposProvider).claimPerson(personId);
+                          final status = await ref.read(reposProvider).requestClaim(personId);
                           ref.invalidate(personProvider(personId));
                           ref.invalidate(myPersonProvider);
-                          if (context.mounted) showMessage(context, l.claimed);
+                          ref.invalidate(claimRequestsProvider);
+                          if (context.mounted) showMessage(context, status == 'approved' ? l.linkedNow : l.requestSent);
+                        } catch (e) {
+                          if (context.mounted) showError(context, e);
+                        }
+                      case 'merge':
+                        if (!await confirm(context, l.mergeIntoMine)) return;
+                        try {
+                          await ref.read(reposProvider).mergeMyRecords(myPerson!.id, personId);
+                          ref.invalidate(myPersonProvider);
+                          ref.invalidate(familyMembersProvider(p.familyId));
+                          if (context.mounted) context.go('/persons/${myPerson.id}');
+                        } catch (e) {
+                          if (context.mounted) showError(context, e);
+                        }
+                      case 'caretaker':
+                        final m = await pickMember(context, ref);
+                        if (m == null) return;
+                        try {
+                          await ref.read(reposProvider).setCaretaker(personId, m.id);
+                          ref.invalidate(personProvider(personId));
                         } catch (e) {
                           if (context.mounted) showError(context, e);
                         }
@@ -91,7 +119,9 @@ class PersonDetailScreen extends ConsumerWidget {
                   itemBuilder: (_) => [
                     PopupMenuItem(value: 'tree', child: ListTile(leading: const Icon(Icons.account_tree_outlined), title: Text(l.viewTree))),
                     PopupMenuItem(value: 'pdf', child: ListTile(leading: const Icon(Icons.picture_as_pdf_outlined), title: Text(l.downloadTreePdf))),
-                    if (canClaim) PopupMenuItem(value: 'claim', child: ListTile(leading: const Icon(Icons.how_to_reg_outlined), title: Text(l.claimProfile))),
+                    if (canAskThisIsMe) PopupMenuItem(value: 'me', child: ListTile(leading: const Icon(Icons.how_to_reg_outlined), title: Text(l.yesThisIsMe))),
+                    if (canMergeIntoMine) PopupMenuItem(value: 'merge', child: ListTile(leading: const Icon(Icons.call_merge), title: Text(l.mergeIntoMine))),
+                    if (canSetCaretaker) PopupMenuItem(value: 'caretaker', child: ListTile(leading: const Icon(Icons.volunteer_activism_outlined), title: Text(l.chooseCaretaker))),
                     PopupMenuItem(value: 'matches', child: ListTile(leading: const Icon(Icons.join_full_outlined), title: Text(l.findMatches))),
                     if (profile?.isAdmin == true) PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Icons.delete_outline), title: Text(l.deletePerson))),
                   ],
@@ -105,6 +135,48 @@ class PersonDetailScreen extends ConsumerWidget {
             ),
             body: Column(
               children: [
+                if (!p.isAlive)
+                  MaterialBanner(
+                    leading: const Icon(Icons.local_florist_outlined),
+                    content: Text([
+                      l.inMemoryOf,
+                      if (p.dod != null) l.passedAwayOn(DateFormat.yMMMd(Localizations.localeOf(context).toString()).format(p.dod!)),
+                      if (memberName(p.caretakerId ?? p.createdBy).isNotEmpty) l.lookedAfterBy(memberName(p.caretakerId ?? p.createdBy)),
+                    ].join('\n')),
+                    actions: const [SizedBox.shrink()],
+                  ),
+                if (myPending != null && myPending.personId == p.id)
+                  MaterialBanner(
+                    leading: const Icon(Icons.hourglass_top_outlined),
+                    content: Text(l.waitingForFamily),
+                    actions: [TextButton(onPressed: () => context.push('/claims'), child: Text(l.cancelRequest))],
+                  ),
+                if (canAskThisIsMe && p.createdBy != uid)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Row(children: [
+                          Expanded(child: Text(l.areYouThisPerson, style: Theme.of(context).textTheme.titleMedium)),
+                          FilledButton(
+                            onPressed: () async {
+                              try {
+                                final status = await ref.read(reposProvider).requestClaim(personId);
+                                ref.invalidate(personProvider(personId));
+                                ref.invalidate(myPersonProvider);
+                                ref.invalidate(claimRequestsProvider);
+                                if (context.mounted) showMessage(context, status == 'approved' ? l.linkedNow : l.requestSent);
+                              } catch (e) {
+                                if (context.mounted) showError(context, e);
+                              }
+                            },
+                            child: Text(l.yesThisIsMe),
+                          ),
+                        ]),
+                      ),
+                    ),
+                  ),
                 _Header(person: p, uid: uid),
                 Expanded(
                   child: TabBarView(
@@ -157,7 +229,7 @@ class _Header extends StatelessWidget {
                     if (p.claimedBy != null)
                       Chip(
                         avatar: const Icon(Icons.verified_user_outlined, size: 16),
-                        label: Text(p.claimedBy == uid ? l.linkedToYou : l.claimedBySomeone),
+                        label: Text(p.claimedBy == uid ? l.linkedToYou : l.linkedToMember),
                         visualDensity: VisualDensity.compact,
                       ),
                     for (final ph in p.phones) ...[

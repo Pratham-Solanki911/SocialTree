@@ -44,15 +44,36 @@ class AccountScreen extends ConsumerWidget {
             trailing: profile.isAdmin ? Chip(label: Text(l.adminBadge), visualDensity: VisualDensity.compact) : null,
           ),
           SectionTitle(l.yourRecord),
-          if (me == null)
+          if (me == null) ...[
             ListTile(
-              leading: const Icon(Icons.person_add_alt_1_outlined),
-              title: Text(l.createMyProfile),
+              leading: const Icon(Icons.person_search_outlined),
+              title: Text(l.findMyselfAgain),
               subtitle: Text(l.noProfileYet),
               isThreeLine: true,
-              onTap: () => context.push('/persons/new'),
-            )
-          else
+              onTap: () => context.push('/find-me'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.person_add_alt_1_outlined),
+              title: Text(l.notInListAddMe),
+              onTap: () => context.push('/persons/new?me=1'),
+            ),
+          ] else ...[
+            ListTile(
+              leading: const Icon(Icons.link_off),
+              title: Text(l.unlinkMe),
+              onTap: () async {
+                if (!await confirm(context, l.unlinkMe)) return;
+                try {
+                  await ref.read(reposProvider).releaseClaim();
+                  ref.invalidate(myPersonProvider);
+                } catch (e) {
+                  if (context.mounted) showError(context, e);
+                }
+              },
+            ),
+          ],
+          ListTile(leading: const Icon(Icons.how_to_reg_outlined), title: Text(l.claimsTitle), onTap: () => context.push('/claims')),
+          if (me != null)
             ListTile(
               leading: PersonAvatar(path: me.passportPhotoPath, initials: me.initials, size: 36),
               title: Text(me.fullName),

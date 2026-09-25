@@ -16,36 +16,36 @@ class AppLocalizationsEn extends AppLocalizations {
   String get samajName => 'Shri Machhukathiya Sai Suthar Samaj';
 
   @override
-  String get signInTagline => 'Family trees, records and roots of our Samaj';
+  String get signInTagline => 'Our families, our tree, our roots';
 
   @override
-  String get signInWithGoogle => 'Continue with Google';
+  String get signInWithGoogle => 'Open with my Google account';
 
   @override
   String signInFailed(String message) {
-    return 'Sign-in failed: $message';
+    return 'Could not open: $message';
   }
 
   @override
-  String get pendingTitle => 'Awaiting approval';
+  String get pendingTitle => 'Please wait a little';
 
   @override
   String get pendingBody =>
-      'A Samaj admin will approve your membership. This screen updates automatically.';
+      'A Samaj admin will let you in. This screen will change by itself.';
 
   @override
   String get rejectedBody =>
-      'Your membership request was not approved. Contact a Samaj admin.';
+      'You were not let in. Please talk to a Samaj admin.';
 
   @override
   String get blockedBody =>
-      'Your account has been blocked. Contact a Samaj admin.';
+      'Your account is stopped. Please talk to a Samaj admin.';
 
   @override
-  String get signOut => 'Sign out';
+  String get signOut => 'Log out of the app';
 
   @override
-  String get setupTitle => 'App not configured';
+  String get setupTitle => 'App is not set up';
 
   @override
   String get setupBody =>
@@ -58,70 +58,65 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navFamilies => 'Families';
 
   @override
-  String get navSearch => 'Search';
+  String get navSearch => 'Find a person';
 
   @override
   String get navMap => 'Map';
 
   @override
-  String get navAccount => 'Account';
+  String get navAccount => 'My account';
 
   @override
-  String get homeFeed => 'Samaj updates';
+  String get homeFeed => 'News from the Samaj';
 
   @override
-  String get noUpdates => 'No births, marriages or deaths recorded yet.';
+  String get noUpdates =>
+      'No births, weddings or deaths have been written yet.';
 
   @override
-  String get quickActions => 'Quick actions';
+  String get quickActions => 'What would you like to do?';
 
   @override
-  String get myProfile => 'My profile';
+  String get myProfile => 'My record';
 
   @override
-  String get createMyProfile => 'Create my profile';
+  String get createMyProfile => 'Add myself to the tree';
 
   @override
-  String get claimProfile => 'This is me';
+  String get addRelative => 'Add a relative';
 
   @override
-  String get claimed => 'Record linked to your account';
+  String get viewTree => 'See the family tree';
 
   @override
-  String get addRelative => 'Add relative';
+  String get matches => 'Same person written twice?';
 
   @override
-  String get viewTree => 'View tree';
+  String get gotraLookup => 'Gotra and Kuldevi';
 
   @override
-  String get matches => 'Matches';
+  String get albums => 'Photo albums';
 
   @override
-  String get gotraLookup => 'Gotra & Kuldevi';
+  String get chat => 'Messages';
 
   @override
-  String get albums => 'Albums';
+  String get support => 'Ask for help';
 
   @override
-  String get chat => 'Chat';
+  String get notifications => 'Messages for you';
 
   @override
-  String get support => 'Support';
-
-  @override
-  String get notifications => 'Notifications';
-
-  @override
-  String get admin => 'Admin';
+  String get admin => 'Samaj admin';
 
   @override
   String get familiesTitle => 'Families';
 
   @override
-  String get newFamily => 'New family';
+  String get newFamily => 'Add a family';
 
   @override
-  String get familyName => 'Family name';
+  String get familyName => 'Family name (for example: Solanki parivar, Morbi)';
 
   @override
   String get surname => 'Surname';
@@ -130,64 +125,64 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nativeVillage => 'Native village';
 
   @override
-  String get description => 'Description';
+  String get description => 'A few words about it';
 
   @override
-  String get members => 'Members';
+  String get members => 'People in this family';
 
   @override
   String memberCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count members',
-      one: '1 member',
-      zero: 'No members',
+      other: '$count people',
+      one: '1 person',
+      zero: 'Nobody yet',
     );
     return '$_temp0';
   }
 
   @override
-  String get noFamilies => 'No families yet. Create the first one.';
+  String get noFamilies => 'No family has been added yet. Add the first one.';
 
   @override
-  String get createFamily => 'Create family';
+  String get createFamily => 'Add this family';
 
   @override
   String get familyTree => 'Family tree';
 
   @override
-  String get familyAlbum => 'Family album';
+  String get familyAlbum => 'Family photos';
 
   @override
-  String get addPerson => 'Add person';
+  String get addPerson => 'Add a person';
 
   @override
-  String get personDetails => 'Person details';
+  String get personDetails => 'About this person';
 
   @override
   String get firstName => 'First name';
 
   @override
-  String get middleName => 'Middle name (father\'s / husband\'s name)';
+  String get middleName => 'Father\'s or husband\'s name';
 
   @override
   String get lastName => 'Surname';
 
   @override
-  String get maidenName => 'Maiden surname';
+  String get maidenName => 'Surname before marriage';
 
   @override
-  String get nickname => 'Nickname';
+  String get nickname => 'Name used at home';
 
   @override
-  String get gender => 'Gender';
+  String get gender => 'Man or woman';
 
   @override
-  String get male => 'Male';
+  String get male => 'Man';
 
   @override
-  String get female => 'Female';
+  String get female => 'Woman';
 
   @override
   String get other => 'Other';
@@ -196,105 +191,108 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dateOfBirth => 'Date of birth';
 
   @override
-  String get approximate => 'Approximate';
+  String get approximate => 'Not sure, roughly';
 
   @override
-  String get dateOfDeath => 'Date of death';
+  String get dateOfDeath => 'Date of passing';
 
   @override
-  String get deceased => 'Deceased';
+  String get deceased => 'Has passed away';
 
   @override
   String get alive => 'Living';
 
   @override
-  String get birthPlace => 'Birth place';
+  String get birthPlace => 'Born in (place)';
 
   @override
-  String get currentPlace => 'Current place';
+  String get currentPlace => 'Lives in (place)';
 
   @override
-  String get pickOnMap => 'Pick on map';
+  String get pickOnMap => 'Mark it on the map';
 
   @override
-  String get locationSet => 'Location set';
+  String get locationSet => 'Marked on the map';
 
   @override
-  String get phones => 'Phone numbers';
+  String get phones => 'Mobile numbers';
 
   @override
-  String get addPhone => 'Add phone';
+  String get addPhone => 'Add a mobile number';
 
   @override
   String get phoneNumber => 'Number';
 
   @override
-  String get countryCode => 'Country';
+  String get countryCode => 'Which country';
 
   @override
-  String get phoneLabel => 'Label';
+  String get phoneLabel => 'Whose or which number (home, work, UK...)';
 
   @override
-  String get whatsapp => 'WhatsApp';
+  String get whatsapp => 'WhatsApp is on this number';
 
   @override
-  String get openWhatsApp => 'Open WhatsApp';
+  String get openWhatsApp => 'Message on WhatsApp';
 
   @override
-  String get call => 'Call';
+  String get call => 'Phone them';
 
   @override
-  String get invalidPhone => 'Enter digits only, 6 to 14';
+  String get invalidPhone => 'Type only the digits, 6 to 14 of them';
 
   @override
   String get email => 'Email';
 
   @override
-  String get occupation => 'Occupation';
+  String get occupation => 'Work';
 
   @override
-  String get education => 'Education';
+  String get education => 'Studies';
 
   @override
-  String get maritalStatus => 'Marital status';
+  String get maritalStatus => 'Married or single';
 
   @override
   String get bloodGroup => 'Blood group';
 
   @override
-  String get biography => 'Biography';
+  String get biography => 'Life story';
 
   @override
-  String get notes => 'Notes';
+  String get notes => 'Other notes';
 
   @override
   String get passportPhoto => 'Passport photo';
 
   @override
-  String get takePhoto => 'Take photo';
+  String get takePhoto => 'Take a photo now';
 
   @override
-  String get chooseFromGallery => 'Choose from gallery';
+  String get chooseFromGallery => 'Pick a photo from the phone';
 
   @override
-  String get removePhoto => 'Remove photo';
+  String get removePhoto => 'Remove this photo';
 
   @override
   String photoCompressedTo(String size) {
-    return 'Compressed to $size';
+    return 'Photo made smaller: $size';
   }
 
   @override
   String get save => 'Save';
 
   @override
-  String get cancel => 'Cancel';
+  String get savePerson => 'Save this person';
 
   @override
-  String get delete => 'Delete';
+  String get cancel => 'Go back';
 
   @override
-  String get edit => 'Edit';
+  String get delete => 'Remove';
+
+  @override
+  String get edit => 'Change details';
 
   @override
   String get gotra => 'Gotra';
@@ -307,19 +305,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String fromGotra(String value) {
-    return 'From gotra: $value';
+    return 'As per gotra: $value';
   }
 
   @override
   String fromFamily(String value) {
-    return 'From family: $value';
+    return 'As per family: $value';
   }
 
   @override
   String get family => 'Family';
 
   @override
-  String get requiredField => 'Required';
+  String get requiredField => 'Please fill this in';
 
   @override
   String get saved => 'Saved';
@@ -330,16 +328,16 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get confirmDelete => 'Delete this? This cannot be undone.';
+  String get confirmDelete => 'Remove this? It cannot be brought back.';
 
   @override
-  String get about => 'About';
+  String get about => 'Details';
 
   @override
-  String get timeline => 'Timeline';
+  String get timeline => 'Life events';
 
   @override
-  String get media => 'Media';
+  String get media => 'Photos and files';
 
   @override
   String get parents => 'Parents';
@@ -348,103 +346,103 @@ class AppLocalizationsEn extends AppLocalizations {
   String get children => 'Children';
 
   @override
-  String get spouses => 'Spouse';
+  String get spouses => 'Husband / wife';
 
   @override
-  String get siblings => 'Siblings';
+  String get siblings => 'Brothers and sisters';
 
   @override
-  String get addParent => 'Add parent';
+  String get addParent => 'Add mother or father';
 
   @override
-  String get addChild => 'Add child';
+  String get addChild => 'Add a son or daughter';
 
   @override
-  String get addSpouse => 'Add spouse';
+  String get addSpouse => 'Add husband or wife';
 
   @override
-  String get linkExisting => 'Link an existing person';
+  String get linkExisting => 'They are already in the tree, pick them';
 
   @override
-  String get createNew => 'Create a new person';
+  String get createNew => 'Add them as a new person';
 
   @override
-  String get selectPerson => 'Select person';
+  String get selectPerson => 'Pick the person';
 
   @override
-  String get marriedOn => 'Married on';
+  String get marriedOn => 'Wedding date';
 
   @override
-  String get relationshipAdded => 'Relationship added';
+  String get relationshipAdded => 'Relation added';
 
   @override
-  String get removeRelationship => 'Remove relationship';
+  String get removeRelationship => 'Remove this relation';
 
   @override
-  String get treeGraph => 'Graph';
+  String get treeGraph => 'Whole tree';
 
   @override
-  String get ancestors => 'Ancestors';
+  String get ancestors => 'Elders before';
 
   @override
-  String get descendants => 'Descendants';
+  String get descendants => 'Children after';
 
   @override
   String get generations => 'Generations';
 
   @override
-  String get noRelatives => 'No relatives linked yet.';
+  String get noRelatives => 'No relatives have been joined yet.';
 
   @override
   String get lifeEvents => 'Life events';
 
   @override
-  String get addEvent => 'Add event';
+  String get addEvent => 'Write a life event';
 
   @override
-  String get eventKind => 'Type';
+  String get eventKind => 'What happened';
 
   @override
-  String get eventTitle => 'Title';
+  String get eventTitle => 'In short';
 
   @override
-  String get eventDate => 'Date';
+  String get eventDate => 'When';
 
   @override
-  String get place => 'Place';
+  String get place => 'Where';
 
   @override
   String get kindBirth => 'Birth';
 
   @override
-  String get kindEducation => 'Education';
+  String get kindEducation => 'Studies';
 
   @override
-  String get kindMigration => 'Migration';
+  String get kindMigration => 'Moved to a new place';
 
   @override
-  String get kindMarriage => 'Marriage';
+  String get kindMarriage => 'Wedding';
 
   @override
-  String get kindCareer => 'Career';
+  String get kindCareer => 'Work';
 
   @override
-  String get kindDeath => 'Death';
+  String get kindDeath => 'Passing away';
 
   @override
-  String get kindOther => 'Other';
+  String get kindOther => 'Something else';
 
   @override
-  String get noEvents => 'No events yet.';
+  String get noEvents => 'Nothing written yet.';
 
   @override
-  String get migrationMap => 'Migration map';
+  String get migrationMap => 'Where our people moved';
 
   @override
-  String get mapSource => 'Map source';
+  String get mapSource => 'Map type';
 
   @override
-  String get mapBharatmaps => 'Bharatmaps (Govt. of India)';
+  String get mapBharatmaps => 'Bharatmaps (Government of India)';
 
   @override
   String get mapBhuvan => 'Bhuvan (ISRO)';
@@ -453,171 +451,170 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mapOsm => 'OpenStreetMap';
 
   @override
-  String get mapTilesFailed =>
-      'Tiles from this source are not loading. Try another map source.';
+  String get mapTilesFailed => 'This map is not opening. Try another map type.';
 
   @override
   String get allFamilies => 'All families';
 
   @override
-  String get tapToPick => 'Tap the map to set the location';
+  String get tapToPick => 'Touch the map where the place is';
 
   @override
-  String get clearLocation => 'Clear location';
+  String get clearLocation => 'Remove the mark';
 
   @override
   String get noPaths =>
-      'No places recorded yet. Add birth place, current place or migration events.';
+      'No places written yet. Add where people were born and live now.';
 
   @override
-  String get searchHint => 'Search by name, village or place';
+  String get searchHint => 'Type a name, village or place';
 
   @override
-  String get noResults => 'No results';
+  String get noResults => 'Nobody found';
 
   @override
-  String get onlyMyAncestors => 'Only my ancestors';
+  String get onlyMyAncestors => 'Only my elders';
 
   @override
-  String get findMatches => 'Find matches';
+  String get findMatches => 'Check for a double entry';
 
   @override
-  String get noMatches => 'No possible duplicates found.';
+  String get noMatches => 'No double entries found.';
 
   @override
-  String get possibleDuplicate => 'Possible duplicate';
+  String get possibleDuplicate => 'These two may be the same person';
 
   @override
   String matchScore(int score) {
-    return '$score% match';
+    return '$score% alike';
   }
 
   @override
-  String get mergeInto => 'Merge (admin)';
+  String get mergeInto => 'Make them one (admin)';
 
   @override
-  String get keepWhich => 'Which record should be kept?';
+  String get keepWhich => 'Which one should we keep?';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'They are different people';
 
   @override
   String matchesRefreshed(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count matches found',
-      one: '1 match found',
-      zero: 'No new matches',
+      other: '$count possible double entries',
+      one: '1 possible double entry',
+      zero: 'No double entries',
     );
     return '$_temp0';
   }
 
   @override
-  String get lookupBySurname => 'Look up by surname';
+  String get lookupBySurname => 'Type a surname';
 
   @override
-  String get addMapping => 'Add surname mapping';
+  String get addMapping => 'Add surname and its gotra';
 
   @override
-  String get addGotra => 'Add gotra';
+  String get addGotra => 'Add a gotra';
 
   @override
-  String get verified => 'Verified';
+  String get verified => 'Checked by the Samaj';
 
   @override
-  String get unverified => 'Unverified';
+  String get unverified => 'Not yet checked';
 
   @override
   String get village => 'Village';
 
   @override
   String get communityContributed =>
-      'Entries are added by members. Confirm with your elders; admins mark them verified.';
+      'Members write these. Ask your elders too; the Samaj marks the ones it has checked.';
 
   @override
-  String get markVerified => 'Mark verified';
+  String get markVerified => 'Mark as checked';
 
   @override
-  String get newAlbum => 'New album';
+  String get newAlbum => 'Make a new album';
 
   @override
-  String get albumTitle => 'Album title';
+  String get albumTitle => 'Album name';
 
   @override
-  String get uploadPhoto => 'Upload photo';
+  String get uploadPhoto => 'Add a photo';
 
   @override
-  String get addVideoLink => 'Add video link';
+  String get addVideoLink => 'Add a video link (YouTube)';
 
   @override
-  String get uploadDocument => 'Upload document (PDF)';
+  String get uploadDocument => 'Add a PDF file';
 
   @override
-  String get videoUrl => 'Video URL (YouTube, Drive)';
+  String get videoUrl => 'Paste the video link here';
 
   @override
-  String get caption => 'Caption';
+  String get caption => 'What is this photo of';
 
   @override
   String get noMedia => 'Nothing here yet.';
 
   @override
-  String get fileTooLarge => 'File is larger than 5 MB.';
+  String get fileTooLarge => 'This file is too big (more than 5 MB).';
 
   @override
-  String get markAllRead => 'Mark all read';
+  String get markAllRead => 'I have read them all';
 
   @override
-  String get noNotifications => 'No notifications.';
+  String get noNotifications => 'No messages for you.';
 
   @override
-  String get newChat => 'New chat';
+  String get newChat => 'Message someone';
 
   @override
-  String get messageHint => 'Message';
+  String get messageHint => 'Write your message';
 
   @override
   String get send => 'Send';
 
   @override
-  String get noConversations => 'No conversations yet.';
+  String get noConversations => 'You have not messaged anyone yet.';
 
   @override
-  String get newTicket => 'New ticket';
+  String get newTicket => 'Ask for help';
 
   @override
-  String get subject => 'Subject';
+  String get subject => 'What is it about';
 
   @override
-  String get message => 'Message';
+  String get message => 'Tell us more';
 
   @override
-  String get priority => 'Priority';
+  String get priority => 'How urgent';
 
   @override
-  String get status => 'Status';
+  String get status => 'Where it stands';
 
   @override
-  String get statusOpen => 'Open';
+  String get statusOpen => 'Not yet looked at';
 
   @override
-  String get statusInProgress => 'In progress';
+  String get statusInProgress => 'Being looked at';
 
   @override
-  String get statusResolved => 'Resolved';
+  String get statusResolved => 'Sorted out';
 
   @override
-  String get priorityHigh => 'High';
+  String get priorityHigh => 'Urgent';
 
   @override
   String get priorityNormal => 'Normal';
 
   @override
-  String get reply => 'Reply';
+  String get reply => 'Write a reply';
 
   @override
-  String get noTickets => 'No tickets.';
+  String get noTickets => 'You have not asked for help yet.';
 
   @override
   String get language => 'Language';
@@ -632,53 +629,53 @@ class AppLocalizationsEn extends AppLocalizations {
   String get hindi => 'हिन्दी';
 
   @override
-  String get successor => 'Legacy contact';
+  String get successor => 'Who keeps my record after me';
 
   @override
   String get successorInfo =>
-      'This member can maintain your record after you have passed away.';
+      'Choose a family member. After you, they can update your record.';
 
   @override
-  String get chooseSuccessor => 'Choose member';
+  String get chooseSuccessor => 'Choose a member';
 
   @override
-  String get none => 'None';
+  String get none => 'Nobody';
 
   @override
-  String get digitalAccount => 'Digital account';
+  String get digitalAccount => 'My record in the Samaj';
 
   @override
-  String get pendingMembers => 'Pending members';
+  String get pendingMembers => 'People waiting to join';
 
   @override
-  String get approve => 'Approve';
+  String get approve => 'Let them in';
 
   @override
-  String get reject => 'Reject';
+  String get reject => 'Do not let in';
 
   @override
-  String get block => 'Block';
+  String get block => 'Stop this account';
 
   @override
   String get allMembers => 'All members';
 
   @override
-  String get makeAdmin => 'Make admin';
+  String get makeAdmin => 'Make Samaj admin';
 
   @override
-  String get removeAdmin => 'Remove admin';
+  String get removeAdmin => 'Remove as admin';
 
   @override
-  String get supportAgent => 'Support agent';
+  String get supportAgent => 'Answers help requests';
 
   @override
-  String get noPending => 'No pending requests.';
+  String get noPending => 'Nobody is waiting.';
 
   @override
-  String get loading => 'Loading...';
+  String get loading => 'Please wait...';
 
   @override
-  String get retry => 'Retry';
+  String get retry => 'Try again';
 
   @override
   String get ok => 'OK';
@@ -687,35 +684,35 @@ class AppLocalizationsEn extends AppLocalizations {
   String get close => 'Close';
 
   @override
-  String get share => 'Share';
+  String get share => 'Send to someone';
 
   @override
   String get done => 'Done';
 
   @override
-  String get unknown => 'Unknown';
+  String get unknown => 'Not known';
 
   @override
   String born(String date) {
-    return 'b. $date';
+    return 'born $date';
   }
 
   @override
   String died(String date) {
-    return 'd. $date';
+    return 'passed away $date';
   }
 
   @override
-  String get adminBadge => 'Admin';
+  String get adminBadge => 'Samaj admin';
 
   @override
   String get you => 'You';
 
   @override
-  String get openLink => 'Open link';
+  String get openLink => 'Open';
 
   @override
-  String get document => 'Document';
+  String get document => 'PDF file';
 
   @override
   String get video => 'Video';
@@ -725,26 +722,26 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String generationsHint(int count) {
-    return 'Generations shown: $count';
+    return 'Show $count generations';
   }
 
   @override
-  String get deletePerson => 'Delete person (admin)';
+  String get deletePerson => 'Remove this person (admin)';
 
   @override
-  String get linkedToYou => 'Linked to your account';
+  String get linkedToYou => 'This is you';
 
   @override
-  String get claimedBySomeone => 'Linked to a member';
+  String get linkedToMember => 'This person uses the app';
 
   @override
-  String get selectFamily => 'Select family';
+  String get selectFamily => 'Which family';
 
   @override
-  String get chooseFamilyForSpouse => 'Spouse\'s family (birth family)';
+  String get chooseFamilyForSpouse => 'Their family before marriage';
 
   @override
-  String get recentlyAdded => 'Recently added';
+  String get recentlyAdded => 'Added recently';
 
   @override
   String peopleCount(int count) {
@@ -753,7 +750,7 @@ class AppLocalizationsEn extends AppLocalizations {
       locale: localeName,
       other: '$count people',
       one: '1 person',
-      zero: 'No people',
+      zero: 'Nobody',
     );
     return '$_temp0';
   }
@@ -763,57 +760,57 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noProfileYet =>
-      'You have not linked a person record yet. Create one or open your record in a family tree and tap \"This is me\".';
+      'You are not joined to any record yet. Look for yourself in the tree, or add yourself.';
 
   @override
   String get relatives => 'Relatives';
 
   @override
-  String get contact => 'Contact';
+  String get contact => 'How to reach them';
 
   @override
-  String get identity => 'Identity';
+  String get identity => 'Name';
 
   @override
   String get places => 'Places';
 
   @override
-  String get chooseMember => 'Choose member';
+  String get chooseMember => 'Choose a member';
 
   @override
   String get mapAttribution =>
-      'Map data from the selected source. Government layers: NIC Bharatmaps / ISRO Bhuvan.';
+      'Map: the chosen source. Government layers: NIC Bharatmaps / ISRO Bhuvan.';
 
   @override
-  String get downloadTreePdf => 'Download family tree (PDF)';
+  String get downloadTreePdf => 'Download the family tree (PDF)';
 
   @override
   String get treePdfInfo =>
-      'Five generations up and down from your record, with siblings and spouses.';
+      'Five generations above and below, with brothers, sisters, husbands and wives.';
 
   @override
-  String get includePhotos => 'Include passport photos';
+  String get includePhotos => 'Put the passport photos in too';
 
   @override
-  String get generatingPdf => 'Preparing PDF...';
+  String get generatingPdf => 'Making the PDF...';
 
   @override
-  String get pdfReady => 'PDF ready';
+  String get pdfReady => 'The PDF is ready';
 
   @override
-  String get generationsUp => 'Generations up';
+  String get generationsUp => 'Generations above';
 
   @override
-  String get generationsDown => 'Generations down';
+  String get generationsDown => 'Generations below';
 
   @override
-  String get welcomeTitle => 'Welcome to the Samaj app';
+  String get welcomeTitle => 'Welcome to our Samaj app';
 
   @override
-  String get chooseLanguage => 'Choose your language';
+  String get chooseLanguage => 'Which language would you like?';
 
   @override
-  String get continueLabel => 'Continue';
+  String get continueLabel => 'Go ahead';
 
   @override
   String get greetingJayShreeKrishna => 'Jay Shree Krishna 🙏';
@@ -829,7 +826,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String pdfGeneratedOn(String date) {
-    return 'Generated on $date with SocialTree';
+    return 'Made on $date with SocialTree';
   }
 
   @override
@@ -841,4 +838,134 @@ class AppLocalizationsEn extends AppLocalizations {
   String pageOf(int page, int total) {
     return 'Page $page of $total';
   }
+
+  @override
+  String get findMeTitle => 'Are you already in the tree?';
+
+  @override
+  String get findMeIntro =>
+      'A relative may have written you in already. Let us check.';
+
+  @override
+  String get yourFirstName => 'Your first name';
+
+  @override
+  String get yourLastName => 'Your surname';
+
+  @override
+  String get yourVillage => 'Your native village (if you like)';
+
+  @override
+  String get yourBirthYear => 'Year you were born (if you like)';
+
+  @override
+  String get yourMobile => 'Your mobile number (if you like)';
+
+  @override
+  String get searchForMe => 'Look for me';
+
+  @override
+  String get areYouThisPerson => 'Are you this person?';
+
+  @override
+  String get yesThisIsMe => 'Yes, this is me';
+
+  @override
+  String get noNotMe => 'No, this is not me';
+
+  @override
+  String get notInListAddMe => 'I am not in the list, add me';
+
+  @override
+  String get doThisLater => 'I will do this later';
+
+  @override
+  String get requestSent =>
+      'We have asked your family to confirm. You will get a message here.';
+
+  @override
+  String get linkedNow => 'Done. This record is now yours.';
+
+  @override
+  String parentsLabel(String names) {
+    return 'Parents: $names';
+  }
+
+  @override
+  String get noCandidates => 'We could not find you. You can add yourself.';
+
+  @override
+  String get waitingForFamily =>
+      'Waiting for your family to confirm that this is you';
+
+  @override
+  String get cancelRequest => 'Cancel my request';
+
+  @override
+  String get unlinkMe => 'This is not my record any more';
+
+  @override
+  String get inMemoryOf => 'In loving memory';
+
+  @override
+  String passedAwayOn(String date) {
+    return 'Passed away on $date';
+  }
+
+  @override
+  String lookedAfterBy(String name) {
+    return 'This record is looked after by $name';
+  }
+
+  @override
+  String get chooseCaretaker => 'Choose who looks after this record';
+
+  @override
+  String get claimsTitle => '\"This is me\" requests';
+
+  @override
+  String get pendingRequests => 'Waiting for an answer';
+
+  @override
+  String get pastRequests => 'Answered earlier';
+
+  @override
+  String get confirmYes => 'Yes, it is them';
+
+  @override
+  String get confirmNo => 'No, it is not them';
+
+  @override
+  String get noRequests => 'No requests.';
+
+  @override
+  String requestFrom(String name) {
+    return '$name says: this is me';
+  }
+
+  @override
+  String get mergeIntoMine => 'This is also me. Join it with my record';
+
+  @override
+  String yourRecordLinked(String name) {
+    return 'Your record: $name';
+  }
+
+  @override
+  String get findMyselfAgain => 'Look for my record in the tree';
+
+  @override
+  String get requestDecided => 'Answered';
+
+  @override
+  String get statusApproved => 'Confirmed';
+
+  @override
+  String get statusRejected => 'Not confirmed';
+
+  @override
+  String get statusWithdrawn => 'Cancelled';
+
+  @override
+  String get statusPending => 'Waiting';
 }

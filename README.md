@@ -20,7 +20,9 @@ Flutter (Android, iOS, web) + Supabase (Postgres, Google sign-in, storage, realt
 - **Chat**: 1:1 messaging between members.
 - **Support tickets**; admin tickets are prioritised.
 - **Family tree PDF**: download a landscape PDF of any person's tree, five generations up and down, wide (siblings and spouses), with optional passport photos. Gujarati and Hindi names render with bundled Noto fonts.
-- **Digital account**: legacy contact who can maintain your record after you pass away.
+- **"This is me"**: after joining, members are asked "Are you already in the tree?" and shown likely matches (name, birth year, village, phone, email, parents' names). Choosing "Yes, this is me" links the record at once when it carries their sign-in email or they created it themselves; otherwise the family confirms (record creator, a linked member of the same family, or an admin). Records of people who have passed away are never linkable; they show "In loving memory" and who looks after them (a caretaker, or the legacy contact once a linked member passes away, which only an admin may record).
+- **Digital account**: legacy contact who can maintain your record after you pass away; caretakers for people who never used the app.
+- **Plain language**: every label is an everyday sentence in English, Gujarati and Hindi, written for elders (buttons say what happens; no app jargon transliterated).
 - **Open editing**: every approved member can correct any record (names, places, dates, relations, families). Deletes stay with admins.
 - **First login**: a salutation (Jay Shree Krishna, Jay Mataji, Ram Ram, Jay Vishwakarma) and the language choice, saved to the profile.
 - **Free for every approved member**: no plans, no payments.

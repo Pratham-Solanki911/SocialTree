@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../../core/l10n_ext.dart';
+import '../../core/supabase_providers.dart';
 import '../../core/widgets.dart';
 import '../../data/providers.dart';
 import '../../models/models.dart';
@@ -16,9 +17,11 @@ import 'phones_field.dart';
 
 /// Create (familyId) or edit (personId) a person. Pops with the person id.
 class PersonFormScreen extends ConsumerStatefulWidget {
-  const PersonFormScreen({super.key, this.personId, this.familyId});
+  const PersonFormScreen({super.key, this.personId, this.familyId, this.linkToMe = false});
   final String? personId;
   final String? familyId;
+  /// After saving, link the new record to the signed-in member.
+  final bool linkToMe;
 
   @override
   ConsumerState<PersonFormScreen> createState() => _PersonFormScreenState();
@@ -148,6 +151,10 @@ class _PersonFormScreenState extends ConsumerState<PersonFormScreen> {
         id = _existing!.id;
         await repos.updatePerson(id, map);
       }
+      if (widget.linkToMe && _existing == null) {
+        await repos.requestClaim(id); // self-created: approved at once
+        ref.invalidate(myProfileProvider);
+      }
       if (_photo != null) {
         await repos.uploadPassport(id, _photo!);
       } else if (_photoRemoved && _existing?.passportPhotoPath != null) {
@@ -197,7 +204,7 @@ class _PersonFormScreenState extends ConsumerState<PersonFormScreen> {
       appBar: AppBar(
         title: Text(_existing == null ? l.addPerson : l.edit),
         actions: [
-          TextButton(onPressed: _saving ? null : _save, child: Text(l.save)),
+          TextButton(onPressed: _saving ? null : _save, child: Text(l.savePerson)),
         ],
       ),
       body: Form(
@@ -307,7 +314,7 @@ class _PersonFormScreenState extends ConsumerState<PersonFormScreen> {
             text('biography', l.biography, maxLines: 4),
             text('notes', l.notes, maxLines: 4),
             const SizedBox(height: 24),
-            FilledButton(onPressed: _saving ? null : _save, child: Text(l.save)),
+            FilledButton(onPressed: _saving ? null : _save, child: Text(l.savePerson)),
             const SizedBox(height: 40),
           ],
         ),

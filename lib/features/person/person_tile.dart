@@ -27,7 +27,7 @@ class PersonTile extends StatelessWidget {
       leading: PersonAvatar(path: person.passportPhotoPath, initials: person.initials, size: 36),
       title: Text(person.fullName),
       subtitle: sub.isEmpty ? null : Text(sub),
-      trailing: trailing,
+      trailing: trailing ?? (person.claimedBy != null ? Tooltip(message: context.l.linkedToMember, child: const Icon(Icons.verified_user_outlined, size: 18)) : (!person.isAlive ? const Icon(Icons.local_florist_outlined, size: 18) : null)),
       onTap: onTap ?? () => context.push('/persons/${person.id}'),
     );
   }

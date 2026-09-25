@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/l10n_ext.dart';
 import '../../core/supabase_providers.dart';
@@ -39,6 +40,7 @@ class AdminScreen extends ConsumerWidget {
             onRefresh: () async => ref.invalidate(allProfilesProvider),
             child: ListView(
               children: [
+                ListTile(leading: const Icon(Icons.how_to_reg_outlined), title: Text(l.claimsTitle), trailing: const Icon(Icons.chevron_right), onTap: () => context.push('/claims')),
                 SectionTitle(l.pendingMembers),
                 if (pending.isEmpty) Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Text(l.noPending)),
                 for (final p in pending)

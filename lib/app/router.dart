@@ -10,6 +10,8 @@ import '../features/auth/pending_screen.dart';
 import '../features/auth/setup_screen.dart';
 import '../features/auth/sign_in_screen.dart';
 import '../features/auth/welcome_screen.dart';
+import '../features/identity/claims_screen.dart';
+import '../features/identity/find_me_screen.dart';
 import '../features/chat/chat_screen.dart';
 import '../features/chat/conversations_screen.dart';
 import '../features/families/families_screen.dart';
@@ -45,6 +47,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/sign-in', builder: (_, _) => const SignInScreen()),
       GoRoute(path: '/pending', builder: (_, _) => const PendingScreen()),
       GoRoute(path: '/welcome', builder: (_, _) => const WelcomeScreen()),
+      GoRoute(path: '/find-me', builder: (_, _) => const FindMeScreen()),
+      GoRoute(parentNavigatorKey: _rootKey, path: '/claims', builder: (_, _) => const ClaimsScreen()),
       StatefulShellRoute.indexedStack(
         builder: (context, state, shell) => HomeShell(shell: shell),
         branches: [
@@ -64,7 +68,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         parentNavigatorKey: _rootKey,
         path: '/persons/new',
-        builder: (_, s) => PersonFormScreen(familyId: s.uri.queryParameters['familyId']),
+        builder: (_, s) => PersonFormScreen(familyId: s.uri.queryParameters['familyId'], linkToMe: s.uri.queryParameters['me'] == '1'),
       ),
       GoRoute(
         parentNavigatorKey: _rootKey,
@@ -122,7 +126,9 @@ class _RouterNotifier extends ChangeNotifier {
     if (profile == null || !profile.isApproved) return loc == '/pending' ? null : '/pending';
     // First login: pick a language before anything else.
     if (profile.locale == null) return loc == '/welcome' ? null : '/welcome';
-    if (loc == '/sign-in' || loc == '/pending' || loc == '/setup' || loc == '/welcome') return '/home';
+    // Then: look for yourself in the tree, once.
+    if (!profile.onboardingDone) return loc == '/find-me' ? null : '/find-me';
+    if (loc == '/sign-in' || loc == '/pending' || loc == '/setup' || loc == '/welcome' || loc == '/find-me') return '/home';
     return null;
   }
 }

@@ -16,178 +16,172 @@ class AppLocalizationsHi extends AppLocalizations {
   String get samajName => 'श्री मच्छुकाठिया सई सुथार समाज';
 
   @override
-  String get signInTagline => 'हमारे समाज के वंशवृक्ष, अभिलेख और जड़ें';
+  String get signInTagline => 'हमारे परिवार, हमारा वंशवृक्ष, हमारी जड़ें';
 
   @override
-  String get signInWithGoogle => 'Google से जारी रखें';
+  String get signInWithGoogle => 'मेरे Google खाते से खोलें';
 
   @override
   String signInFailed(String message) {
-    return 'साइन-इन विफल: $message';
+    return 'खोल नहीं सके: $message';
   }
 
   @override
-  String get pendingTitle => 'स्वीकृति की प्रतीक्षा';
+  String get pendingTitle => 'थोड़ा इंतज़ार करें';
 
   @override
   String get pendingBody =>
-      'समाज का एडमिन आपकी सदस्यता स्वीकृत करेगा। यह स्क्रीन अपने आप अपडेट होगी।';
+      'समाज के संचालक आपको अंदर लेंगे। यह स्क्रीन अपने आप बदल जाएगी।';
 
   @override
   String get rejectedBody =>
-      'आपका सदस्यता अनुरोध स्वीकृत नहीं हुआ। समाज के एडमिन से संपर्क करें।';
+      'आपको अंदर नहीं लिया गया। समाज के संचालक से बात करें।';
 
   @override
   String get blockedBody =>
-      'आपका खाता ब्लॉक किया गया है। समाज के एडमिन से संपर्क करें।';
+      'आपका खाता रोक दिया गया है। समाज के संचालक से बात करें।';
 
   @override
-  String get signOut => 'साइन आउट';
+  String get signOut => 'ऐप से बाहर निकलें';
 
   @override
-  String get setupTitle => 'ऐप कॉन्फ़िगर नहीं है';
+  String get setupTitle => 'ऐप तैयार नहीं है';
 
   @override
   String get setupBody =>
       '--dart-define=SUPABASE_URL=... और --dart-define=SUPABASE_ANON_KEY=... के साथ बिल्ड करें। README.md देखें।';
 
   @override
-  String get navHome => 'होम';
+  String get navHome => 'घर';
 
   @override
   String get navFamilies => 'परिवार';
 
   @override
-  String get navSearch => 'खोज';
+  String get navSearch => 'व्यक्ति खोजें';
 
   @override
   String get navMap => 'नक्शा';
 
   @override
-  String get navAccount => 'खाता';
+  String get navAccount => 'मेरा खाता';
 
   @override
-  String get homeFeed => 'समाज समाचार';
+  String get homeFeed => 'समाज के समाचार';
 
   @override
-  String get noUpdates => 'अभी तक कोई जन्म, विवाह या निधन दर्ज नहीं है।';
+  String get noUpdates => 'अभी तक कोई जन्म, विवाह या निधन लिखा नहीं गया है।';
 
   @override
-  String get quickActions => 'त्वरित क्रियाएँ';
+  String get quickActions => 'आप क्या करना चाहते हैं?';
 
   @override
-  String get myProfile => 'मेरी प्रोफ़ाइल';
+  String get myProfile => 'मेरा रिकॉर्ड';
 
   @override
-  String get createMyProfile => 'मेरी प्रोफ़ाइल बनाएँ';
-
-  @override
-  String get claimProfile => 'यह मैं हूँ';
-
-  @override
-  String get claimed => 'रिकॉर्ड आपके खाते से जुड़ गया';
+  String get createMyProfile => 'मुझे वृक्ष में जोड़ें';
 
   @override
   String get addRelative => 'रिश्तेदार जोड़ें';
 
   @override
-  String get viewTree => 'वृक्ष देखें';
+  String get viewTree => 'वंशवृक्ष देखें';
 
   @override
-  String get matches => 'मिलान';
+  String get matches => 'एक ही व्यक्ति दो बार लिखा है?';
 
   @override
   String get gotraLookup => 'गोत्र और कुलदेवी';
 
   @override
-  String get albums => 'एल्बम';
+  String get albums => 'फ़ोटो';
 
   @override
-  String get chat => 'चैट';
+  String get chat => 'संदेश';
 
   @override
-  String get support => 'सहायता';
+  String get support => 'मदद माँगें';
 
   @override
-  String get notifications => 'सूचनाएँ';
+  String get notifications => 'आपके लिए संदेश';
 
   @override
-  String get admin => 'एडमिन';
+  String get admin => 'समाज संचालन';
 
   @override
   String get familiesTitle => 'परिवार';
 
   @override
-  String get newFamily => 'नया परिवार';
+  String get newFamily => 'परिवार जोड़ें';
 
   @override
-  String get familyName => 'परिवार का नाम';
+  String get familyName => 'परिवार का नाम (जैसे: सोलंकी परिवार, मोरबी)';
 
   @override
-  String get surname => 'उपनाम';
+  String get surname => 'उपनाम (सरनेम)';
 
   @override
   String get nativeVillage => 'मूल गाँव';
 
   @override
-  String get description => 'विवरण';
+  String get description => 'कुछ शब्द';
 
   @override
-  String get members => 'सदस्य';
+  String get members => 'इस परिवार के लोग';
 
   @override
   String memberCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count सदस्य',
-      one: '1 सदस्य',
-      zero: 'कोई सदस्य नहीं',
+      other: '$count व्यक्ति',
+      one: '1 व्यक्ति',
+      zero: 'अभी कोई नहीं',
     );
     return '$_temp0';
   }
 
   @override
-  String get noFamilies => 'अभी कोई परिवार नहीं। पहला बनाएँ।';
+  String get noFamilies => 'अभी कोई परिवार नहीं जोड़ा गया। पहला जोड़ें।';
 
   @override
-  String get createFamily => 'परिवार बनाएँ';
+  String get createFamily => 'यह परिवार जोड़ें';
 
   @override
   String get familyTree => 'वंशवृक्ष';
 
   @override
-  String get familyAlbum => 'परिवार एल्बम';
+  String get familyAlbum => 'परिवार के फ़ोटो';
 
   @override
   String get addPerson => 'व्यक्ति जोड़ें';
 
   @override
-  String get personDetails => 'व्यक्ति का विवरण';
+  String get personDetails => 'इस व्यक्ति के बारे में';
 
   @override
   String get firstName => 'नाम';
 
   @override
-  String get middleName => 'पिता / पति का नाम';
+  String get middleName => 'पिता या पति का नाम';
 
   @override
-  String get lastName => 'उपनाम';
+  String get lastName => 'उपनाम (सरनेम)';
 
   @override
-  String get maidenName => 'मायके का उपनाम';
+  String get maidenName => 'शादी से पहले का उपनाम';
 
   @override
-  String get nickname => 'उपनाम (घर का नाम)';
+  String get nickname => 'घर का नाम';
 
   @override
-  String get gender => 'लिंग';
+  String get gender => 'स्त्री या पुरुष';
 
   @override
   String get male => 'पुरुष';
 
   @override
-  String get female => 'महिला';
+  String get female => 'स्त्री';
 
   @override
   String get other => 'अन्य';
@@ -196,105 +190,108 @@ class AppLocalizationsHi extends AppLocalizations {
   String get dateOfBirth => 'जन्म तिथि';
 
   @override
-  String get approximate => 'अनुमानित';
+  String get approximate => 'पक्का नहीं, लगभग';
 
   @override
-  String get dateOfDeath => 'निधन तिथि';
+  String get dateOfDeath => 'निधन की तिथि';
 
   @override
-  String get deceased => 'स्वर्गीय';
+  String get deceased => 'निधन हो गया है';
 
   @override
-  String get alive => 'जीवित';
+  String get alive => 'जीवित हैं';
 
   @override
   String get birthPlace => 'जन्म स्थान';
 
   @override
-  String get currentPlace => 'वर्तमान स्थान';
+  String get currentPlace => 'अभी कहाँ रहते हैं';
 
   @override
-  String get pickOnMap => 'नक्शे पर चुनें';
+  String get pickOnMap => 'नक्शे पर दिखाएँ';
 
   @override
-  String get locationSet => 'स्थान सेट हुआ';
+  String get locationSet => 'नक्शे पर दिखाया';
 
   @override
-  String get phones => 'फ़ोन नंबर';
+  String get phones => 'मोबाइल नंबर';
 
   @override
-  String get addPhone => 'फ़ोन जोड़ें';
+  String get addPhone => 'मोबाइल नंबर जोड़ें';
 
   @override
   String get phoneNumber => 'नंबर';
 
   @override
-  String get countryCode => 'देश';
+  String get countryCode => 'कौन सा देश';
 
   @override
-  String get phoneLabel => 'लेबल';
+  String get phoneLabel => 'कौन सा नंबर है (घर, दुकान, UK...)';
 
   @override
-  String get whatsapp => 'WhatsApp';
+  String get whatsapp => 'इस नंबर पर WhatsApp है';
 
   @override
-  String get openWhatsApp => 'WhatsApp खोलें';
+  String get openWhatsApp => 'WhatsApp पर संदेश भेजें';
 
   @override
-  String get call => 'कॉल';
+  String get call => 'फ़ोन करें';
 
   @override
-  String get invalidPhone => 'केवल अंक, 6 से 14';
+  String get invalidPhone => 'सिर्फ़ अंक लिखें, 6 से 14';
 
   @override
   String get email => 'ईमेल';
 
   @override
-  String get occupation => 'व्यवसाय';
+  String get occupation => 'काम-धंधा';
 
   @override
-  String get education => 'शिक्षा';
+  String get education => 'पढ़ाई';
 
   @override
-  String get maritalStatus => 'वैवाहिक स्थिति';
+  String get maritalStatus => 'विवाहित या अविवाहित';
 
   @override
-  String get bloodGroup => 'रक्त समूह';
+  String get bloodGroup => 'ब्लड ग्रुप';
 
   @override
-  String get biography => 'जीवनी';
+  String get biography => 'जीवन की कहानी';
 
   @override
-  String get notes => 'टिप्पणियाँ';
+  String get notes => 'अन्य बातें';
 
   @override
   String get passportPhoto => 'पासपोर्ट फ़ोटो';
 
   @override
-  String get takePhoto => 'फ़ोटो लें';
+  String get takePhoto => 'अभी फ़ोटो लें';
 
   @override
-  String get chooseFromGallery => 'गैलरी से चुनें';
+  String get chooseFromGallery => 'फ़ोन से फ़ोटो चुनें';
 
   @override
-  String get removePhoto => 'फ़ोटो हटाएँ';
+  String get removePhoto => 'यह फ़ोटो हटाएँ';
 
   @override
   String photoCompressedTo(String size) {
-    return '$size तक संकुचित';
+    return 'फ़ोटो छोटा किया: $size';
   }
 
   @override
   String get save => 'सहेजें';
 
   @override
-  String get cancel => 'रद्द करें';
+  String get savePerson => 'इस व्यक्ति को सहेजें';
+
+  @override
+  String get cancel => 'वापस जाएँ';
 
   @override
   String get delete => 'हटाएँ';
 
   @override
-  String get edit => 'संपादित करें';
+  String get edit => 'विवरण बदलें';
 
   @override
   String get gotra => 'गोत्र';
@@ -319,27 +316,27 @@ class AppLocalizationsHi extends AppLocalizations {
   String get family => 'परिवार';
 
   @override
-  String get requiredField => 'आवश्यक';
+  String get requiredField => 'इसे भरना ज़रूरी है';
 
   @override
-  String get saved => 'सहेजा गया';
+  String get saved => 'सहेज लिया';
 
   @override
   String errorWithMessage(String message) {
-    return 'कुछ गलत हुआ: $message';
+    return 'कुछ गड़बड़ हुई: $message';
   }
 
   @override
-  String get confirmDelete => 'इसे हटाएँ? यह पूर्ववत नहीं किया जा सकता।';
+  String get confirmDelete => 'इसे हटाएँ? फिर वापस नहीं आएगा।';
 
   @override
-  String get about => 'परिचय';
+  String get about => 'विवरण';
 
   @override
-  String get timeline => 'समयरेखा';
+  String get timeline => 'जीवन की घटनाएँ';
 
   @override
-  String get media => 'मीडिया';
+  String get media => 'फ़ोटो और फ़ाइलें';
 
   @override
   String get parents => 'माता-पिता';
@@ -348,40 +345,40 @@ class AppLocalizationsHi extends AppLocalizations {
   String get children => 'संतान';
 
   @override
-  String get spouses => 'जीवनसाथी';
+  String get spouses => 'पति / पत्नी';
 
   @override
   String get siblings => 'भाई-बहन';
 
   @override
-  String get addParent => 'माता/पिता जोड़ें';
+  String get addParent => 'माता या पिता जोड़ें';
 
   @override
-  String get addChild => 'संतान जोड़ें';
+  String get addChild => 'बेटा या बेटी जोड़ें';
 
   @override
-  String get addSpouse => 'जीवनसाथी जोड़ें';
+  String get addSpouse => 'पति या पत्नी जोड़ें';
 
   @override
-  String get linkExisting => 'मौजूदा व्यक्ति जोड़ें';
+  String get linkExisting => 'वे वृक्ष में पहले से हैं, चुनें';
 
   @override
-  String get createNew => 'नया व्यक्ति बनाएँ';
+  String get createNew => 'नए व्यक्ति के रूप में जोड़ें';
 
   @override
   String get selectPerson => 'व्यक्ति चुनें';
 
   @override
-  String get marriedOn => 'विवाह तिथि';
+  String get marriedOn => 'शादी की तारीख';
 
   @override
   String get relationshipAdded => 'रिश्ता जोड़ा गया';
 
   @override
-  String get removeRelationship => 'रिश्ता हटाएँ';
+  String get removeRelationship => 'यह रिश्ता हटाएँ';
 
   @override
-  String get treeGraph => 'ग्राफ़';
+  String get treeGraph => 'पूरा वृक्ष';
 
   @override
   String get ancestors => 'पूर्वज';
@@ -399,49 +396,49 @@ class AppLocalizationsHi extends AppLocalizations {
   String get lifeEvents => 'जीवन की घटनाएँ';
 
   @override
-  String get addEvent => 'घटना जोड़ें';
+  String get addEvent => 'जीवन की घटना लिखें';
 
   @override
-  String get eventKind => 'प्रकार';
+  String get eventKind => 'क्या हुआ';
 
   @override
-  String get eventTitle => 'शीर्षक';
+  String get eventTitle => 'संक्षेप में';
 
   @override
-  String get eventDate => 'तिथि';
+  String get eventDate => 'कब';
 
   @override
-  String get place => 'स्थान';
+  String get place => 'कहाँ';
 
   @override
   String get kindBirth => 'जन्म';
 
   @override
-  String get kindEducation => 'शिक्षा';
+  String get kindEducation => 'पढ़ाई';
 
   @override
-  String get kindMigration => 'प्रवास';
+  String get kindMigration => 'नई जगह रहने गए';
 
   @override
-  String get kindMarriage => 'विवाह';
+  String get kindMarriage => 'शादी';
 
   @override
-  String get kindCareer => 'करियर';
+  String get kindCareer => 'काम-धंधा';
 
   @override
   String get kindDeath => 'निधन';
 
   @override
-  String get kindOther => 'अन्य';
+  String get kindOther => 'कुछ और';
 
   @override
-  String get noEvents => 'अभी कोई घटना नहीं।';
+  String get noEvents => 'अभी कुछ नहीं लिखा गया।';
 
   @override
-  String get migrationMap => 'प्रवास नक्शा';
+  String get migrationMap => 'हमारे लोग कहाँ गए';
 
   @override
-  String get mapSource => 'नक्शा स्रोत';
+  String get mapSource => 'नक्शे का प्रकार';
 
   @override
   String get mapBharatmaps => 'भारतमैप्स (भारत सरकार)';
@@ -453,171 +450,170 @@ class AppLocalizationsHi extends AppLocalizations {
   String get mapOsm => 'OpenStreetMap';
 
   @override
-  String get mapTilesFailed =>
-      'इस स्रोत के नक्शे लोड नहीं हो रहे। दूसरा स्रोत आज़माएँ।';
+  String get mapTilesFailed => 'यह नक्शा नहीं खुल रहा। दूसरा नक्शा आज़माएँ।';
 
   @override
   String get allFamilies => 'सभी परिवार';
 
   @override
-  String get tapToPick => 'स्थान सेट करने के लिए नक्शे पर टैप करें';
+  String get tapToPick => 'जहाँ जगह है वहाँ नक्शे पर उँगली रखें';
 
   @override
-  String get clearLocation => 'स्थान हटाएँ';
+  String get clearLocation => 'निशान हटाएँ';
 
   @override
   String get noPaths =>
-      'अभी कोई स्थान दर्ज नहीं। जन्म स्थान, वर्तमान स्थान या प्रवास घटनाएँ जोड़ें।';
+      'अभी कोई जगह नहीं लिखी। लोग कहाँ जन्मे और अभी कहाँ रहते हैं, यह जोड़ें।';
 
   @override
-  String get searchHint => 'नाम, गाँव या स्थान से खोजें';
+  String get searchHint => 'नाम, गाँव या जगह लिखें';
 
   @override
-  String get noResults => 'कोई परिणाम नहीं';
+  String get noResults => 'कोई नहीं मिला';
 
   @override
-  String get onlyMyAncestors => 'केवल मेरे पूर्वज';
+  String get onlyMyAncestors => 'सिर्फ़ मेरे पूर्वज';
 
   @override
-  String get findMatches => 'मिलान खोजें';
+  String get findMatches => 'दोहरी प्रविष्टि जाँचें';
 
   @override
-  String get noMatches => 'कोई संभावित डुप्लिकेट नहीं मिला।';
+  String get noMatches => 'कोई दोहरी प्रविष्टि नहीं मिली।';
 
   @override
-  String get possibleDuplicate => 'संभावित डुप्लिकेट';
+  String get possibleDuplicate => 'ये दोनों एक ही व्यक्ति हो सकते हैं';
 
   @override
   String matchScore(int score) {
-    return '$score% मिलान';
+    return '$score% मिलता';
   }
 
   @override
-  String get mergeInto => 'मर्ज करें (एडमिन)';
+  String get mergeInto => 'दोनों को एक करें (संचालक)';
 
   @override
-  String get keepWhich => 'कौन सा रिकॉर्ड रखें?';
+  String get keepWhich => 'कौन सा रखें?';
 
   @override
-  String get dismiss => 'अनदेखा करें';
+  String get dismiss => 'वे अलग लोग हैं';
 
   @override
   String matchesRefreshed(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count मिलान मिले',
-      one: '1 मिलान मिला',
-      zero: 'कोई नया मिलान नहीं',
+      other: '$count दोहरी प्रविष्टियाँ मिलीं',
+      one: '1 दोहरी प्रविष्टि मिली',
+      zero: 'कोई दोहरी प्रविष्टि नहीं',
     );
     return '$_temp0';
   }
 
   @override
-  String get lookupBySurname => 'उपनाम से खोजें';
+  String get lookupBySurname => 'उपनाम लिखें';
 
   @override
-  String get addMapping => 'उपनाम-गोत्र जोड़ें';
+  String get addMapping => 'उपनाम और उसका गोत्र जोड़ें';
 
   @override
   String get addGotra => 'गोत्र जोड़ें';
 
   @override
-  String get verified => 'सत्यापित';
+  String get verified => 'समाज ने पुष्टि की';
 
   @override
-  String get unverified => 'असत्यापित';
+  String get unverified => 'अभी पुष्टि बाकी';
 
   @override
   String get village => 'गाँव';
 
   @override
   String get communityContributed =>
-      'प्रविष्टियाँ सदस्य जोड़ते हैं। अपने बड़ों से पुष्टि करें; एडमिन उन्हें सत्यापित चिह्नित करते हैं।';
+      'इन्हें सदस्य लिखते हैं। बड़ों से भी पूछें; समाज जाँची हुई को निशान देता है।';
 
   @override
-  String get markVerified => 'सत्यापित चिह्नित करें';
+  String get markVerified => 'पुष्टि हुई, निशान दें';
 
   @override
-  String get newAlbum => 'नया एल्बम';
+  String get newAlbum => 'नया एल्बम बनाएँ';
 
   @override
   String get albumTitle => 'एल्बम का नाम';
 
   @override
-  String get uploadPhoto => 'फ़ोटो अपलोड करें';
+  String get uploadPhoto => 'फ़ोटो जोड़ें';
 
   @override
-  String get addVideoLink => 'वीडियो लिंक जोड़ें';
+  String get addVideoLink => 'वीडियो का लिंक जोड़ें (YouTube)';
 
   @override
-  String get uploadDocument => 'दस्तावेज़ अपलोड करें (PDF)';
+  String get uploadDocument => 'PDF फ़ाइल जोड़ें';
 
   @override
-  String get videoUrl => 'वीडियो URL (YouTube, Drive)';
+  String get videoUrl => 'वीडियो का लिंक यहाँ लिखें';
 
   @override
-  String get caption => 'कैप्शन';
+  String get caption => 'यह फ़ोटो किसका है';
 
   @override
   String get noMedia => 'अभी यहाँ कुछ नहीं।';
 
   @override
-  String get fileTooLarge => 'फ़ाइल 5 MB से बड़ी है।';
+  String get fileTooLarge => 'यह फ़ाइल बहुत बड़ी है (5 MB से ज़्यादा)।';
 
   @override
-  String get markAllRead => 'सभी पढ़ा हुआ करें';
+  String get markAllRead => 'सब पढ़ लिए';
 
   @override
-  String get noNotifications => 'कोई सूचना नहीं।';
+  String get noNotifications => 'आपके लिए कोई संदेश नहीं।';
 
   @override
-  String get newChat => 'नई चैट';
+  String get newChat => 'किसी को संदेश भेजें';
 
   @override
-  String get messageHint => 'संदेश';
+  String get messageHint => 'अपना संदेश लिखें';
 
   @override
   String get send => 'भेजें';
 
   @override
-  String get noConversations => 'अभी कोई बातचीत नहीं।';
+  String get noConversations => 'आपने अभी किसी को संदेश नहीं भेजा।';
 
   @override
-  String get newTicket => 'नया टिकट';
+  String get newTicket => 'मदद माँगें';
 
   @override
-  String get subject => 'विषय';
+  String get subject => 'किस बारे में';
 
   @override
-  String get message => 'संदेश';
+  String get message => 'और बताएँ';
 
   @override
-  String get priority => 'प्राथमिकता';
+  String get priority => 'कितना ज़रूरी';
 
   @override
-  String get status => 'स्थिति';
+  String get status => 'कहाँ पहुँचा';
 
   @override
-  String get statusOpen => 'खुला';
+  String get statusOpen => 'अभी देखा नहीं';
 
   @override
-  String get statusInProgress => 'प्रगति में';
+  String get statusInProgress => 'देखा जा रहा है';
 
   @override
-  String get statusResolved => 'हल हुआ';
+  String get statusResolved => 'सुलझ गया';
 
   @override
-  String get priorityHigh => 'उच्च';
+  String get priorityHigh => 'ज़रूरी';
 
   @override
   String get priorityNormal => 'सामान्य';
 
   @override
-  String get reply => 'जवाब';
+  String get reply => 'जवाब लिखें';
 
   @override
-  String get noTickets => 'कोई टिकट नहीं।';
+  String get noTickets => 'आपने अभी मदद नहीं माँगी।';
 
   @override
   String get language => 'भाषा';
@@ -632,11 +628,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String get hindi => 'हिन्दी';
 
   @override
-  String get successor => 'उत्तराधिकारी संपर्क';
+  String get successor => 'मेरे बाद मेरा रिकॉर्ड कौन संभालेगा';
 
   @override
   String get successorInfo =>
-      'आपके निधन के बाद यह सदस्य आपका रिकॉर्ड संभाल सकेगा।';
+      'एक सदस्य चुनें। आपके बाद वे आपका रिकॉर्ड सुधार सकेंगे।';
 
   @override
   String get chooseSuccessor => 'सदस्य चुनें';
@@ -645,77 +641,77 @@ class AppLocalizationsHi extends AppLocalizations {
   String get none => 'कोई नहीं';
 
   @override
-  String get digitalAccount => 'डिजिटल खाता';
+  String get digitalAccount => 'समाज में मेरा रिकॉर्ड';
 
   @override
-  String get pendingMembers => 'लंबित सदस्य';
+  String get pendingMembers => 'जुड़ने का इंतज़ार कर रहे लोग';
 
   @override
-  String get approve => 'स्वीकृत';
+  String get approve => 'अंदर लें';
 
   @override
-  String get reject => 'अस्वीकृत';
+  String get reject => 'अंदर न लें';
 
   @override
-  String get block => 'ब्लॉक';
+  String get block => 'यह खाता रोकें';
 
   @override
   String get allMembers => 'सभी सदस्य';
 
   @override
-  String get makeAdmin => 'एडमिन बनाएँ';
+  String get makeAdmin => 'समाज संचालक बनाएँ';
 
   @override
-  String get removeAdmin => 'एडमिन हटाएँ';
+  String get removeAdmin => 'संचालक पद से हटाएँ';
 
   @override
-  String get supportAgent => 'सहायता एजेंट';
+  String get supportAgent => 'मदद के सवालों के जवाब देते हैं';
 
   @override
-  String get noPending => 'कोई लंबित अनुरोध नहीं।';
+  String get noPending => 'कोई इंतज़ार में नहीं।';
 
   @override
-  String get loading => 'लोड हो रहा है...';
+  String get loading => 'थोड़ा रुकें...';
 
   @override
-  String get retry => 'पुनः प्रयास';
+  String get retry => 'फिर कोशिश करें';
 
   @override
-  String get ok => 'ठीक';
+  String get ok => 'ठीक है';
 
   @override
-  String get close => 'बंद';
+  String get close => 'बंद करें';
 
   @override
-  String get share => 'साझा करें';
+  String get share => 'किसी को भेजें';
 
   @override
   String get done => 'हो गया';
 
   @override
-  String get unknown => 'अज्ञात';
+  String get unknown => 'पता नहीं';
 
   @override
   String born(String date) {
-    return 'ज. $date';
+    return 'जन्म $date';
   }
 
   @override
   String died(String date) {
-    return 'नि. $date';
+    return 'निधन $date';
   }
 
   @override
-  String get adminBadge => 'एडमिन';
+  String get adminBadge => 'समाज संचालक';
 
   @override
   String get you => 'आप';
 
   @override
-  String get openLink => 'लिंक खोलें';
+  String get openLink => 'खोलें';
 
   @override
-  String get document => 'दस्तावेज़';
+  String get document => 'PDF फ़ाइल';
 
   @override
   String get video => 'वीडियो';
@@ -725,26 +721,26 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String generationsHint(int count) {
-    return 'दिखाई गई पीढ़ियाँ: $count';
+    return '$count पीढ़ियाँ दिखाएँ';
   }
 
   @override
-  String get deletePerson => 'व्यक्ति हटाएँ (एडमिन)';
+  String get deletePerson => 'इस व्यक्ति को हटाएँ (संचालक)';
 
   @override
-  String get linkedToYou => 'आपके खाते से जुड़ा';
+  String get linkedToYou => 'यह आप हैं';
 
   @override
-  String get claimedBySomeone => 'एक सदस्य से जुड़ा';
+  String get linkedToMember => 'यह व्यक्ति ऐप चलाते हैं';
 
   @override
-  String get selectFamily => 'परिवार चुनें';
+  String get selectFamily => 'कौन सा परिवार';
 
   @override
-  String get chooseFamilyForSpouse => 'जीवनसाथी का परिवार (मायका)';
+  String get chooseFamilyForSpouse => 'शादी से पहले उनका परिवार';
 
   @override
-  String get recentlyAdded => 'हाल ही में जोड़ा गया';
+  String get recentlyAdded => 'हाल में जोड़े गए';
 
   @override
   String peopleCount(int count) {
@@ -753,7 +749,7 @@ class AppLocalizationsHi extends AppLocalizations {
       locale: localeName,
       other: '$count व्यक्ति',
       one: '1 व्यक्ति',
-      zero: 'कोई व्यक्ति नहीं',
+      zero: 'कोई नहीं',
     );
     return '$_temp0';
   }
@@ -763,7 +759,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get noProfileYet =>
-      'आपने अभी कोई व्यक्ति रिकॉर्ड नहीं जोड़ा। नया बनाएँ या वंशवृक्ष में अपना रिकॉर्ड खोलकर \"यह मैं हूँ\" दबाएँ।';
+      'आप अभी किसी रिकॉर्ड से नहीं जुड़े हैं। वृक्ष में खुद को खोजें, या खुद को जोड़ें।';
 
   @override
   String get relatives => 'रिश्तेदार';
@@ -772,33 +768,33 @@ class AppLocalizationsHi extends AppLocalizations {
   String get contact => 'संपर्क';
 
   @override
-  String get identity => 'पहचान';
+  String get identity => 'नाम';
 
   @override
-  String get places => 'स्थान';
+  String get places => 'जगहें';
 
   @override
   String get chooseMember => 'सदस्य चुनें';
 
   @override
   String get mapAttribution =>
-      'नक्शा डेटा चुने गए स्रोत से। सरकारी परतें: NIC भारतमैप्स / ISRO भुवन।';
+      'नक्शा: चुना गया स्रोत। सरकारी परतें: NIC भारतमैप्स / ISRO भुवन।';
 
   @override
   String get downloadTreePdf => 'वंशवृक्ष डाउनलोड करें (PDF)';
 
   @override
   String get treePdfInfo =>
-      'आपके रिकॉर्ड से पाँच पीढ़ी ऊपर और नीचे, भाई-बहन और जीवनसाथी सहित।';
+      'ऊपर-नीचे पाँच पीढ़ियाँ, भाई-बहन और पति-पत्नी सहित।';
 
   @override
-  String get includePhotos => 'पासपोर्ट फ़ोटो शामिल करें';
+  String get includePhotos => 'पासपोर्ट फ़ोटो भी डालें';
 
   @override
-  String get generatingPdf => 'PDF तैयार हो रहा है...';
+  String get generatingPdf => 'PDF बन रही है...';
 
   @override
-  String get pdfReady => 'PDF तैयार';
+  String get pdfReady => 'PDF तैयार है';
 
   @override
   String get generationsUp => 'ऊपर की पीढ़ियाँ';
@@ -807,10 +803,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get generationsDown => 'नीचे की पीढ़ियाँ';
 
   @override
-  String get welcomeTitle => 'समाज ऐप में स्वागत है';
+  String get welcomeTitle => 'हमारे समाज के ऐप में आपका स्वागत है';
 
   @override
-  String get chooseLanguage => 'अपनी भाषा चुनें';
+  String get chooseLanguage => 'आप कौन सी भाषा चाहेंगे?';
 
   @override
   String get continueLabel => 'आगे बढ़ें';
@@ -829,7 +825,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String pdfGeneratedOn(String date) {
-    return '$date को SocialTree से बनाया गया';
+    return '$date को SocialTree से बनाया';
   }
 
   @override
@@ -841,4 +837,134 @@ class AppLocalizationsHi extends AppLocalizations {
   String pageOf(int page, int total) {
     return 'पृष्ठ $page / $total';
   }
+
+  @override
+  String get findMeTitle => 'क्या आप वृक्ष में पहले से हैं?';
+
+  @override
+  String get findMeIntro =>
+      'हो सकता है किसी रिश्तेदार ने आपको पहले ही लिख दिया हो। आइए देखें।';
+
+  @override
+  String get yourFirstName => 'आपका नाम';
+
+  @override
+  String get yourLastName => 'आपका उपनाम';
+
+  @override
+  String get yourVillage => 'आपका मूल गाँव (चाहें तो)';
+
+  @override
+  String get yourBirthYear => 'जन्म का साल (चाहें तो)';
+
+  @override
+  String get yourMobile => 'आपका मोबाइल नंबर (चाहें तो)';
+
+  @override
+  String get searchForMe => 'मुझे खोजें';
+
+  @override
+  String get areYouThisPerson => 'क्या यह आप ही हैं?';
+
+  @override
+  String get yesThisIsMe => 'हाँ, यह मैं ही हूँ';
+
+  @override
+  String get noNotMe => 'नहीं, यह मैं नहीं हूँ';
+
+  @override
+  String get notInListAddMe => 'मैं सूची में नहीं हूँ, मुझे जोड़ें';
+
+  @override
+  String get doThisLater => 'मैं यह बाद में करूँगा';
+
+  @override
+  String get requestSent =>
+      'हमने आपके परिवार से पुष्टि करने को कहा है। आपको यहाँ संदेश मिलेगा।';
+
+  @override
+  String get linkedNow => 'हो गया। अब यह रिकॉर्ड आपका है।';
+
+  @override
+  String parentsLabel(String names) {
+    return 'माता-पिता: $names';
+  }
+
+  @override
+  String get noCandidates => 'हम आपको नहीं ढूँढ पाए। आप खुद को जोड़ सकते हैं।';
+
+  @override
+  String get waitingForFamily =>
+      'आपके परिवार की पुष्टि का इंतज़ार है कि यह आप ही हैं';
+
+  @override
+  String get cancelRequest => 'मेरा अनुरोध रद्द करें';
+
+  @override
+  String get unlinkMe => 'अब यह मेरा रिकॉर्ड नहीं है';
+
+  @override
+  String get inMemoryOf => 'श्रद्धांजलि';
+
+  @override
+  String passedAwayOn(String date) {
+    return 'निधन: $date';
+  }
+
+  @override
+  String lookedAfterBy(String name) {
+    return 'इस रिकॉर्ड को $name संभालते हैं';
+  }
+
+  @override
+  String get chooseCaretaker => 'चुनें कि इस रिकॉर्ड को कौन संभालेगा';
+
+  @override
+  String get claimsTitle => '\"यह मैं हूँ\" अनुरोध';
+
+  @override
+  String get pendingRequests => 'जवाब के इंतज़ार में';
+
+  @override
+  String get pastRequests => 'पहले जवाब दिए गए';
+
+  @override
+  String get confirmYes => 'हाँ, यह वही हैं';
+
+  @override
+  String get confirmNo => 'नहीं, यह वे नहीं हैं';
+
+  @override
+  String get noRequests => 'कोई अनुरोध नहीं।';
+
+  @override
+  String requestFrom(String name) {
+    return '$name कहते हैं: यह मैं हूँ';
+  }
+
+  @override
+  String get mergeIntoMine => 'यह भी मैं ही हूँ। मेरे रिकॉर्ड से जोड़ें';
+
+  @override
+  String yourRecordLinked(String name) {
+    return 'आपका रिकॉर्ड: $name';
+  }
+
+  @override
+  String get findMyselfAgain => 'वृक्ष में मेरा रिकॉर्ड खोजें';
+
+  @override
+  String get requestDecided => 'जवाब दिया';
+
+  @override
+  String get statusApproved => 'पुष्टि हुई';
+
+  @override
+  String get statusRejected => 'पुष्टि नहीं हुई';
+
+  @override
+  String get statusWithdrawn => 'रद्द हुआ';
+
+  @override
+  String get statusPending => 'इंतज़ार में';
 }

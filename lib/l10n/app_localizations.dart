@@ -115,55 +115,55 @@ abstract class AppLocalizations {
   /// No description provided for @signInTagline.
   ///
   /// In en, this message translates to:
-  /// **'Family trees, records and roots of our Samaj'**
+  /// **'Our families, our tree, our roots'**
   String get signInTagline;
 
   /// No description provided for @signInWithGoogle.
   ///
   /// In en, this message translates to:
-  /// **'Continue with Google'**
+  /// **'Open with my Google account'**
   String get signInWithGoogle;
 
   /// No description provided for @signInFailed.
   ///
   /// In en, this message translates to:
-  /// **'Sign-in failed: {message}'**
+  /// **'Could not open: {message}'**
   String signInFailed(String message);
 
   /// No description provided for @pendingTitle.
   ///
   /// In en, this message translates to:
-  /// **'Awaiting approval'**
+  /// **'Please wait a little'**
   String get pendingTitle;
 
   /// No description provided for @pendingBody.
   ///
   /// In en, this message translates to:
-  /// **'A Samaj admin will approve your membership. This screen updates automatically.'**
+  /// **'A Samaj admin will let you in. This screen will change by itself.'**
   String get pendingBody;
 
   /// No description provided for @rejectedBody.
   ///
   /// In en, this message translates to:
-  /// **'Your membership request was not approved. Contact a Samaj admin.'**
+  /// **'You were not let in. Please talk to a Samaj admin.'**
   String get rejectedBody;
 
   /// No description provided for @blockedBody.
   ///
   /// In en, this message translates to:
-  /// **'Your account has been blocked. Contact a Samaj admin.'**
+  /// **'Your account is stopped. Please talk to a Samaj admin.'**
   String get blockedBody;
 
   /// No description provided for @signOut.
   ///
   /// In en, this message translates to:
-  /// **'Sign out'**
+  /// **'Log out of the app'**
   String get signOut;
 
   /// No description provided for @setupTitle.
   ///
   /// In en, this message translates to:
-  /// **'App not configured'**
+  /// **'App is not set up'**
   String get setupTitle;
 
   /// No description provided for @setupBody.
@@ -187,7 +187,7 @@ abstract class AppLocalizations {
   /// No description provided for @navSearch.
   ///
   /// In en, this message translates to:
-  /// **'Search'**
+  /// **'Find a person'**
   String get navSearch;
 
   /// No description provided for @navMap.
@@ -199,103 +199,91 @@ abstract class AppLocalizations {
   /// No description provided for @navAccount.
   ///
   /// In en, this message translates to:
-  /// **'Account'**
+  /// **'My account'**
   String get navAccount;
 
   /// No description provided for @homeFeed.
   ///
   /// In en, this message translates to:
-  /// **'Samaj updates'**
+  /// **'News from the Samaj'**
   String get homeFeed;
 
   /// No description provided for @noUpdates.
   ///
   /// In en, this message translates to:
-  /// **'No births, marriages or deaths recorded yet.'**
+  /// **'No births, weddings or deaths have been written yet.'**
   String get noUpdates;
 
   /// No description provided for @quickActions.
   ///
   /// In en, this message translates to:
-  /// **'Quick actions'**
+  /// **'What would you like to do?'**
   String get quickActions;
 
   /// No description provided for @myProfile.
   ///
   /// In en, this message translates to:
-  /// **'My profile'**
+  /// **'My record'**
   String get myProfile;
 
   /// No description provided for @createMyProfile.
   ///
   /// In en, this message translates to:
-  /// **'Create my profile'**
+  /// **'Add myself to the tree'**
   String get createMyProfile;
-
-  /// No description provided for @claimProfile.
-  ///
-  /// In en, this message translates to:
-  /// **'This is me'**
-  String get claimProfile;
-
-  /// No description provided for @claimed.
-  ///
-  /// In en, this message translates to:
-  /// **'Record linked to your account'**
-  String get claimed;
 
   /// No description provided for @addRelative.
   ///
   /// In en, this message translates to:
-  /// **'Add relative'**
+  /// **'Add a relative'**
   String get addRelative;
 
   /// No description provided for @viewTree.
   ///
   /// In en, this message translates to:
-  /// **'View tree'**
+  /// **'See the family tree'**
   String get viewTree;
 
   /// No description provided for @matches.
   ///
   /// In en, this message translates to:
-  /// **'Matches'**
+  /// **'Same person written twice?'**
   String get matches;
 
   /// No description provided for @gotraLookup.
   ///
   /// In en, this message translates to:
-  /// **'Gotra & Kuldevi'**
+  /// **'Gotra and Kuldevi'**
   String get gotraLookup;
 
   /// No description provided for @albums.
   ///
   /// In en, this message translates to:
-  /// **'Albums'**
+  /// **'Photo albums'**
   String get albums;
 
   /// No description provided for @chat.
   ///
   /// In en, this message translates to:
-  /// **'Chat'**
+  /// **'Messages'**
   String get chat;
 
   /// No description provided for @support.
   ///
   /// In en, this message translates to:
-  /// **'Support'**
+  /// **'Ask for help'**
   String get support;
 
   /// No description provided for @notifications.
   ///
   /// In en, this message translates to:
-  /// **'Notifications'**
+  /// **'Messages for you'**
   String get notifications;
 
   /// No description provided for @admin.
   ///
   /// In en, this message translates to:
-  /// **'Admin'**
+  /// **'Samaj admin'**
   String get admin;
 
   /// No description provided for @familiesTitle.
@@ -307,13 +295,13 @@ abstract class AppLocalizations {
   /// No description provided for @newFamily.
   ///
   /// In en, this message translates to:
-  /// **'New family'**
+  /// **'Add a family'**
   String get newFamily;
 
   /// No description provided for @familyName.
   ///
   /// In en, this message translates to:
-  /// **'Family name'**
+  /// **'Family name (for example: Solanki parivar, Morbi)'**
   String get familyName;
 
   /// No description provided for @surname.
@@ -331,31 +319,31 @@ abstract class AppLocalizations {
   /// No description provided for @description.
   ///
   /// In en, this message translates to:
-  /// **'Description'**
+  /// **'A few words about it'**
   String get description;
 
   /// No description provided for @members.
   ///
   /// In en, this message translates to:
-  /// **'Members'**
+  /// **'People in this family'**
   String get members;
 
   /// No description provided for @memberCount.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, =0{No members} =1{1 member} other{{count} members}}'**
+  /// **'{count, plural, =0{Nobody yet} =1{1 person} other{{count} people}}'**
   String memberCount(int count);
 
   /// No description provided for @noFamilies.
   ///
   /// In en, this message translates to:
-  /// **'No families yet. Create the first one.'**
+  /// **'No family has been added yet. Add the first one.'**
   String get noFamilies;
 
   /// No description provided for @createFamily.
   ///
   /// In en, this message translates to:
-  /// **'Create family'**
+  /// **'Add this family'**
   String get createFamily;
 
   /// No description provided for @familyTree.
@@ -367,19 +355,19 @@ abstract class AppLocalizations {
   /// No description provided for @familyAlbum.
   ///
   /// In en, this message translates to:
-  /// **'Family album'**
+  /// **'Family photos'**
   String get familyAlbum;
 
   /// No description provided for @addPerson.
   ///
   /// In en, this message translates to:
-  /// **'Add person'**
+  /// **'Add a person'**
   String get addPerson;
 
   /// No description provided for @personDetails.
   ///
   /// In en, this message translates to:
-  /// **'Person details'**
+  /// **'About this person'**
   String get personDetails;
 
   /// No description provided for @firstName.
@@ -391,7 +379,7 @@ abstract class AppLocalizations {
   /// No description provided for @middleName.
   ///
   /// In en, this message translates to:
-  /// **'Middle name (father\'s / husband\'s name)'**
+  /// **'Father\'s or husband\'s name'**
   String get middleName;
 
   /// No description provided for @lastName.
@@ -403,31 +391,31 @@ abstract class AppLocalizations {
   /// No description provided for @maidenName.
   ///
   /// In en, this message translates to:
-  /// **'Maiden surname'**
+  /// **'Surname before marriage'**
   String get maidenName;
 
   /// No description provided for @nickname.
   ///
   /// In en, this message translates to:
-  /// **'Nickname'**
+  /// **'Name used at home'**
   String get nickname;
 
   /// No description provided for @gender.
   ///
   /// In en, this message translates to:
-  /// **'Gender'**
+  /// **'Man or woman'**
   String get gender;
 
   /// No description provided for @male.
   ///
   /// In en, this message translates to:
-  /// **'Male'**
+  /// **'Man'**
   String get male;
 
   /// No description provided for @female.
   ///
   /// In en, this message translates to:
-  /// **'Female'**
+  /// **'Woman'**
   String get female;
 
   /// No description provided for @other.
@@ -445,19 +433,19 @@ abstract class AppLocalizations {
   /// No description provided for @approximate.
   ///
   /// In en, this message translates to:
-  /// **'Approximate'**
+  /// **'Not sure, roughly'**
   String get approximate;
 
   /// No description provided for @dateOfDeath.
   ///
   /// In en, this message translates to:
-  /// **'Date of death'**
+  /// **'Date of passing'**
   String get dateOfDeath;
 
   /// No description provided for @deceased.
   ///
   /// In en, this message translates to:
-  /// **'Deceased'**
+  /// **'Has passed away'**
   String get deceased;
 
   /// No description provided for @alive.
@@ -469,37 +457,37 @@ abstract class AppLocalizations {
   /// No description provided for @birthPlace.
   ///
   /// In en, this message translates to:
-  /// **'Birth place'**
+  /// **'Born in (place)'**
   String get birthPlace;
 
   /// No description provided for @currentPlace.
   ///
   /// In en, this message translates to:
-  /// **'Current place'**
+  /// **'Lives in (place)'**
   String get currentPlace;
 
   /// No description provided for @pickOnMap.
   ///
   /// In en, this message translates to:
-  /// **'Pick on map'**
+  /// **'Mark it on the map'**
   String get pickOnMap;
 
   /// No description provided for @locationSet.
   ///
   /// In en, this message translates to:
-  /// **'Location set'**
+  /// **'Marked on the map'**
   String get locationSet;
 
   /// No description provided for @phones.
   ///
   /// In en, this message translates to:
-  /// **'Phone numbers'**
+  /// **'Mobile numbers'**
   String get phones;
 
   /// No description provided for @addPhone.
   ///
   /// In en, this message translates to:
-  /// **'Add phone'**
+  /// **'Add a mobile number'**
   String get addPhone;
 
   /// No description provided for @phoneNumber.
@@ -511,37 +499,37 @@ abstract class AppLocalizations {
   /// No description provided for @countryCode.
   ///
   /// In en, this message translates to:
-  /// **'Country'**
+  /// **'Which country'**
   String get countryCode;
 
   /// No description provided for @phoneLabel.
   ///
   /// In en, this message translates to:
-  /// **'Label'**
+  /// **'Whose or which number (home, work, UK...)'**
   String get phoneLabel;
 
   /// No description provided for @whatsapp.
   ///
   /// In en, this message translates to:
-  /// **'WhatsApp'**
+  /// **'WhatsApp is on this number'**
   String get whatsapp;
 
   /// No description provided for @openWhatsApp.
   ///
   /// In en, this message translates to:
-  /// **'Open WhatsApp'**
+  /// **'Message on WhatsApp'**
   String get openWhatsApp;
 
   /// No description provided for @call.
   ///
   /// In en, this message translates to:
-  /// **'Call'**
+  /// **'Phone them'**
   String get call;
 
   /// No description provided for @invalidPhone.
   ///
   /// In en, this message translates to:
-  /// **'Enter digits only, 6 to 14'**
+  /// **'Type only the digits, 6 to 14 of them'**
   String get invalidPhone;
 
   /// No description provided for @email.
@@ -553,19 +541,19 @@ abstract class AppLocalizations {
   /// No description provided for @occupation.
   ///
   /// In en, this message translates to:
-  /// **'Occupation'**
+  /// **'Work'**
   String get occupation;
 
   /// No description provided for @education.
   ///
   /// In en, this message translates to:
-  /// **'Education'**
+  /// **'Studies'**
   String get education;
 
   /// No description provided for @maritalStatus.
   ///
   /// In en, this message translates to:
-  /// **'Marital status'**
+  /// **'Married or single'**
   String get maritalStatus;
 
   /// No description provided for @bloodGroup.
@@ -577,13 +565,13 @@ abstract class AppLocalizations {
   /// No description provided for @biography.
   ///
   /// In en, this message translates to:
-  /// **'Biography'**
+  /// **'Life story'**
   String get biography;
 
   /// No description provided for @notes.
   ///
   /// In en, this message translates to:
-  /// **'Notes'**
+  /// **'Other notes'**
   String get notes;
 
   /// No description provided for @passportPhoto.
@@ -595,25 +583,25 @@ abstract class AppLocalizations {
   /// No description provided for @takePhoto.
   ///
   /// In en, this message translates to:
-  /// **'Take photo'**
+  /// **'Take a photo now'**
   String get takePhoto;
 
   /// No description provided for @chooseFromGallery.
   ///
   /// In en, this message translates to:
-  /// **'Choose from gallery'**
+  /// **'Pick a photo from the phone'**
   String get chooseFromGallery;
 
   /// No description provided for @removePhoto.
   ///
   /// In en, this message translates to:
-  /// **'Remove photo'**
+  /// **'Remove this photo'**
   String get removePhoto;
 
   /// No description provided for @photoCompressedTo.
   ///
   /// In en, this message translates to:
-  /// **'Compressed to {size}'**
+  /// **'Photo made smaller: {size}'**
   String photoCompressedTo(String size);
 
   /// No description provided for @save.
@@ -622,22 +610,28 @@ abstract class AppLocalizations {
   /// **'Save'**
   String get save;
 
+  /// No description provided for @savePerson.
+  ///
+  /// In en, this message translates to:
+  /// **'Save this person'**
+  String get savePerson;
+
   /// No description provided for @cancel.
   ///
   /// In en, this message translates to:
-  /// **'Cancel'**
+  /// **'Go back'**
   String get cancel;
 
   /// No description provided for @delete.
   ///
   /// In en, this message translates to:
-  /// **'Delete'**
+  /// **'Remove'**
   String get delete;
 
   /// No description provided for @edit.
   ///
   /// In en, this message translates to:
-  /// **'Edit'**
+  /// **'Change details'**
   String get edit;
 
   /// No description provided for @gotra.
@@ -661,13 +655,13 @@ abstract class AppLocalizations {
   /// No description provided for @fromGotra.
   ///
   /// In en, this message translates to:
-  /// **'From gotra: {value}'**
+  /// **'As per gotra: {value}'**
   String fromGotra(String value);
 
   /// No description provided for @fromFamily.
   ///
   /// In en, this message translates to:
-  /// **'From family: {value}'**
+  /// **'As per family: {value}'**
   String fromFamily(String value);
 
   /// No description provided for @family.
@@ -679,7 +673,7 @@ abstract class AppLocalizations {
   /// No description provided for @requiredField.
   ///
   /// In en, this message translates to:
-  /// **'Required'**
+  /// **'Please fill this in'**
   String get requiredField;
 
   /// No description provided for @saved.
@@ -697,25 +691,25 @@ abstract class AppLocalizations {
   /// No description provided for @confirmDelete.
   ///
   /// In en, this message translates to:
-  /// **'Delete this? This cannot be undone.'**
+  /// **'Remove this? It cannot be brought back.'**
   String get confirmDelete;
 
   /// No description provided for @about.
   ///
   /// In en, this message translates to:
-  /// **'About'**
+  /// **'Details'**
   String get about;
 
   /// No description provided for @timeline.
   ///
   /// In en, this message translates to:
-  /// **'Timeline'**
+  /// **'Life events'**
   String get timeline;
 
   /// No description provided for @media.
   ///
   /// In en, this message translates to:
-  /// **'Media'**
+  /// **'Photos and files'**
   String get media;
 
   /// No description provided for @parents.
@@ -733,85 +727,85 @@ abstract class AppLocalizations {
   /// No description provided for @spouses.
   ///
   /// In en, this message translates to:
-  /// **'Spouse'**
+  /// **'Husband / wife'**
   String get spouses;
 
   /// No description provided for @siblings.
   ///
   /// In en, this message translates to:
-  /// **'Siblings'**
+  /// **'Brothers and sisters'**
   String get siblings;
 
   /// No description provided for @addParent.
   ///
   /// In en, this message translates to:
-  /// **'Add parent'**
+  /// **'Add mother or father'**
   String get addParent;
 
   /// No description provided for @addChild.
   ///
   /// In en, this message translates to:
-  /// **'Add child'**
+  /// **'Add a son or daughter'**
   String get addChild;
 
   /// No description provided for @addSpouse.
   ///
   /// In en, this message translates to:
-  /// **'Add spouse'**
+  /// **'Add husband or wife'**
   String get addSpouse;
 
   /// No description provided for @linkExisting.
   ///
   /// In en, this message translates to:
-  /// **'Link an existing person'**
+  /// **'They are already in the tree, pick them'**
   String get linkExisting;
 
   /// No description provided for @createNew.
   ///
   /// In en, this message translates to:
-  /// **'Create a new person'**
+  /// **'Add them as a new person'**
   String get createNew;
 
   /// No description provided for @selectPerson.
   ///
   /// In en, this message translates to:
-  /// **'Select person'**
+  /// **'Pick the person'**
   String get selectPerson;
 
   /// No description provided for @marriedOn.
   ///
   /// In en, this message translates to:
-  /// **'Married on'**
+  /// **'Wedding date'**
   String get marriedOn;
 
   /// No description provided for @relationshipAdded.
   ///
   /// In en, this message translates to:
-  /// **'Relationship added'**
+  /// **'Relation added'**
   String get relationshipAdded;
 
   /// No description provided for @removeRelationship.
   ///
   /// In en, this message translates to:
-  /// **'Remove relationship'**
+  /// **'Remove this relation'**
   String get removeRelationship;
 
   /// No description provided for @treeGraph.
   ///
   /// In en, this message translates to:
-  /// **'Graph'**
+  /// **'Whole tree'**
   String get treeGraph;
 
   /// No description provided for @ancestors.
   ///
   /// In en, this message translates to:
-  /// **'Ancestors'**
+  /// **'Elders before'**
   String get ancestors;
 
   /// No description provided for @descendants.
   ///
   /// In en, this message translates to:
-  /// **'Descendants'**
+  /// **'Children after'**
   String get descendants;
 
   /// No description provided for @generations.
@@ -823,7 +817,7 @@ abstract class AppLocalizations {
   /// No description provided for @noRelatives.
   ///
   /// In en, this message translates to:
-  /// **'No relatives linked yet.'**
+  /// **'No relatives have been joined yet.'**
   String get noRelatives;
 
   /// No description provided for @lifeEvents.
@@ -835,31 +829,31 @@ abstract class AppLocalizations {
   /// No description provided for @addEvent.
   ///
   /// In en, this message translates to:
-  /// **'Add event'**
+  /// **'Write a life event'**
   String get addEvent;
 
   /// No description provided for @eventKind.
   ///
   /// In en, this message translates to:
-  /// **'Type'**
+  /// **'What happened'**
   String get eventKind;
 
   /// No description provided for @eventTitle.
   ///
   /// In en, this message translates to:
-  /// **'Title'**
+  /// **'In short'**
   String get eventTitle;
 
   /// No description provided for @eventDate.
   ///
   /// In en, this message translates to:
-  /// **'Date'**
+  /// **'When'**
   String get eventDate;
 
   /// No description provided for @place.
   ///
   /// In en, this message translates to:
-  /// **'Place'**
+  /// **'Where'**
   String get place;
 
   /// No description provided for @kindBirth.
@@ -871,61 +865,61 @@ abstract class AppLocalizations {
   /// No description provided for @kindEducation.
   ///
   /// In en, this message translates to:
-  /// **'Education'**
+  /// **'Studies'**
   String get kindEducation;
 
   /// No description provided for @kindMigration.
   ///
   /// In en, this message translates to:
-  /// **'Migration'**
+  /// **'Moved to a new place'**
   String get kindMigration;
 
   /// No description provided for @kindMarriage.
   ///
   /// In en, this message translates to:
-  /// **'Marriage'**
+  /// **'Wedding'**
   String get kindMarriage;
 
   /// No description provided for @kindCareer.
   ///
   /// In en, this message translates to:
-  /// **'Career'**
+  /// **'Work'**
   String get kindCareer;
 
   /// No description provided for @kindDeath.
   ///
   /// In en, this message translates to:
-  /// **'Death'**
+  /// **'Passing away'**
   String get kindDeath;
 
   /// No description provided for @kindOther.
   ///
   /// In en, this message translates to:
-  /// **'Other'**
+  /// **'Something else'**
   String get kindOther;
 
   /// No description provided for @noEvents.
   ///
   /// In en, this message translates to:
-  /// **'No events yet.'**
+  /// **'Nothing written yet.'**
   String get noEvents;
 
   /// No description provided for @migrationMap.
   ///
   /// In en, this message translates to:
-  /// **'Migration map'**
+  /// **'Where our people moved'**
   String get migrationMap;
 
   /// No description provided for @mapSource.
   ///
   /// In en, this message translates to:
-  /// **'Map source'**
+  /// **'Map type'**
   String get mapSource;
 
   /// No description provided for @mapBharatmaps.
   ///
   /// In en, this message translates to:
-  /// **'Bharatmaps (Govt. of India)'**
+  /// **'Bharatmaps (Government of India)'**
   String get mapBharatmaps;
 
   /// No description provided for @mapBhuvan.
@@ -943,7 +937,7 @@ abstract class AppLocalizations {
   /// No description provided for @mapTilesFailed.
   ///
   /// In en, this message translates to:
-  /// **'Tiles from this source are not loading. Try another map source.'**
+  /// **'This map is not opening. Try another map type.'**
   String get mapTilesFailed;
 
   /// No description provided for @allFamilies.
@@ -955,115 +949,115 @@ abstract class AppLocalizations {
   /// No description provided for @tapToPick.
   ///
   /// In en, this message translates to:
-  /// **'Tap the map to set the location'**
+  /// **'Touch the map where the place is'**
   String get tapToPick;
 
   /// No description provided for @clearLocation.
   ///
   /// In en, this message translates to:
-  /// **'Clear location'**
+  /// **'Remove the mark'**
   String get clearLocation;
 
   /// No description provided for @noPaths.
   ///
   /// In en, this message translates to:
-  /// **'No places recorded yet. Add birth place, current place or migration events.'**
+  /// **'No places written yet. Add where people were born and live now.'**
   String get noPaths;
 
   /// No description provided for @searchHint.
   ///
   /// In en, this message translates to:
-  /// **'Search by name, village or place'**
+  /// **'Type a name, village or place'**
   String get searchHint;
 
   /// No description provided for @noResults.
   ///
   /// In en, this message translates to:
-  /// **'No results'**
+  /// **'Nobody found'**
   String get noResults;
 
   /// No description provided for @onlyMyAncestors.
   ///
   /// In en, this message translates to:
-  /// **'Only my ancestors'**
+  /// **'Only my elders'**
   String get onlyMyAncestors;
 
   /// No description provided for @findMatches.
   ///
   /// In en, this message translates to:
-  /// **'Find matches'**
+  /// **'Check for a double entry'**
   String get findMatches;
 
   /// No description provided for @noMatches.
   ///
   /// In en, this message translates to:
-  /// **'No possible duplicates found.'**
+  /// **'No double entries found.'**
   String get noMatches;
 
   /// No description provided for @possibleDuplicate.
   ///
   /// In en, this message translates to:
-  /// **'Possible duplicate'**
+  /// **'These two may be the same person'**
   String get possibleDuplicate;
 
   /// No description provided for @matchScore.
   ///
   /// In en, this message translates to:
-  /// **'{score}% match'**
+  /// **'{score}% alike'**
   String matchScore(int score);
 
   /// No description provided for @mergeInto.
   ///
   /// In en, this message translates to:
-  /// **'Merge (admin)'**
+  /// **'Make them one (admin)'**
   String get mergeInto;
 
   /// No description provided for @keepWhich.
   ///
   /// In en, this message translates to:
-  /// **'Which record should be kept?'**
+  /// **'Which one should we keep?'**
   String get keepWhich;
 
   /// No description provided for @dismiss.
   ///
   /// In en, this message translates to:
-  /// **'Dismiss'**
+  /// **'They are different people'**
   String get dismiss;
 
   /// No description provided for @matchesRefreshed.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, =0{No new matches} =1{1 match found} other{{count} matches found}}'**
+  /// **'{count, plural, =0{No double entries} =1{1 possible double entry} other{{count} possible double entries}}'**
   String matchesRefreshed(int count);
 
   /// No description provided for @lookupBySurname.
   ///
   /// In en, this message translates to:
-  /// **'Look up by surname'**
+  /// **'Type a surname'**
   String get lookupBySurname;
 
   /// No description provided for @addMapping.
   ///
   /// In en, this message translates to:
-  /// **'Add surname mapping'**
+  /// **'Add surname and its gotra'**
   String get addMapping;
 
   /// No description provided for @addGotra.
   ///
   /// In en, this message translates to:
-  /// **'Add gotra'**
+  /// **'Add a gotra'**
   String get addGotra;
 
   /// No description provided for @verified.
   ///
   /// In en, this message translates to:
-  /// **'Verified'**
+  /// **'Checked by the Samaj'**
   String get verified;
 
   /// No description provided for @unverified.
   ///
   /// In en, this message translates to:
-  /// **'Unverified'**
+  /// **'Not yet checked'**
   String get unverified;
 
   /// No description provided for @village.
@@ -1075,55 +1069,55 @@ abstract class AppLocalizations {
   /// No description provided for @communityContributed.
   ///
   /// In en, this message translates to:
-  /// **'Entries are added by members. Confirm with your elders; admins mark them verified.'**
+  /// **'Members write these. Ask your elders too; the Samaj marks the ones it has checked.'**
   String get communityContributed;
 
   /// No description provided for @markVerified.
   ///
   /// In en, this message translates to:
-  /// **'Mark verified'**
+  /// **'Mark as checked'**
   String get markVerified;
 
   /// No description provided for @newAlbum.
   ///
   /// In en, this message translates to:
-  /// **'New album'**
+  /// **'Make a new album'**
   String get newAlbum;
 
   /// No description provided for @albumTitle.
   ///
   /// In en, this message translates to:
-  /// **'Album title'**
+  /// **'Album name'**
   String get albumTitle;
 
   /// No description provided for @uploadPhoto.
   ///
   /// In en, this message translates to:
-  /// **'Upload photo'**
+  /// **'Add a photo'**
   String get uploadPhoto;
 
   /// No description provided for @addVideoLink.
   ///
   /// In en, this message translates to:
-  /// **'Add video link'**
+  /// **'Add a video link (YouTube)'**
   String get addVideoLink;
 
   /// No description provided for @uploadDocument.
   ///
   /// In en, this message translates to:
-  /// **'Upload document (PDF)'**
+  /// **'Add a PDF file'**
   String get uploadDocument;
 
   /// No description provided for @videoUrl.
   ///
   /// In en, this message translates to:
-  /// **'Video URL (YouTube, Drive)'**
+  /// **'Paste the video link here'**
   String get videoUrl;
 
   /// No description provided for @caption.
   ///
   /// In en, this message translates to:
-  /// **'Caption'**
+  /// **'What is this photo of'**
   String get caption;
 
   /// No description provided for @noMedia.
@@ -1135,31 +1129,31 @@ abstract class AppLocalizations {
   /// No description provided for @fileTooLarge.
   ///
   /// In en, this message translates to:
-  /// **'File is larger than 5 MB.'**
+  /// **'This file is too big (more than 5 MB).'**
   String get fileTooLarge;
 
   /// No description provided for @markAllRead.
   ///
   /// In en, this message translates to:
-  /// **'Mark all read'**
+  /// **'I have read them all'**
   String get markAllRead;
 
   /// No description provided for @noNotifications.
   ///
   /// In en, this message translates to:
-  /// **'No notifications.'**
+  /// **'No messages for you.'**
   String get noNotifications;
 
   /// No description provided for @newChat.
   ///
   /// In en, this message translates to:
-  /// **'New chat'**
+  /// **'Message someone'**
   String get newChat;
 
   /// No description provided for @messageHint.
   ///
   /// In en, this message translates to:
-  /// **'Message'**
+  /// **'Write your message'**
   String get messageHint;
 
   /// No description provided for @send.
@@ -1171,61 +1165,61 @@ abstract class AppLocalizations {
   /// No description provided for @noConversations.
   ///
   /// In en, this message translates to:
-  /// **'No conversations yet.'**
+  /// **'You have not messaged anyone yet.'**
   String get noConversations;
 
   /// No description provided for @newTicket.
   ///
   /// In en, this message translates to:
-  /// **'New ticket'**
+  /// **'Ask for help'**
   String get newTicket;
 
   /// No description provided for @subject.
   ///
   /// In en, this message translates to:
-  /// **'Subject'**
+  /// **'What is it about'**
   String get subject;
 
   /// No description provided for @message.
   ///
   /// In en, this message translates to:
-  /// **'Message'**
+  /// **'Tell us more'**
   String get message;
 
   /// No description provided for @priority.
   ///
   /// In en, this message translates to:
-  /// **'Priority'**
+  /// **'How urgent'**
   String get priority;
 
   /// No description provided for @status.
   ///
   /// In en, this message translates to:
-  /// **'Status'**
+  /// **'Where it stands'**
   String get status;
 
   /// No description provided for @statusOpen.
   ///
   /// In en, this message translates to:
-  /// **'Open'**
+  /// **'Not yet looked at'**
   String get statusOpen;
 
   /// No description provided for @statusInProgress.
   ///
   /// In en, this message translates to:
-  /// **'In progress'**
+  /// **'Being looked at'**
   String get statusInProgress;
 
   /// No description provided for @statusResolved.
   ///
   /// In en, this message translates to:
-  /// **'Resolved'**
+  /// **'Sorted out'**
   String get statusResolved;
 
   /// No description provided for @priorityHigh.
   ///
   /// In en, this message translates to:
-  /// **'High'**
+  /// **'Urgent'**
   String get priorityHigh;
 
   /// No description provided for @priorityNormal.
@@ -1237,13 +1231,13 @@ abstract class AppLocalizations {
   /// No description provided for @reply.
   ///
   /// In en, this message translates to:
-  /// **'Reply'**
+  /// **'Write a reply'**
   String get reply;
 
   /// No description provided for @noTickets.
   ///
   /// In en, this message translates to:
-  /// **'No tickets.'**
+  /// **'You have not asked for help yet.'**
   String get noTickets;
 
   /// No description provided for @language.
@@ -1273,55 +1267,55 @@ abstract class AppLocalizations {
   /// No description provided for @successor.
   ///
   /// In en, this message translates to:
-  /// **'Legacy contact'**
+  /// **'Who keeps my record after me'**
   String get successor;
 
   /// No description provided for @successorInfo.
   ///
   /// In en, this message translates to:
-  /// **'This member can maintain your record after you have passed away.'**
+  /// **'Choose a family member. After you, they can update your record.'**
   String get successorInfo;
 
   /// No description provided for @chooseSuccessor.
   ///
   /// In en, this message translates to:
-  /// **'Choose member'**
+  /// **'Choose a member'**
   String get chooseSuccessor;
 
   /// No description provided for @none.
   ///
   /// In en, this message translates to:
-  /// **'None'**
+  /// **'Nobody'**
   String get none;
 
   /// No description provided for @digitalAccount.
   ///
   /// In en, this message translates to:
-  /// **'Digital account'**
+  /// **'My record in the Samaj'**
   String get digitalAccount;
 
   /// No description provided for @pendingMembers.
   ///
   /// In en, this message translates to:
-  /// **'Pending members'**
+  /// **'People waiting to join'**
   String get pendingMembers;
 
   /// No description provided for @approve.
   ///
   /// In en, this message translates to:
-  /// **'Approve'**
+  /// **'Let them in'**
   String get approve;
 
   /// No description provided for @reject.
   ///
   /// In en, this message translates to:
-  /// **'Reject'**
+  /// **'Do not let in'**
   String get reject;
 
   /// No description provided for @block.
   ///
   /// In en, this message translates to:
-  /// **'Block'**
+  /// **'Stop this account'**
   String get block;
 
   /// No description provided for @allMembers.
@@ -1333,37 +1327,37 @@ abstract class AppLocalizations {
   /// No description provided for @makeAdmin.
   ///
   /// In en, this message translates to:
-  /// **'Make admin'**
+  /// **'Make Samaj admin'**
   String get makeAdmin;
 
   /// No description provided for @removeAdmin.
   ///
   /// In en, this message translates to:
-  /// **'Remove admin'**
+  /// **'Remove as admin'**
   String get removeAdmin;
 
   /// No description provided for @supportAgent.
   ///
   /// In en, this message translates to:
-  /// **'Support agent'**
+  /// **'Answers help requests'**
   String get supportAgent;
 
   /// No description provided for @noPending.
   ///
   /// In en, this message translates to:
-  /// **'No pending requests.'**
+  /// **'Nobody is waiting.'**
   String get noPending;
 
   /// No description provided for @loading.
   ///
   /// In en, this message translates to:
-  /// **'Loading...'**
+  /// **'Please wait...'**
   String get loading;
 
   /// No description provided for @retry.
   ///
   /// In en, this message translates to:
-  /// **'Retry'**
+  /// **'Try again'**
   String get retry;
 
   /// No description provided for @ok.
@@ -1381,7 +1375,7 @@ abstract class AppLocalizations {
   /// No description provided for @share.
   ///
   /// In en, this message translates to:
-  /// **'Share'**
+  /// **'Send to someone'**
   String get share;
 
   /// No description provided for @done.
@@ -1393,25 +1387,25 @@ abstract class AppLocalizations {
   /// No description provided for @unknown.
   ///
   /// In en, this message translates to:
-  /// **'Unknown'**
+  /// **'Not known'**
   String get unknown;
 
   /// No description provided for @born.
   ///
   /// In en, this message translates to:
-  /// **'b. {date}'**
+  /// **'born {date}'**
   String born(String date);
 
   /// No description provided for @died.
   ///
   /// In en, this message translates to:
-  /// **'d. {date}'**
+  /// **'passed away {date}'**
   String died(String date);
 
   /// No description provided for @adminBadge.
   ///
   /// In en, this message translates to:
-  /// **'Admin'**
+  /// **'Samaj admin'**
   String get adminBadge;
 
   /// No description provided for @you.
@@ -1423,13 +1417,13 @@ abstract class AppLocalizations {
   /// No description provided for @openLink.
   ///
   /// In en, this message translates to:
-  /// **'Open link'**
+  /// **'Open'**
   String get openLink;
 
   /// No description provided for @document.
   ///
   /// In en, this message translates to:
-  /// **'Document'**
+  /// **'PDF file'**
   String get document;
 
   /// No description provided for @video.
@@ -1447,49 +1441,49 @@ abstract class AppLocalizations {
   /// No description provided for @generationsHint.
   ///
   /// In en, this message translates to:
-  /// **'Generations shown: {count}'**
+  /// **'Show {count} generations'**
   String generationsHint(int count);
 
   /// No description provided for @deletePerson.
   ///
   /// In en, this message translates to:
-  /// **'Delete person (admin)'**
+  /// **'Remove this person (admin)'**
   String get deletePerson;
 
   /// No description provided for @linkedToYou.
   ///
   /// In en, this message translates to:
-  /// **'Linked to your account'**
+  /// **'This is you'**
   String get linkedToYou;
 
-  /// No description provided for @claimedBySomeone.
+  /// No description provided for @linkedToMember.
   ///
   /// In en, this message translates to:
-  /// **'Linked to a member'**
-  String get claimedBySomeone;
+  /// **'This person uses the app'**
+  String get linkedToMember;
 
   /// No description provided for @selectFamily.
   ///
   /// In en, this message translates to:
-  /// **'Select family'**
+  /// **'Which family'**
   String get selectFamily;
 
   /// No description provided for @chooseFamilyForSpouse.
   ///
   /// In en, this message translates to:
-  /// **'Spouse\'s family (birth family)'**
+  /// **'Their family before marriage'**
   String get chooseFamilyForSpouse;
 
   /// No description provided for @recentlyAdded.
   ///
   /// In en, this message translates to:
-  /// **'Recently added'**
+  /// **'Added recently'**
   String get recentlyAdded;
 
   /// No description provided for @peopleCount.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, =0{No people} =1{1 person} other{{count} people}}'**
+  /// **'{count, plural, =0{Nobody} =1{1 person} other{{count} people}}'**
   String peopleCount(int count);
 
   /// No description provided for @yourRecord.
@@ -1501,7 +1495,7 @@ abstract class AppLocalizations {
   /// No description provided for @noProfileYet.
   ///
   /// In en, this message translates to:
-  /// **'You have not linked a person record yet. Create one or open your record in a family tree and tap \"This is me\".'**
+  /// **'You are not joined to any record yet. Look for yourself in the tree, or add yourself.'**
   String get noProfileYet;
 
   /// No description provided for @relatives.
@@ -1513,13 +1507,13 @@ abstract class AppLocalizations {
   /// No description provided for @contact.
   ///
   /// In en, this message translates to:
-  /// **'Contact'**
+  /// **'How to reach them'**
   String get contact;
 
   /// No description provided for @identity.
   ///
   /// In en, this message translates to:
-  /// **'Identity'**
+  /// **'Name'**
   String get identity;
 
   /// No description provided for @places.
@@ -1531,73 +1525,73 @@ abstract class AppLocalizations {
   /// No description provided for @chooseMember.
   ///
   /// In en, this message translates to:
-  /// **'Choose member'**
+  /// **'Choose a member'**
   String get chooseMember;
 
   /// No description provided for @mapAttribution.
   ///
   /// In en, this message translates to:
-  /// **'Map data from the selected source. Government layers: NIC Bharatmaps / ISRO Bhuvan.'**
+  /// **'Map: the chosen source. Government layers: NIC Bharatmaps / ISRO Bhuvan.'**
   String get mapAttribution;
 
   /// No description provided for @downloadTreePdf.
   ///
   /// In en, this message translates to:
-  /// **'Download family tree (PDF)'**
+  /// **'Download the family tree (PDF)'**
   String get downloadTreePdf;
 
   /// No description provided for @treePdfInfo.
   ///
   /// In en, this message translates to:
-  /// **'Five generations up and down from your record, with siblings and spouses.'**
+  /// **'Five generations above and below, with brothers, sisters, husbands and wives.'**
   String get treePdfInfo;
 
   /// No description provided for @includePhotos.
   ///
   /// In en, this message translates to:
-  /// **'Include passport photos'**
+  /// **'Put the passport photos in too'**
   String get includePhotos;
 
   /// No description provided for @generatingPdf.
   ///
   /// In en, this message translates to:
-  /// **'Preparing PDF...'**
+  /// **'Making the PDF...'**
   String get generatingPdf;
 
   /// No description provided for @pdfReady.
   ///
   /// In en, this message translates to:
-  /// **'PDF ready'**
+  /// **'The PDF is ready'**
   String get pdfReady;
 
   /// No description provided for @generationsUp.
   ///
   /// In en, this message translates to:
-  /// **'Generations up'**
+  /// **'Generations above'**
   String get generationsUp;
 
   /// No description provided for @generationsDown.
   ///
   /// In en, this message translates to:
-  /// **'Generations down'**
+  /// **'Generations below'**
   String get generationsDown;
 
   /// No description provided for @welcomeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to the Samaj app'**
+  /// **'Welcome to our Samaj app'**
   String get welcomeTitle;
 
   /// No description provided for @chooseLanguage.
   ///
   /// In en, this message translates to:
-  /// **'Choose your language'**
+  /// **'Which language would you like?'**
   String get chooseLanguage;
 
   /// No description provided for @continueLabel.
   ///
   /// In en, this message translates to:
-  /// **'Continue'**
+  /// **'Go ahead'**
   String get continueLabel;
 
   /// No description provided for @greetingJayShreeKrishna.
@@ -1627,7 +1621,7 @@ abstract class AppLocalizations {
   /// No description provided for @pdfGeneratedOn.
   ///
   /// In en, this message translates to:
-  /// **'Generated on {date} with SocialTree'**
+  /// **'Made on {date} with SocialTree'**
   String pdfGeneratedOn(String date);
 
   /// No description provided for @treeOf.
@@ -1641,6 +1635,240 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Page {page} of {total}'**
   String pageOf(int page, int total);
+
+  /// No description provided for @findMeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you already in the tree?'**
+  String get findMeTitle;
+
+  /// No description provided for @findMeIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'A relative may have written you in already. Let us check.'**
+  String get findMeIntro;
+
+  /// No description provided for @yourFirstName.
+  ///
+  /// In en, this message translates to:
+  /// **'Your first name'**
+  String get yourFirstName;
+
+  /// No description provided for @yourLastName.
+  ///
+  /// In en, this message translates to:
+  /// **'Your surname'**
+  String get yourLastName;
+
+  /// No description provided for @yourVillage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your native village (if you like)'**
+  String get yourVillage;
+
+  /// No description provided for @yourBirthYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Year you were born (if you like)'**
+  String get yourBirthYear;
+
+  /// No description provided for @yourMobile.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mobile number (if you like)'**
+  String get yourMobile;
+
+  /// No description provided for @searchForMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Look for me'**
+  String get searchForMe;
+
+  /// No description provided for @areYouThisPerson.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you this person?'**
+  String get areYouThisPerson;
+
+  /// No description provided for @yesThisIsMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, this is me'**
+  String get yesThisIsMe;
+
+  /// No description provided for @noNotMe.
+  ///
+  /// In en, this message translates to:
+  /// **'No, this is not me'**
+  String get noNotMe;
+
+  /// No description provided for @notInListAddMe.
+  ///
+  /// In en, this message translates to:
+  /// **'I am not in the list, add me'**
+  String get notInListAddMe;
+
+  /// No description provided for @doThisLater.
+  ///
+  /// In en, this message translates to:
+  /// **'I will do this later'**
+  String get doThisLater;
+
+  /// No description provided for @requestSent.
+  ///
+  /// In en, this message translates to:
+  /// **'We have asked your family to confirm. You will get a message here.'**
+  String get requestSent;
+
+  /// No description provided for @linkedNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Done. This record is now yours.'**
+  String get linkedNow;
+
+  /// No description provided for @parentsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Parents: {names}'**
+  String parentsLabel(String names);
+
+  /// No description provided for @noCandidates.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not find you. You can add yourself.'**
+  String get noCandidates;
+
+  /// No description provided for @waitingForFamily.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for your family to confirm that this is you'**
+  String get waitingForFamily;
+
+  /// No description provided for @cancelRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel my request'**
+  String get cancelRequest;
+
+  /// No description provided for @unlinkMe.
+  ///
+  /// In en, this message translates to:
+  /// **'This is not my record any more'**
+  String get unlinkMe;
+
+  /// No description provided for @inMemoryOf.
+  ///
+  /// In en, this message translates to:
+  /// **'In loving memory'**
+  String get inMemoryOf;
+
+  /// No description provided for @passedAwayOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Passed away on {date}'**
+  String passedAwayOn(String date);
+
+  /// No description provided for @lookedAfterBy.
+  ///
+  /// In en, this message translates to:
+  /// **'This record is looked after by {name}'**
+  String lookedAfterBy(String name);
+
+  /// No description provided for @chooseCaretaker.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose who looks after this record'**
+  String get chooseCaretaker;
+
+  /// No description provided for @claimsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'\"This is me\" requests'**
+  String get claimsTitle;
+
+  /// No description provided for @pendingRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for an answer'**
+  String get pendingRequests;
+
+  /// No description provided for @pastRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'Answered earlier'**
+  String get pastRequests;
+
+  /// No description provided for @confirmYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, it is them'**
+  String get confirmYes;
+
+  /// No description provided for @confirmNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No, it is not them'**
+  String get confirmNo;
+
+  /// No description provided for @noRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'No requests.'**
+  String get noRequests;
+
+  /// No description provided for @requestFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} says: this is me'**
+  String requestFrom(String name);
+
+  /// No description provided for @mergeIntoMine.
+  ///
+  /// In en, this message translates to:
+  /// **'This is also me. Join it with my record'**
+  String get mergeIntoMine;
+
+  /// No description provided for @yourRecordLinked.
+  ///
+  /// In en, this message translates to:
+  /// **'Your record: {name}'**
+  String yourRecordLinked(String name);
+
+  /// No description provided for @findMyselfAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Look for my record in the tree'**
+  String get findMyselfAgain;
+
+  /// No description provided for @requestDecided.
+  ///
+  /// In en, this message translates to:
+  /// **'Answered'**
+  String get requestDecided;
+
+  /// No description provided for @statusApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmed'**
+  String get statusApproved;
+
+  /// No description provided for @statusRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Not confirmed'**
+  String get statusRejected;
+
+  /// No description provided for @statusWithdrawn.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get statusWithdrawn;
+
+  /// No description provided for @statusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting'**
+  String get statusPending;
 }
 
 class _AppLocalizationsDelegate
