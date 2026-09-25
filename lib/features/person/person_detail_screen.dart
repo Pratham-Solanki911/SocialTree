@@ -11,6 +11,7 @@ import '../../core/widgets.dart';
 import '../../data/providers.dart';
 import '../../models/models.dart';
 import '../media/media_grid.dart';
+import '../tree/tree_pdf.dart';
 import 'add_relative_sheet.dart';
 import 'person_tile.dart';
 
@@ -30,7 +31,8 @@ class PersonDetailScreen extends ConsumerWidget {
       value: person,
       onRetry: () => ref.invalidate(personProvider(personId)),
       builder: (p) {
-        final canEdit = profile?.isAdmin == true || p.createdBy == uid || p.claimedBy == uid;
+        // Records are maintained by the whole samaj: any approved member edits.
+        final canEdit = profile?.isApproved ?? false;
         final canClaim = p.claimedBy == null && myPerson == null;
         return DefaultTabController(
           length: 5,
@@ -52,6 +54,8 @@ class PersonDetailScreen extends ConsumerWidget {
                     switch (v) {
                       case 'tree':
                         context.push('/persons/$personId/tree');
+                      case 'pdf':
+                        await downloadTreePdf(context, ref, p);
                       case 'claim':
                         try {
                           await ref.read(reposProvider).claimPerson(personId);
@@ -86,6 +90,7 @@ class PersonDetailScreen extends ConsumerWidget {
                   },
                   itemBuilder: (_) => [
                     PopupMenuItem(value: 'tree', child: ListTile(leading: const Icon(Icons.account_tree_outlined), title: Text(l.viewTree))),
+                    PopupMenuItem(value: 'pdf', child: ListTile(leading: const Icon(Icons.picture_as_pdf_outlined), title: Text(l.downloadTreePdf))),
                     if (canClaim) PopupMenuItem(value: 'claim', child: ListTile(leading: const Icon(Icons.how_to_reg_outlined), title: Text(l.claimProfile))),
                     PopupMenuItem(value: 'matches', child: ListTile(leading: const Icon(Icons.join_full_outlined), title: Text(l.findMatches))),
                     if (profile?.isAdmin == true) PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Icons.delete_outline), title: Text(l.deletePerson))),

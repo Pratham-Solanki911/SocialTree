@@ -199,22 +199,3 @@ class PersonAvatar extends StatelessWidget {
     );
   }
 }
-
-/// Wraps a feature behind the premium plan (admins always pass).
-class PlanGate extends ConsumerWidget {
-  const PlanGate({super.key, required this.child, this.locked});
-  final Widget child;
-  final Widget? locked;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final p = ref.watch(myProfileProvider).value;
-    if (p != null && p.isPremium) return child;
-    return locked ??
-        ListTile(
-          leading: const Icon(Icons.workspace_premium_outlined),
-          title: Text(context.l.premiumOnly),
-          subtitle: Text(context.l.planInfo),
-        );
-  }
-}

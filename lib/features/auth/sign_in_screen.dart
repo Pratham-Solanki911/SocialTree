@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../core/branding.dart';
 import '../../core/env.dart';
 import '../../core/l10n_ext.dart';
 import '../../core/supabase_providers.dart';
@@ -47,9 +48,9 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.park_outlined, size: 72),
-              const SizedBox(height: 12),
-              Text(l.samajName, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headlineSmall),
+              const LogoMark(size: 120),
+              const SizedBox(height: 16),
+              const Wordmark(scale: 1.2),
               const SizedBox(height: 8),
               Text(l.signInTagline, textAlign: TextAlign.center),
               const SizedBox(height: 32),

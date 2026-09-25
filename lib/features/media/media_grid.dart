@@ -28,7 +28,6 @@ class MediaGrid extends ConsumerWidget {
     final media = ref.watch(provider);
     final uid = ref.watch(currentUserIdProvider);
     final isAdmin = ref.watch(myProfileProvider).value?.isAdmin ?? false;
-    final premium = ref.watch(myProfileProvider).value?.isPremium ?? false;
     final repos = ref.read(reposProvider);
 
     Future<void> run(Future<void> Function() job) async {
@@ -98,21 +97,11 @@ class MediaGrid extends ConsumerWidget {
               children: [
                 FilledButton.tonalIcon(onPressed: () => uploadPhoto(ImageSource.gallery), icon: const Icon(Icons.add_photo_alternate_outlined), label: Text(l.uploadPhoto)),
                 FilledButton.tonalIcon(onPressed: () => uploadPhoto(ImageSource.camera), icon: const Icon(Icons.photo_camera_outlined), label: Text(l.takePhoto)),
-                FilledButton.tonalIcon(
-                  onPressed: premium ? addVideo : null,
-                  icon: Icon(premium ? Icons.video_library_outlined : Icons.lock_outline),
-                  label: Text(l.addVideoLink),
-                ),
-                FilledButton.tonalIcon(
-                  onPressed: premium ? uploadDoc : null,
-                  icon: Icon(premium ? Icons.picture_as_pdf_outlined : Icons.lock_outline),
-                  label: Text(l.uploadDocument),
-                ),
+                FilledButton.tonalIcon(onPressed: addVideo, icon: const Icon(Icons.video_library_outlined), label: Text(l.addVideoLink)),
+                FilledButton.tonalIcon(onPressed: uploadDoc, icon: const Icon(Icons.picture_as_pdf_outlined), label: Text(l.uploadDocument)),
               ],
             ),
           ),
-        if (canEdit && !premium)
-          Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Text('${l.premiumOnly}: ${l.video}, ${l.document}', style: Theme.of(context).textTheme.bodySmall)),
         AsyncBody<List<MediaItem>>(
           value: media,
           onRetry: () => ref.invalidate(provider),

@@ -20,7 +20,7 @@ final sessionProvider = Provider<Session?>((ref) {
 final currentUserIdProvider =
     Provider<String?>((ref) => ref.watch(sessionProvider)?.user.id);
 
-/// Live view of my `profiles` row so approval / plan changes apply instantly.
+/// Live view of my `profiles` row so approval and role changes apply instantly.
 final myProfileProvider = StreamProvider<Profile?>((ref) {
   final uid = ref.watch(currentUserIdProvider);
   if (uid == null) return Stream.value(null);
@@ -34,5 +34,5 @@ final myProfileProvider = StreamProvider<Profile?>((ref) {
 
 final localeProvider = Provider<Locale?>((ref) {
   final p = ref.watch(myProfileProvider).value;
-  return p == null ? null : Locale(p.locale);
+  return p?.locale == null ? null : Locale(p!.locale!);
 });

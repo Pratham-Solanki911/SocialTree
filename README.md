@@ -18,11 +18,14 @@ Flutter (Android, iOS, web) + Supabase (Postgres, Google sign-in, storage, realt
 - **Albums and media**: photos (compressed), video links, PDF documents.
 - **Samaj feed and notifications**: births, marriages and deaths go to everyone; personal notifications for chat, matches, support and approvals (in-app, realtime).
 - **Chat**: 1:1 messaging between members.
-- **Support tickets** with priority by plan.
-- **Digital account**: legacy contact who can maintain your record after you pass away, and a full JSON export of your data and tree.
-- **Plans** (free / premium) assigned by admins, no payments: premium unlocks unlimited albums, video links, documents, starting chats and high-priority support. Replying to chats is free for everyone.
+- **Support tickets**; admin tickets are prioritised.
+- **Family tree PDF**: download a landscape PDF of any person's tree, five generations up and down, wide (siblings and spouses), with optional passport photos. Gujarati and Hindi names render with bundled Noto fonts.
+- **Digital account**: legacy contact who can maintain your record after you pass away.
+- **Open editing**: every approved member can correct any record (names, places, dates, relations, families). Deletes stay with admins.
+- **First login**: a salutation (Jay Shree Krishna, Jay Mataji, Ram Ram, Jay Vishwakarma) and the language choice, saved to the profile.
+- **Free for every approved member**: no plans, no payments.
 - **Languages**: English, Gujarati, Hindi (per-user setting).
-- **Admin**: approve members, roles, plans, block.
+- **Admin**: approve members, roles, block.
 
 ## Free-tier design
 
@@ -36,13 +39,17 @@ Flutter (Android, iOS, web) + Supabase (Postgres, Google sign-in, storage, realt
 | Maps | Public government tile services + OpenStreetMap, no API keys |
 | Project pausing | `.github/workflows/supabase-keepalive.yml` pings the project every 3 days |
 
+## Branding
+
+Logo and wordmarks live in `assets/branding/` (SVG). Launcher icons and the favicon are generated from them with `dart run flutter_launcher_icons`. The in-app mark is drawn in Dart (`lib/core/branding.dart`) so no SVG runtime is needed.
+
 ## Setup
 
 ### 1. Supabase project
 
 1. Create a project at supabase.com (free plan).
-2. Run `supabase/migrations/20260925000000_init.sql` in the SQL editor, or with the CLI: `supabase link` then `supabase db push`.
-   The migration creates all tables, policies, functions, the private `media` bucket, realtime settings and seed gotra rows.
+2. Run every file in `supabase/migrations/` in order in the SQL editor, or with the CLI: `supabase link` then `supabase db push`.
+   The migrations create all tables, policies, functions, the private `media` bucket, realtime settings and seed gotra rows.
 3. **Auth → Providers → Google**: enable it with a Google OAuth client (Web application type). Set the client's authorised redirect URI to `https://<project-ref>.supabase.co/auth/v1/callback`.
 4. **Auth → URL configuration**: add these redirect URLs:
    - `in.samaj.socialtree://login-callback` (Android / iOS)
@@ -79,7 +86,7 @@ Add repository secrets `SUPABASE_URL` and `SUPABASE_ANON_KEY` so the keep-alive 
 
 ```bash
 flutter analyze
-flutter test                                  # tree logic, phones, models
+flutter test                                  # tree logic, phones, models, PDF layout and rendering
 PG_BIN=/usr/lib/postgresql/16/bin supabase/tests/run_local.sh   # schema smoke test on a throwaway Postgres
 ```
 

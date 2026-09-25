@@ -3,17 +3,26 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../../core/branding.dart';
 import '../../core/l10n_ext.dart';
 import '../../core/supabase_providers.dart';
 import '../../core/widgets.dart';
 import '../../data/providers.dart';
 import '../../models/models.dart';
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  // One salutation per visit to the Home tab; it changes on the next launch.
+  late final int _greetingIndex = DateTime.now().microsecond % 4;
+
+  @override
+  Widget build(BuildContext context) {
     final l = context.l;
     final feed = ref.watch(feedProvider);
     final me = ref.watch(myPersonProvider).value;
@@ -36,7 +45,8 @@ class HomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l.samajName, style: Theme.of(context).textTheme.titleMedium),
+        leading: const Padding(padding: EdgeInsets.all(8), child: LogoMark(size: 40)),
+        title: Text(greetings(context)[_greetingIndex], style: Theme.of(context).textTheme.titleMedium),
         actions: [
           IconButton(
             onPressed: () => context.push('/notifications'),

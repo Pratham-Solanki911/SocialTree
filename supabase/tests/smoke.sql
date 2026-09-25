@@ -1,5 +1,5 @@
 -- Smoke test for the schema: bootstrap admin, approvals, tree integrity,
--- tree queries, matches + merge, plan gates, legacy successor, export.
+-- tree queries, matches + merge, open editing, legacy successor, PDF data.
 -- Expected-failure blocks raise a sentinel if the statement wrongly succeeds.
 \set ON_ERROR_STOP on
 \set u1 '00000000-0000-0000-0000-000000000001'
@@ -25,7 +25,7 @@ do $$ begin
   assert (select count(*) from public.notifications where user_id = '00000000-0000-0000-0000-000000000002' and kind = 'membership') = 1, 'welcome notification';
 end $$;
 
--- user 2 (free plan) cannot promote themself
+-- user 2 (member) cannot promote themself
 set role authenticated;
 select set_config('request.jwt.claim.sub', :'u2', false);
 do $$ begin
@@ -123,21 +123,11 @@ end $$;
 -- death event fans out to everyone except the author
 insert into public.life_events (person_id, kind, title, event_date) values ('a0000000-0000-0000-0000-00000000000a', 'death', 'Passed away peacefully', '2020-01-15');
 
--- free plan: one album, photos only, videos must be links and need premium
+-- albums, photos and linked videos are open to every member
 insert into public.albums (id, title, family_id) values ('b0000000-0000-0000-0000-000000000001', 'Morbi 2019', 'f0000000-0000-0000-0000-000000000001');
-do $$ begin
-  insert into public.albums (title, family_id) values ('Second album', 'f0000000-0000-0000-0000-000000000001');
-  raise exception 'sentinel';
-exception when others then
-  if sqlerrm = 'sentinel' then raise exception 'second album on free plan should have failed'; end if;
-end $$;
+insert into public.albums (title, family_id) values ('Second album', 'f0000000-0000-0000-0000-000000000001');
 insert into public.media (kind, album_id, storage_path, mime_type, size_bytes) values ('photo', 'b0000000-0000-0000-0000-000000000001', 'albums/b0000000-0000-0000-0000-000000000001/x.jpg', 'image/jpeg', 120000);
-do $$ begin
-  insert into public.media (kind, album_id, external_url) values ('video', 'b0000000-0000-0000-0000-000000000001', 'https://youtu.be/abc');
-  raise exception 'sentinel';
-exception when others then
-  if sqlerrm = 'sentinel' then raise exception 'video on free plan should have failed'; end if;
-end $$;
+insert into public.media (kind, album_id, external_url) values ('video', 'b0000000-0000-0000-0000-000000000001', 'https://youtu.be/abc');
 
 -- members can correct kuldevi/kuldevta; only admins can mark verified
 update public.gotras set kuldevi = 'Shri Khodiyar Mata (Matel)', verified = true where name = 'Khodiyar';
@@ -148,10 +138,16 @@ update public.persons set kuldevi = 'Khodiyar Mata, Rajpara' where id = 'a000000
 
 -- claim + export
 select public.claim_person('a0000000-0000-0000-0000-00000000000d');
-do $$ begin
-  assert (public.export_my_data() -> 'person' ->> 'first_name') = 'Ramesh', 'export has my person';
-  assert jsonb_array_length(public.export_my_data() -> 'tree' -> 'persons') >= 7, 'export has tree';
-  assert (public.export_my_data() -> 'person' -> 'phones' -> 1 ->> 'number') = '+447700900123', 'export keeps phones';
+do $$
+declare t jsonb;
+begin
+  t := public.get_tree_pdf_data('a0000000-0000-0000-0000-00000000000d', 5, 5);
+  assert jsonb_array_length(t -> 'persons') = 7, 'pdf data persons: ' || jsonb_array_length(t -> 'persons');
+  assert (select x ->> 'gen' from jsonb_array_elements(t -> 'persons') x where x ->> 'id' = 'a0000000-0000-0000-0000-00000000000a') = '-2', 'grandfather at gen -2';
+  assert (select x ->> 'gen' from jsonb_array_elements(t -> 'persons') x where x ->> 'id' = 'a0000000-0000-0000-0000-00000000000f') = '0', 'spouse on root generation';
+  assert (select x ->> 'gen' from jsonb_array_elements(t -> 'persons') x where x ->> 'id' = 'a0000000-0000-0000-0000-00000000000e') = '0', 'sibling on root generation';
+  assert (select x ->> 'gotra_name' from jsonb_array_elements(t -> 'persons') x where x ->> 'id' = 'a0000000-0000-0000-0000-00000000000d') = 'Khodiyar', 'gotra name joined';
+  assert jsonb_array_length(t -> 'relationships') = 8, 'pdf data edges';
 end $$;
 do $$ begin
   perform public.claim_person('a0000000-0000-0000-0000-00000000000e');
@@ -160,15 +156,8 @@ exception when others then
   if sqlerrm = 'sentinel' then raise exception 'second claim should have failed'; end if;
 end $$;
 
--- chat needs premium to start; admin upgrades user 2
-do $$ begin
-  perform public.get_or_create_direct_conversation('00000000-0000-0000-0000-000000000003');
-  raise exception 'sentinel';
-exception when others then
-  if sqlerrm = 'sentinel' then raise exception 'chat on free plan should have failed'; end if;
-end $$;
+-- admin merges the duplicate; any member can start a chat
 select set_config('request.jwt.claim.sub', :'u1', false);
-update public.profiles set plan = 'premium' where id = :'u2';
 select public.merge_persons('a0000000-0000-0000-0000-00000000000d', 'a0000000-0000-0000-0000-000000000011');
 select set_config('request.jwt.claim.sub', :'u2', false);
 do $$
@@ -177,42 +166,34 @@ begin
   cid := public.get_or_create_direct_conversation('00000000-0000-0000-0000-000000000003');
   assert cid = public.get_or_create_direct_conversation('00000000-0000-0000-0000-000000000003'), 'conversation reused';
   insert into public.messages (conversation_id, body) values (cid, 'Kem cho?');
-  -- video link allowed now
-  insert into public.media (kind, album_id, external_url) values ('video', 'b0000000-0000-0000-0000-000000000001', 'https://youtu.be/abc');
 end $$;
--- free user can still reply
+-- the other member replies
 select set_config('request.jwt.claim.sub', :'u3', false);
 insert into public.messages (conversation_id, body)
 select conversation_id, 'Majama!' from public.conversation_participants where user_id = :'u3';
 
--- support: premium => high priority, free => normal
+-- support: admin tickets are high priority, members normal
 select set_config('request.jwt.claim.sub', :'u2', false);
 insert into public.support_tickets (id, subject, body) values ('c0000000-0000-0000-0000-000000000001', 'Cannot upload photo', 'Fails on my phone');
 select set_config('request.jwt.claim.sub', :'u3', false);
 insert into public.support_tickets (id, subject, body) values ('c0000000-0000-0000-0000-000000000002', 'Question', 'How do I add my uncle?');
 select set_config('request.jwt.claim.sub', :'u1', false);
+insert into public.support_tickets (id, subject, body) values ('c0000000-0000-0000-0000-000000000003', 'Admin note', 'Checking priority');
 update public.support_tickets set status = 'resolved' where id = 'c0000000-0000-0000-0000-000000000001';
 
--- legacy successor: user 3 can edit Ramesh only after he is marked deceased
+-- records are maintained together: another member can edit Ramesh
 select set_config('request.jwt.claim.sub', :'u2', false);
 update public.profiles set successor_id = :'u3' where id = :'u2';
 select set_config('request.jwt.claim.sub', :'u3', false);
 do $$
 declare n integer;
 begin
-  update public.persons set biography = 'x' where id = 'a0000000-0000-0000-0000-00000000000d';
+  update public.persons set current_place = 'Leicester' where id = 'a0000000-0000-0000-0000-00000000000d';
   get diagnostics n = row_count;
-  assert n = 0, 'successor cannot edit a living person';
-end $$;
-select set_config('request.jwt.claim.sub', :'u2', false);
-update public.persons set is_alive = false, dod = '2026-01-01' where id = 'a0000000-0000-0000-0000-00000000000d';
-select set_config('request.jwt.claim.sub', :'u3', false);
-do $$
-declare n integer;
-begin
-  update public.persons set biography = 'Remembered by his family.' where id = 'a0000000-0000-0000-0000-00000000000d';
+  assert n = 1, 'any approved member edits a person';
+  update public.families set native_village = 'Morbi (Machhu)' where id = 'f0000000-0000-0000-0000-000000000001';
   get diagnostics n = row_count;
-  assert n = 1, 'successor edits deceased person';
+  assert n = 1, 'any approved member edits a family';
 end $$;
 
 select set_config('request.jwt.claim.sub', :'u1', false);
@@ -224,8 +205,10 @@ do $$ begin
   assert (select count(*) from public.notifications where kind = 'match') >= 1, 'match notification';
   assert (select count(*) from public.notifications where kind = 'chat' and user_id = '00000000-0000-0000-0000-000000000003') = 1, 'chat notification';
   assert (select count(*) from public.notifications where kind = 'support' and user_id = '00000000-0000-0000-0000-000000000002') = 1, 'support notification';
-  assert (select priority from public.support_tickets where id = 'c0000000-0000-0000-0000-000000000001') = 'high', 'premium ticket is high priority';
-  assert (select priority from public.support_tickets where id = 'c0000000-0000-0000-0000-000000000002') = 'normal', 'free ticket is normal priority';
+  assert (select priority from public.support_tickets where id = 'c0000000-0000-0000-0000-000000000001') = 'normal', 'member ticket is normal priority';
+  assert (select priority from public.support_tickets where id = 'c0000000-0000-0000-0000-000000000003') = 'high', 'admin ticket is high priority';
+  assert (select locale is null from public.profiles where id = '00000000-0000-0000-0000-000000000003'), 'locale unset until first-login choice';
+  assert not exists (select 1 from pg_type where typname = 'plan_t'), 'plan type dropped';
   assert not exists (select 1 from public.persons where id = 'a0000000-0000-0000-0000-000000000011'), 'duplicate merged away';
   assert (select count(*) from public.relationships where person_id = 'a0000000-0000-0000-0000-00000000000d' or related_id = 'a0000000-0000-0000-0000-00000000000d') = 4, 'edges survive merge';
   assert not exists (select 1 from public.match_suggestions where status = 'pending'), 'no pending suggestion after merge';

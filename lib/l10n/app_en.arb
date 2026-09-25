@@ -5,7 +5,13 @@
   "signInTagline": "Family trees, records and roots of our Samaj",
   "signInWithGoogle": "Continue with Google",
   "signInFailed": "Sign-in failed: {message}",
-  "@signInFailed": {"placeholders": {"message": {"type": "String"}}},
+  "@signInFailed": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
   "pendingTitle": "Awaiting approval",
   "pendingBody": "A Samaj admin will approve your membership. This screen updates automatically.",
   "rejectedBody": "Your membership request was not approved. Contact a Samaj admin.",
@@ -42,7 +48,13 @@
   "description": "Description",
   "members": "Members",
   "memberCount": "{count, plural, =0{No members} =1{1 member} other{{count} members}}",
-  "@memberCount": {"placeholders": {"count": {"type": "int"}}},
+  "@memberCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "noFamilies": "No families yet. Create the first one.",
   "createFamily": "Create family",
   "familyTree": "Family tree",
@@ -88,7 +100,13 @@
   "chooseFromGallery": "Choose from gallery",
   "removePhoto": "Remove photo",
   "photoCompressedTo": "Compressed to {size}",
-  "@photoCompressedTo": {"placeholders": {"size": {"type": "String"}}},
+  "@photoCompressedTo": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
   "save": "Save",
   "cancel": "Cancel",
   "delete": "Delete",
@@ -97,14 +115,32 @@
   "kuldevi": "Kuldevi",
   "kuldevta": "Kuldevta",
   "fromGotra": "From gotra: {value}",
-  "@fromGotra": {"placeholders": {"value": {"type": "String"}}},
+  "@fromGotra": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "fromFamily": "From family: {value}",
-  "@fromFamily": {"placeholders": {"value": {"type": "String"}}},
+  "@fromFamily": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "family": "Family",
   "requiredField": "Required",
   "saved": "Saved",
   "errorWithMessage": "Something went wrong: {message}",
-  "@errorWithMessage": {"placeholders": {"message": {"type": "String"}}},
+  "@errorWithMessage": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
   "confirmDelete": "Delete this? This cannot be undone.",
   "about": "About",
   "timeline": "Timeline",
@@ -158,12 +194,24 @@
   "noMatches": "No possible duplicates found.",
   "possibleDuplicate": "Possible duplicate",
   "matchScore": "{score}% match",
-  "@matchScore": {"placeholders": {"score": {"type": "int"}}},
+  "@matchScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  },
   "mergeInto": "Merge (admin)",
   "keepWhich": "Which record should be kept?",
   "dismiss": "Dismiss",
   "matchesRefreshed": "{count, plural, =0{No new matches} =1{1 match found} other{{count} matches found}}",
-  "@matchesRefreshed": {"placeholders": {"count": {"type": "int"}}},
+  "@matchesRefreshed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "lookupBySurname": "Look up by surname",
   "addMapping": "Add surname mapping",
   "addGotra": "Add gotra",
@@ -180,8 +228,6 @@
   "videoUrl": "Video URL (YouTube, Drive)",
   "caption": "Caption",
   "noMedia": "Nothing here yet.",
-  "premiumOnly": "Premium plan feature",
-  "freePlanAlbumLimit": "The free plan includes one album.",
   "fileTooLarge": "File is larger than 5 MB.",
   "markAllRead": "Mark all read",
   "noNotifications": "No notifications.",
@@ -189,7 +235,6 @@
   "messageHint": "Message",
   "send": "Send",
   "noConversations": "No conversations yet.",
-  "startChatPremium": "Starting a chat needs the premium plan. Replying is free for everyone.",
   "newTicket": "New ticket",
   "subject": "Subject",
   "message": "Message",
@@ -206,16 +251,10 @@
   "english": "English",
   "gujarati": "ગુજરાતી",
   "hindi": "हिन्दी",
-  "plan": "Plan",
-  "planFree": "Free",
-  "planPremium": "Premium",
-  "planInfo": "Plans are assigned by Samaj admins. There are no payments in the app.",
   "successor": "Legacy contact",
   "successorInfo": "This member can maintain your record after you have passed away.",
   "chooseSuccessor": "Choose member",
   "none": "None",
-  "exportData": "Export my data (JSON)",
-  "exportDone": "Export ready to share",
   "digitalAccount": "Digital account",
   "pendingMembers": "Pending members",
   "approve": "Approve",
@@ -234,10 +273,21 @@
   "done": "Done",
   "unknown": "Unknown",
   "born": "b. {date}",
-  "@born": {"placeholders": {"date": {"type": "String"}}},
+  "@born": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "died": "d. {date}",
-  "@died": {"placeholders": {"date": {"type": "String"}}},
-  "premiumBadge": "Premium",
+  "@died": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "adminBadge": "Admin",
   "you": "You",
   "openLink": "Open link",
@@ -245,7 +295,13 @@
   "video": "Video",
   "photo": "Photo",
   "generationsHint": "Generations shown: {count}",
-  "@generationsHint": {"placeholders": {"count": {"type": "int"}}},
+  "@generationsHint": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "deletePerson": "Delete person (admin)",
   "linkedToYou": "Linked to your account",
   "claimedBySomeone": "Linked to a member",
@@ -253,7 +309,13 @@
   "chooseFamilyForSpouse": "Spouse's family (birth family)",
   "recentlyAdded": "Recently added",
   "peopleCount": "{count, plural, =0{No people} =1{1 person} other{{count} people}}",
-  "@peopleCount": {"placeholders": {"count": {"type": "int"}}},
+  "@peopleCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "yourRecord": "Your record",
   "noProfileYet": "You have not linked a person record yet. Create one or open your record in a family tree and tap \"This is me\".",
   "relatives": "Relatives",
@@ -261,5 +323,46 @@
   "identity": "Identity",
   "places": "Places",
   "chooseMember": "Choose member",
-  "mapAttribution": "Map data from the selected source. Government layers: NIC Bharatmaps / ISRO Bhuvan."
+  "mapAttribution": "Map data from the selected source. Government layers: NIC Bharatmaps / ISRO Bhuvan.",
+  "downloadTreePdf": "Download family tree (PDF)",
+  "treePdfInfo": "Five generations up and down from your record, with siblings and spouses.",
+  "includePhotos": "Include passport photos",
+  "generatingPdf": "Preparing PDF...",
+  "pdfReady": "PDF ready",
+  "generationsUp": "Generations up",
+  "generationsDown": "Generations down",
+  "welcomeTitle": "Welcome to the Samaj app",
+  "chooseLanguage": "Choose your language",
+  "continueLabel": "Continue",
+  "greetingJayShreeKrishna": "Jay Shree Krishna 🙏",
+  "greetingJayMataji": "Jay Mataji 🙏",
+  "greetingRamRam": "Ram Ram 🙏",
+  "greetingJayVishwakarma": "Jay Vishwakarma 🙏",
+  "pdfGeneratedOn": "Generated on {date} with SocialTree",
+  "treeOf": "Family tree of {name}",
+  "pageOf": "Page {page} of {total}",
+  "@pdfGeneratedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "@treeOf": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@pageOf": {
+    "placeholders": {
+      "page": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }

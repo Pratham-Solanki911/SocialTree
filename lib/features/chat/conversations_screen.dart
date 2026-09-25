@@ -15,19 +15,18 @@ class ConversationsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l;
     final convs = ref.watch(conversationsProvider);
-    final premium = ref.watch(myProfileProvider).value?.isPremium ?? false;
     return Scaffold(
       appBar: AppBar(title: Text(l.chat)),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: premium ? () => _newChat(context, ref) : () => showMessage(context, l.startChatPremium),
-        icon: Icon(premium ? Icons.add_comment_outlined : Icons.lock_outline),
+        onPressed: () => _newChat(context, ref),
+        icon: const Icon(Icons.add_comment_outlined),
         label: Text(l.newChat),
       ),
       body: AsyncBody<List<ConversationSummary>>(
         value: convs,
         onRetry: () => ref.invalidate(conversationsProvider),
         builder: (list) => list.isEmpty
-            ? EmptyState(text: premium ? l.noConversations : l.startChatPremium, icon: Icons.chat_bubble_outline)
+            ? EmptyState(text: l.noConversations, icon: Icons.chat_bubble_outline)
             : RefreshIndicator(
                 onRefresh: () async => ref.invalidate(conversationsProvider),
                 child: ListView.builder(

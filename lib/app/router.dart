@@ -9,6 +9,7 @@ import '../features/admin/admin_screen.dart';
 import '../features/auth/pending_screen.dart';
 import '../features/auth/setup_screen.dart';
 import '../features/auth/sign_in_screen.dart';
+import '../features/auth/welcome_screen.dart';
 import '../features/chat/chat_screen.dart';
 import '../features/chat/conversations_screen.dart';
 import '../features/families/families_screen.dart';
@@ -43,6 +44,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/setup', builder: (_, _) => const SetupScreen()),
       GoRoute(path: '/sign-in', builder: (_, _) => const SignInScreen()),
       GoRoute(path: '/pending', builder: (_, _) => const PendingScreen()),
+      GoRoute(path: '/welcome', builder: (_, _) => const WelcomeScreen()),
       StatefulShellRoute.indexedStack(
         builder: (context, state, shell) => HomeShell(shell: shell),
         branches: [
@@ -118,7 +120,9 @@ class _RouterNotifier extends ChangeNotifier {
     final profile = ref.read(myProfileProvider).value;
     // Profile still loading or not approved: park on the pending screen.
     if (profile == null || !profile.isApproved) return loc == '/pending' ? null : '/pending';
-    if (loc == '/sign-in' || loc == '/pending' || loc == '/setup') return '/home';
+    // First login: pick a language before anything else.
+    if (profile.locale == null) return loc == '/welcome' ? null : '/welcome';
+    if (loc == '/sign-in' || loc == '/pending' || loc == '/setup' || loc == '/welcome') return '/home';
     return null;
   }
 }

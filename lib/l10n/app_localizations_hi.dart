@@ -563,12 +563,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get noMedia => 'अभी यहाँ कुछ नहीं।';
 
   @override
-  String get premiumOnly => 'प्रीमियम योजना की सुविधा';
-
-  @override
-  String get freePlanAlbumLimit => 'मुफ़्त योजना में एक एल्बम मिलता है।';
-
-  @override
   String get fileTooLarge => 'फ़ाइल 5 MB से बड़ी है।';
 
   @override
@@ -588,10 +582,6 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get noConversations => 'अभी कोई बातचीत नहीं।';
-
-  @override
-  String get startChatPremium =>
-      'चैट शुरू करने के लिए प्रीमियम योजना चाहिए। जवाब देना सबके लिए मुफ़्त है।';
 
   @override
   String get newTicket => 'नया टिकट';
@@ -642,19 +632,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get hindi => 'हिन्दी';
 
   @override
-  String get plan => 'योजना';
-
-  @override
-  String get planFree => 'मुफ़्त';
-
-  @override
-  String get planPremium => 'प्रीमियम';
-
-  @override
-  String get planInfo =>
-      'योजना समाज के एडमिन तय करते हैं। ऐप में कोई भुगतान नहीं है।';
-
-  @override
   String get successor => 'उत्तराधिकारी संपर्क';
 
   @override
@@ -666,12 +643,6 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get none => 'कोई नहीं';
-
-  @override
-  String get exportData => 'मेरा डेटा निर्यात करें (JSON)';
-
-  @override
-  String get exportDone => 'निर्यात साझा करने के लिए तैयार';
 
   @override
   String get digitalAccount => 'डिजिटल खाता';
@@ -733,9 +704,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String died(String date) {
     return 'नि. $date';
   }
-
-  @override
-  String get premiumBadge => 'प्रीमियम';
 
   @override
   String get adminBadge => 'एडमिन';
@@ -815,4 +783,62 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get mapAttribution =>
       'नक्शा डेटा चुने गए स्रोत से। सरकारी परतें: NIC भारतमैप्स / ISRO भुवन।';
+
+  @override
+  String get downloadTreePdf => 'वंशवृक्ष डाउनलोड करें (PDF)';
+
+  @override
+  String get treePdfInfo =>
+      'आपके रिकॉर्ड से पाँच पीढ़ी ऊपर और नीचे, भाई-बहन और जीवनसाथी सहित।';
+
+  @override
+  String get includePhotos => 'पासपोर्ट फ़ोटो शामिल करें';
+
+  @override
+  String get generatingPdf => 'PDF तैयार हो रहा है...';
+
+  @override
+  String get pdfReady => 'PDF तैयार';
+
+  @override
+  String get generationsUp => 'ऊपर की पीढ़ियाँ';
+
+  @override
+  String get generationsDown => 'नीचे की पीढ़ियाँ';
+
+  @override
+  String get welcomeTitle => 'समाज ऐप में स्वागत है';
+
+  @override
+  String get chooseLanguage => 'अपनी भाषा चुनें';
+
+  @override
+  String get continueLabel => 'आगे बढ़ें';
+
+  @override
+  String get greetingJayShreeKrishna => 'जय श्री कृष्ण 🙏';
+
+  @override
+  String get greetingJayMataji => 'जय माताजी 🙏';
+
+  @override
+  String get greetingRamRam => 'राम राम 🙏';
+
+  @override
+  String get greetingJayVishwakarma => 'जय विश्वकर्मा 🙏';
+
+  @override
+  String pdfGeneratedOn(String date) {
+    return '$date को SocialTree से बनाया गया';
+  }
+
+  @override
+  String treeOf(String name) {
+    return '$name का वंशवृक्ष';
+  }
+
+  @override
+  String pageOf(int page, int total) {
+    return 'पृष्ठ $page / $total';
+  }
 }

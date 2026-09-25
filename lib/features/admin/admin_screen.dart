@@ -62,9 +62,8 @@ class AdminScreen extends ConsumerWidget {
                   ExpansionTile(
                     leading: Icon(p.status == 'approved' ? Icons.check_circle_outline : Icons.block_outlined, color: p.status == 'approved' ? Colors.green : Colors.red),
                     title: Text(p.displayName),
-                    subtitle: Text([p.email ?? '', p.status, if (p.isAdmin) l.adminBadge, if (p.isPremium) l.premiumBadge].where((s) => s.isNotEmpty).join(' · ')),
+                    subtitle: Text([p.email ?? '', p.status, if (p.isAdmin) l.adminBadge].where((s) => s.isNotEmpty).join(' · ')),
                     children: [
-                      SwitchListTile(title: Text(l.planPremium), value: p.plan == 'premium', onChanged: (v) => patch(p.id, {'plan': v ? 'premium' : 'free'})),
                       SwitchListTile(title: Text(l.adminBadge), value: p.isAdmin, onChanged: p.id == uid ? null : (v) => patch(p.id, {'is_admin': v})),
                       SwitchListTile(title: Text(l.supportAgent), value: p.isSupport, onChanged: (v) => patch(p.id, {'is_support': v})),
                       OverflowBar(

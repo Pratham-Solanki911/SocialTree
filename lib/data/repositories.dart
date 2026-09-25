@@ -30,8 +30,9 @@ class Repos {
   Future<void> adminPatchProfile(String id, Map<String, dynamic> patch) =>
       db.from('profiles').update(patch).eq('id', id);
 
-  Future<Map<String, dynamic>> exportMyData() async =>
-      Map<String, dynamic>.from(await db.rpc('export_my_data') as Map);
+  /// Persons (with `gen`, `gotra_name`, `family_name`) and edges for the PDF.
+  Future<Map<String, dynamic>> treePdfData(String root, {int up = 5, int down = 5}) async =>
+      Map<String, dynamic>.from(await db.rpc('get_tree_pdf_data', params: {'root': root, 'up': up, 'down': down}) as Map);
 
   // ---------------------------------------------------------------- families
   Future<List<Family>> families() async {

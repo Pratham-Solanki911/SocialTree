@@ -8,6 +8,7 @@ import '../../core/widgets.dart';
 import '../../data/providers.dart';
 import '../../models/models.dart';
 import '../person/person_tile.dart';
+import 'tree_pdf.dart';
 
 /// Three views over the same subgraph: layered graph, pedigree chart, and a
 /// descendants outline.
@@ -32,6 +33,12 @@ class _TreeScreenState extends ConsumerState<TreeScreen> {
         appBar: AppBar(
           title: Text(tree.value?[widget.rootId]?.shortName ?? l.familyTree),
           actions: [
+            if (tree.value?[widget.rootId] != null)
+              IconButton(
+                icon: const Icon(Icons.picture_as_pdf_outlined),
+                tooltip: l.downloadTreePdf,
+                onPressed: () => downloadTreePdf(context, ref, tree.value![widget.rootId]!),
+              ),
             PopupMenuButton<int>(
               tooltip: l.generations,
               icon: const Icon(Icons.unfold_more),

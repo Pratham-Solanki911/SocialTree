@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/l10n_ext.dart';
-import '../../core/supabase_providers.dart';
 import '../../core/widgets.dart';
 import '../../data/providers.dart';
 import '../../models/models.dart';
@@ -16,7 +15,6 @@ class AlbumsScreen extends ConsumerWidget {
     final l = context.l;
     final albums = ref.watch(albumsProvider);
     final families = ref.watch(familiesProvider).value ?? const <Family>[];
-    final premium = ref.watch(myProfileProvider).value?.isPremium ?? false;
     return Scaffold(
       appBar: AppBar(title: Text(l.albums)),
       floatingActionButton: FloatingActionButton.extended(
@@ -29,7 +27,6 @@ class AlbumsScreen extends ConsumerWidget {
         onRetry: () => ref.invalidate(albumsProvider),
         builder: (list) => ListView(
           children: [
-            if (!premium) Padding(padding: const EdgeInsets.all(16), child: Text(l.freePlanAlbumLimit, style: Theme.of(context).textTheme.bodySmall)),
             if (list.isEmpty) EmptyState(text: l.noMedia, icon: Icons.photo_library_outlined),
             for (final a in list)
               ListTile(

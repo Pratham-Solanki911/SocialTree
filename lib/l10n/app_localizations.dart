@@ -1132,18 +1132,6 @@ abstract class AppLocalizations {
   /// **'Nothing here yet.'**
   String get noMedia;
 
-  /// No description provided for @premiumOnly.
-  ///
-  /// In en, this message translates to:
-  /// **'Premium plan feature'**
-  String get premiumOnly;
-
-  /// No description provided for @freePlanAlbumLimit.
-  ///
-  /// In en, this message translates to:
-  /// **'The free plan includes one album.'**
-  String get freePlanAlbumLimit;
-
   /// No description provided for @fileTooLarge.
   ///
   /// In en, this message translates to:
@@ -1185,12 +1173,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No conversations yet.'**
   String get noConversations;
-
-  /// No description provided for @startChatPremium.
-  ///
-  /// In en, this message translates to:
-  /// **'Starting a chat needs the premium plan. Replying is free for everyone.'**
-  String get startChatPremium;
 
   /// No description provided for @newTicket.
   ///
@@ -1288,30 +1270,6 @@ abstract class AppLocalizations {
   /// **'हिन्दी'**
   String get hindi;
 
-  /// No description provided for @plan.
-  ///
-  /// In en, this message translates to:
-  /// **'Plan'**
-  String get plan;
-
-  /// No description provided for @planFree.
-  ///
-  /// In en, this message translates to:
-  /// **'Free'**
-  String get planFree;
-
-  /// No description provided for @planPremium.
-  ///
-  /// In en, this message translates to:
-  /// **'Premium'**
-  String get planPremium;
-
-  /// No description provided for @planInfo.
-  ///
-  /// In en, this message translates to:
-  /// **'Plans are assigned by Samaj admins. There are no payments in the app.'**
-  String get planInfo;
-
   /// No description provided for @successor.
   ///
   /// In en, this message translates to:
@@ -1335,18 +1293,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'None'**
   String get none;
-
-  /// No description provided for @exportData.
-  ///
-  /// In en, this message translates to:
-  /// **'Export my data (JSON)'**
-  String get exportData;
-
-  /// No description provided for @exportDone.
-  ///
-  /// In en, this message translates to:
-  /// **'Export ready to share'**
-  String get exportDone;
 
   /// No description provided for @digitalAccount.
   ///
@@ -1461,12 +1407,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'d. {date}'**
   String died(String date);
-
-  /// No description provided for @premiumBadge.
-  ///
-  /// In en, this message translates to:
-  /// **'Premium'**
-  String get premiumBadge;
 
   /// No description provided for @adminBadge.
   ///
@@ -1599,6 +1539,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Map data from the selected source. Government layers: NIC Bharatmaps / ISRO Bhuvan.'**
   String get mapAttribution;
+
+  /// No description provided for @downloadTreePdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Download family tree (PDF)'**
+  String get downloadTreePdf;
+
+  /// No description provided for @treePdfInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Five generations up and down from your record, with siblings and spouses.'**
+  String get treePdfInfo;
+
+  /// No description provided for @includePhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Include passport photos'**
+  String get includePhotos;
+
+  /// No description provided for @generatingPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing PDF...'**
+  String get generatingPdf;
+
+  /// No description provided for @pdfReady.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF ready'**
+  String get pdfReady;
+
+  /// No description provided for @generationsUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Generations up'**
+  String get generationsUp;
+
+  /// No description provided for @generationsDown.
+  ///
+  /// In en, this message translates to:
+  /// **'Generations down'**
+  String get generationsDown;
+
+  /// No description provided for @welcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to the Samaj app'**
+  String get welcomeTitle;
+
+  /// No description provided for @chooseLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your language'**
+  String get chooseLanguage;
+
+  /// No description provided for @continueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueLabel;
+
+  /// No description provided for @greetingJayShreeKrishna.
+  ///
+  /// In en, this message translates to:
+  /// **'Jay Shree Krishna 🙏'**
+  String get greetingJayShreeKrishna;
+
+  /// No description provided for @greetingJayMataji.
+  ///
+  /// In en, this message translates to:
+  /// **'Jay Mataji 🙏'**
+  String get greetingJayMataji;
+
+  /// No description provided for @greetingRamRam.
+  ///
+  /// In en, this message translates to:
+  /// **'Ram Ram 🙏'**
+  String get greetingRamRam;
+
+  /// No description provided for @greetingJayVishwakarma.
+  ///
+  /// In en, this message translates to:
+  /// **'Jay Vishwakarma 🙏'**
+  String get greetingJayVishwakarma;
+
+  /// No description provided for @pdfGeneratedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Generated on {date} with SocialTree'**
+  String pdfGeneratedOn(String date);
+
+  /// No description provided for @treeOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Family tree of {name}'**
+  String treeOf(String name);
+
+  /// No description provided for @pageOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Page {page} of {total}'**
+  String pageOf(int page, int total);
 }
 
 class _AppLocalizationsDelegate

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- SocialTree mark: canopy of three lobes over a trunk with spreading roots.
+       Seed colour 8B4513 (trunk/roots), canopy in a warm green that keeps
+       contrast on light and dark. Reads at 24 px as a round tree on a base. -->
+  <defs>
+    <linearGradient id="leaf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6FAE5B"/>
+      <stop offset="1" stop-color="#3E7D3A"/>
+    </linearGradient>
+  </defs>
+  
+  <g fill="url(#leaf)">
+    <circle cx="256" cy="150" r="96"/>
+    <circle cx="170" cy="210" r="82"/>
+    <circle cx="342" cy="210" r="82"/>
+    <circle cx="256" cy="230" r="90"/>
+  </g>
+  <g fill="#8B4513">
+    <path d="M238 250 h36 v130 h-36z"/>
+    <path d="M256 370 c-40 40 -90 30 -150 70 c60 -20 100 -30 150 -40 c50 10 90 20 150 40 c-60 -40 -110 -30 -150 -70z"/>
+    <path d="M256 372 c-10 30 -12 55 -6 78 h12 c6 -23 4 -48 -6 -78z"/>
+  </g>
+  <g fill="#FFF4E6" opacity="0.9">
+    <circle cx="256" cy="150" r="10"/><circle cx="186" cy="215" r="10"/><circle cx="326" cy="215" r="10"/>
+    <circle cx="256" cy="232" r="10"/><circle cx="220" cy="185" r="7"/><circle cx="292" cy="185" r="7"/>
+  </g>
+  <g stroke="#FFF4E6" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.9">
+    <path d="M256 150 L220 185 L186 215"/><path d="M256 150 L292 185 L326 215"/><path d="M256 150 L256 232"/>
+  </g>
+</svg>

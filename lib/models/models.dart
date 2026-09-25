@@ -17,8 +17,7 @@ class Profile {
     required this.status,
     required this.isAdmin,
     required this.isSupport,
-    required this.plan,
-    required this.locale,
+    this.locale,
     this.successorId,
   });
   final String id;
@@ -28,12 +27,10 @@ class Profile {
   final String status; // pending | approved | rejected | blocked
   final bool isAdmin;
   final bool isSupport;
-  final String plan; // free | premium
-  final String locale; // en | gu | hi
+  final String? locale; // en | gu | hi, null until chosen on first login
   final String? successorId;
 
   bool get isApproved => status == 'approved';
-  bool get isPremium => isAdmin || plan == 'premium';
   bool get canSupport => isAdmin || isSupport;
   String get displayName => (fullName ?? email ?? id).trim();
 
@@ -45,8 +42,7 @@ class Profile {
         status: m['status'] as String? ?? 'pending',
         isAdmin: m['is_admin'] as bool? ?? false,
         isSupport: m['is_support'] as bool? ?? false,
-        plan: m['plan'] as String? ?? 'free',
-        locale: m['locale'] as String? ?? 'en',
+        locale: m['locale'] as String?,
         successorId: m['successor_id'] as String?,
       );
 }

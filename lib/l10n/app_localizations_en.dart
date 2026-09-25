@@ -563,12 +563,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noMedia => 'Nothing here yet.';
 
   @override
-  String get premiumOnly => 'Premium plan feature';
-
-  @override
-  String get freePlanAlbumLimit => 'The free plan includes one album.';
-
-  @override
   String get fileTooLarge => 'File is larger than 5 MB.';
 
   @override
@@ -588,10 +582,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noConversations => 'No conversations yet.';
-
-  @override
-  String get startChatPremium =>
-      'Starting a chat needs the premium plan. Replying is free for everyone.';
 
   @override
   String get newTicket => 'New ticket';
@@ -642,19 +632,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get hindi => 'हिन्दी';
 
   @override
-  String get plan => 'Plan';
-
-  @override
-  String get planFree => 'Free';
-
-  @override
-  String get planPremium => 'Premium';
-
-  @override
-  String get planInfo =>
-      'Plans are assigned by Samaj admins. There are no payments in the app.';
-
-  @override
   String get successor => 'Legacy contact';
 
   @override
@@ -666,12 +643,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get none => 'None';
-
-  @override
-  String get exportData => 'Export my data (JSON)';
-
-  @override
-  String get exportDone => 'Export ready to share';
 
   @override
   String get digitalAccount => 'Digital account';
@@ -733,9 +704,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String died(String date) {
     return 'd. $date';
   }
-
-  @override
-  String get premiumBadge => 'Premium';
 
   @override
   String get adminBadge => 'Admin';
@@ -815,4 +783,62 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get mapAttribution =>
       'Map data from the selected source. Government layers: NIC Bharatmaps / ISRO Bhuvan.';
+
+  @override
+  String get downloadTreePdf => 'Download family tree (PDF)';
+
+  @override
+  String get treePdfInfo =>
+      'Five generations up and down from your record, with siblings and spouses.';
+
+  @override
+  String get includePhotos => 'Include passport photos';
+
+  @override
+  String get generatingPdf => 'Preparing PDF...';
+
+  @override
+  String get pdfReady => 'PDF ready';
+
+  @override
+  String get generationsUp => 'Generations up';
+
+  @override
+  String get generationsDown => 'Generations down';
+
+  @override
+  String get welcomeTitle => 'Welcome to the Samaj app';
+
+  @override
+  String get chooseLanguage => 'Choose your language';
+
+  @override
+  String get continueLabel => 'Continue';
+
+  @override
+  String get greetingJayShreeKrishna => 'Jay Shree Krishna 🙏';
+
+  @override
+  String get greetingJayMataji => 'Jay Mataji 🙏';
+
+  @override
+  String get greetingRamRam => 'Ram Ram 🙏';
+
+  @override
+  String get greetingJayVishwakarma => 'Jay Vishwakarma 🙏';
+
+  @override
+  String pdfGeneratedOn(String date) {
+    return 'Generated on $date with SocialTree';
+  }
+
+  @override
+  String treeOf(String name) {
+    return 'Family tree of $name';
+  }
+
+  @override
+  String pageOf(int page, int total) {
+    return 'Page $page of $total';
+  }
 }
