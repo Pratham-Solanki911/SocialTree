@@ -3,18 +3,27 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/l10n_ext.dart';
+import '../../core/names.dart';
 import '../../core/widgets.dart';
 import '../../data/providers.dart';
 import '../../models/models.dart';
 import '../person/person_tile.dart';
 import 'families_screen.dart';
 
-class FamilyScreen extends ConsumerWidget {
+class FamilyScreen extends ConsumerStatefulWidget {
   const FamilyScreen({super.key, required this.familyId});
   final String familyId;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<FamilyScreen> createState() => _FamilyScreenState();
+}
+
+class _FamilyScreenState extends ConsumerState<FamilyScreen> {
+  String _filter = '';
+  String get familyId => widget.familyId;
+
+  @override
+  Widget build(BuildContext context) {
     final l = context.l;
     final family = ref.watch(familyProvider(familyId));
     final members = ref.watch(familyMembersProvider(familyId));
@@ -22,7 +31,7 @@ class FamilyScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(family.value?.name ?? l.family),
+        title: family.value == null ? Text(l.family) : NameText(familyName(context, family.value!), maxLines: 1),
         actions: [
           if (family.value != null)
             IconButton(
@@ -55,8 +64,8 @@ class FamilyScreen extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(f.name, style: Theme.of(context).textTheme.headlineSmall),
-                      Text([f.surname, if (f.nativeVillage != null) f.nativeVillage!].join(' · ')),
+                      NameText(familyName(context, f), style: Theme.of(context).textTheme.headlineSmall),
+                      Text([displayName(context, gu: f.surname, en: f.surnameEn).primary, if (f.nativeVillage != null) f.nativeVillage!].join(' · ')),
                       if (f.description != null) ...[const SizedBox(height: 8), Text(f.description!)],
                       const SizedBox(height: 8),
                       Wrap(
@@ -96,12 +105,24 @@ class FamilyScreen extends ConsumerWidget {
                   ),
                 ),
                 SectionTitle(l.members, trailing: Text(l.memberCount(members.value?.length ?? 0))),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: TextField(
+                    decoration: InputDecoration(labelText: l.filterMembers, prefixIcon: const Icon(Icons.search), border: const OutlineInputBorder()),
+                    onChanged: (v) => setState(() => _filter = v.trim().toLowerCase()),
+                  ),
+                ),
                 AsyncBody<List<Person>>(
                   value: members,
                   onRetry: () => ref.invalidate(familyMembersProvider(familyId)),
-                  builder: (list) => list.isEmpty
-                      ? EmptyState(text: l.noRelatives, icon: Icons.person_outline)
-                      : Column(children: [for (final p in list) PersonTile(person: p)]),
+                  builder: (list) {
+                    final shown = _filter.isEmpty
+                        ? list
+                        : list.where((p) => '${p.fullName} ${p.fullNameEn ?? ''} ${p.nickname ?? ''}'.toLowerCase().contains(_filter)).toList();
+                    return shown.isEmpty
+                        ? EmptyState(text: _filter.isEmpty ? l.noRelatives : l.noResults, icon: Icons.person_outline)
+                        : Column(children: [for (final p in shown) PersonTile(person: p)]);
+                  },
                 ),
                 const SizedBox(height: 80),
               ],

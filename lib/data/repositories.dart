@@ -116,7 +116,7 @@ class Repos {
 
   Future<List<Person>> search(String q) async {
     if (q.trim().isEmpty) return const [];
-    final rows = await db.rpc('search_persons', params: {'q': q, 'lim': 50}) as List;
+    final rows = await db.rpc('search_persons', params: {'q': q, 'lim': 80}) as List;
     return rows.map((e) => Person.fromMap(Map<String, dynamic>.from(e as Map))).toList();
   }
 

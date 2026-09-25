@@ -437,5 +437,49 @@
   "statusApproved": "Confirmed",
   "statusRejected": "Not confirmed",
   "statusWithdrawn": "Cancelled",
-  "statusPending": "Waiting"
+  "statusPending": "Waiting",
+  "firstNameGu": "First name in Gujarati",
+  "firstNameEn": "First name in English",
+  "middleNameGu": "Father's or husband's name in Gujarati",
+  "middleNameEn": "Father's or husband's name in English",
+  "lastNameGu": "Surname in Gujarati",
+  "lastNameEn": "Surname in English",
+  "maidenNameGu": "Surname before marriage in Gujarati",
+  "maidenNameEn": "Surname before marriage in English",
+  "familyNameGu": "Family name in Gujarati",
+  "familyNameEn": "Family name in English",
+  "surnameGu": "Surname in Gujarati",
+  "surnameEn": "Surname in English",
+  "suggestedSpelling": "Filled in for you, please check",
+  "sonOf": "son of {name}",
+  "daughterOf": "daughter of {name}",
+  "searchByName": "Search by name",
+  "findInTree": "Find someone in this tree",
+  "filterMembers": "Search in this family",
+  "fitToScreen": "See the whole tree",
+  "treeHint": "Tap a person to see their family around them. Hold to open their page.",
+  "showAround": "Show family around {name}",
+  "openPage": "Open their page",
+  "otherFamilies": "Other families",
+  "@sonOf": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@daughterOf": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@showAround": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  }
 }

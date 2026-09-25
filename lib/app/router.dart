@@ -60,7 +60,7 @@ final routerProvider = Provider<GoRouter>((ref) {
               routes: [GoRoute(path: ':id', builder: (_, s) => FamilyScreen(familyId: s.pathParameters['id']!))],
             ),
           ]),
-          StatefulShellBranch(routes: [GoRoute(path: '/search', builder: (_, _) => const SearchScreen())]),
+          StatefulShellBranch(routes: [GoRoute(path: '/search', builder: (_, s) => SearchScreen(initialQuery: s.uri.queryParameters['q']))]),
           StatefulShellBranch(routes: [GoRoute(path: '/map', builder: (_, _) => const MigrationMapScreen())]),
           StatefulShellBranch(routes: [GoRoute(path: '/account', builder: (_, _) => const AccountScreen())]),
         ],

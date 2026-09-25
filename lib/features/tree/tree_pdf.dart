@@ -9,6 +9,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
 import '../../core/l10n_ext.dart';
+import '../../core/names.dart';
 import '../../core/widgets.dart';
 import '../../data/providers.dart';
 import '../../models/models.dart';
@@ -199,9 +200,11 @@ void _paintTree(pw.Context ctx, PdfGraphics canvas, PdfPoint size, PdfTreeLayout
         if (!p.isAlive) s.died(p.dod != null ? '${p.dod!.year}' : ''),
       ].join('  ');
       final meta = [if (p.nativeVillage != null) p.nativeVillage!, if (n.gotraName != null) n.gotraName!].join(' · ');
-      _text(ctx, canvas, fonts, p.fullName, tx, y + (ch - 16) * scale, 8.5 * scale, bold: true);
-      _text(ctx, canvas, fonts, years, tx, y + (ch - 30) * scale, 7 * scale);
-      _text(ctx, canvas, fonts, meta, tx, y + (ch - 43) * scale, 6.5 * scale, color: PdfColors.grey800);
+      final second = p.fullNameEn;
+      _text(ctx, canvas, fonts, p.fullName, tx, y + (ch - 15) * scale, 8 * scale, bold: true);
+      if (second != null) _text(ctx, canvas, fonts, second, tx, y + (ch - 26) * scale, 6.5 * scale, color: PdfColors.grey800);
+      _text(ctx, canvas, fonts, years, tx, y + (ch - (second == null ? 29 : 38)) * scale, 6.5 * scale);
+      _text(ctx, canvas, fonts, meta, tx, y + (ch - (second == null ? 42 : 49)) * scale, 6 * scale, color: PdfColors.grey800);
     }
   }
 }
@@ -290,7 +293,7 @@ Future<void> downloadTreePdf(BuildContext context, WidgetRef ref, Person root) a
       samaj: l.samajName,
       wordmarkTop: top,
       wordmarkBottom: bottom,
-      title: l.treeOf(root.fullName),
+      title: l.treeOf(personName(context, root).oneLine),
       footer: l.pdfGeneratedOn('{date}'),
       page: l.pageOf,
       born: l.born,
@@ -299,7 +302,7 @@ Future<void> downloadTreePdf(BuildContext context, WidgetRef ref, Person root) a
       village: l.nativeVillage,
     );
     final bytes = await buildTreePdf(layout: layout, s: strings, fonts: await PdfFonts.fromAssets(), photos: photos);
-    final slug = root.shortName.replaceAll(RegExp(r'[^A-Za-z0-9઀-૿ऀ-ॿ]+'), '-').toLowerCase();
+    final slug = (root.shortNameEn ?? root.shortName).replaceAll(RegExp(r'[^A-Za-z0-9઀-૿ऀ-ॿ]+'), '-').toLowerCase();
     await Printing.sharePdf(bytes: bytes, filename: 'socialtree-tree-$slug-${DateTime.now().toIso8601String().substring(0, 10)}.pdf');
     if (context.mounted) showMessage(context, l.pdfReady);
   } catch (e) {

@@ -62,6 +62,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         },
         child: ListView(
           children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+              child: TextField(
+                decoration: InputDecoration(labelText: l.searchByName, prefixIcon: const Icon(Icons.search), border: const OutlineInputBorder()),
+                textInputAction: TextInputAction.search,
+                onSubmitted: (q) => context.go('/search?q=${Uri.encodeQueryComponent(q.trim())}'),
+              ),
+            ),
             SectionTitle(l.quickActions),
             SizedBox(
               height: 96,

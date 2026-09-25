@@ -12,6 +12,7 @@ import '../../core/widgets.dart';
 import '../../data/providers.dart';
 import '../../models/models.dart';
 import '../map/latlng_picker.dart';
+import 'bilingual_name_fields.dart';
 import 'passport_photo_field.dart';
 import 'phones_field.dart';
 
@@ -71,6 +72,10 @@ class _PersonFormScreenState extends ConsumerState<PersonFormScreen> {
           _gotraId = p.gotraId;
           _phones = p.phones;
           c('first_name').text = p.firstName;
+          c('first_name_en').text = p.firstNameEn ?? '';
+          c('middle_name_en').text = p.middleNameEn ?? '';
+          c('last_name_en').text = p.lastNameEn ?? '';
+          c('maiden_name_en').text = p.maidenNameEn ?? '';
           c('middle_name').text = p.middleName ?? '';
           c('last_name').text = p.lastName;
           c('maiden_name').text = p.maidenName ?? '';
@@ -113,10 +118,15 @@ class _PersonFormScreenState extends ConsumerState<PersonFormScreen> {
     setState(() => _saving = true);
     final map = <String, dynamic>{
       'family_id': _familyId,
-      'first_name': c('first_name').text.trim(),
+      // A name may be typed in only one script; the other column stays null.
+      'first_name': _nz('first_name') ?? c('first_name_en').text.trim(),
       'middle_name': _nz('middle_name'),
-      'last_name': c('last_name').text.trim(),
+      'last_name': _nz('last_name') ?? c('last_name_en').text.trim(),
       'maiden_name': _nz('maiden_name'),
+      'first_name_en': _nz('first_name_en'),
+      'middle_name_en': _nz('middle_name_en'),
+      'last_name_en': _nz('last_name_en'),
+      'maiden_name_en': _nz('maiden_name_en'),
       'nickname': _nz('nickname'),
       'gender': _gender,
       'dob': dateOnly(_dob),
@@ -229,10 +239,10 @@ class _PersonFormScreenState extends ConsumerState<PersonFormScreen> {
                 validator: (v) => v == null ? l.requiredField : null,
               ),
             SectionTitle(l.identity),
-            text('first_name', l.firstName, required: true),
-            text('middle_name', l.middleName),
-            text('last_name', l.lastName, required: true),
-            if (_gender == 'female') text('maiden_name', l.maidenName),
+            BilingualNameFields(gu: c('first_name'), en: c('first_name_en'), labelGu: l.firstNameGu, labelEn: l.firstNameEn, required: true),
+            BilingualNameFields(gu: c('middle_name'), en: c('middle_name_en'), labelGu: l.middleNameGu, labelEn: l.middleNameEn),
+            BilingualNameFields(gu: c('last_name'), en: c('last_name_en'), labelGu: l.lastNameGu, labelEn: l.lastNameEn, required: true),
+            if (_gender == 'female') BilingualNameFields(gu: c('maiden_name'), en: c('maiden_name_en'), labelGu: l.maidenNameGu, labelEn: l.maidenNameEn),
             text('nickname', l.nickname),
             const SizedBox(height: 8),
             SegmentedButton<String>(

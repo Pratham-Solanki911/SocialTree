@@ -5,7 +5,9 @@ import 'package:go_router/go_router.dart';
 import '../../core/l10n_ext.dart';
 import '../../core/widgets.dart';
 import '../../data/providers.dart';
+import '../../core/names.dart';
 import '../../models/models.dart';
+import '../person/bilingual_name_fields.dart';
 
 class FamiliesScreen extends ConsumerWidget {
   const FamiliesScreen({super.key});
@@ -38,8 +40,8 @@ class FamiliesScreen extends ConsumerWidget {
                     final f = list[i];
                     return ListTile(
                       leading: CircleAvatar(child: Text(f.surname.isEmpty ? '?' : f.surname[0])),
-                      title: Text(f.name),
-                      subtitle: Text([f.surname, if (f.nativeVillage != null) f.nativeVillage!].join(' · ')),
+                      title: NameText(familyName(context, f)),
+                      subtitle: Text([displayName(context, gu: f.surname, en: f.surnameEn).primary, if (f.nativeVillage != null) f.nativeVillage!].join(' · ')),
                       trailing: Text(l.memberCount(counts[f.id] ?? 0)),
                       onTap: () => context.go('/families/${f.id}'),
                     );
@@ -55,7 +57,9 @@ class FamiliesScreen extends ConsumerWidget {
 Future<String?> showFamilyDialog(BuildContext context, WidgetRef ref, {Family? existing}) async {
   final l = context.l;
   final name = TextEditingController(text: existing?.name);
+  final nameEn = TextEditingController(text: existing?.nameEn);
   final surname = TextEditingController(text: existing?.surname);
+  final surnameEn = TextEditingController(text: existing?.surnameEn);
   final village = TextEditingController(text: existing?.nativeVillage);
   final kuldevi = TextEditingController(text: existing?.kuldevi);
   final kuldevta = TextEditingController(text: existing?.kuldevta);
@@ -75,8 +79,8 @@ Future<String?> showFamilyDialog(BuildContext context, WidgetRef ref, {Family? e
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                TextFormField(controller: name, decoration: InputDecoration(labelText: l.familyName), validator: (v) => (v ?? '').trim().isEmpty ? l.requiredField : null),
-                TextFormField(controller: surname, decoration: InputDecoration(labelText: l.surname), validator: (v) => (v ?? '').trim().isEmpty ? l.requiredField : null),
+                BilingualNameFields(gu: name, en: nameEn, labelGu: l.familyNameGu, labelEn: l.familyNameEn, required: true),
+                BilingualNameFields(gu: surname, en: surnameEn, labelGu: l.surnameGu, labelEn: l.surnameEn, required: true),
                 TextFormField(controller: village, decoration: InputDecoration(labelText: l.nativeVillage)),
                 DropdownButtonFormField<String?>(
                   initialValue: gotraId,
@@ -109,8 +113,10 @@ Future<String?> showFamilyDialog(BuildContext context, WidgetRef ref, {Family? e
   if (saved != true) return null;
   String? nz(TextEditingController c) => c.text.trim().isEmpty ? null : c.text.trim();
   final map = {
-    'name': name.text.trim(),
-    'surname': surname.text.trim(),
+    'name': nz(name) ?? nameEn.text.trim(),
+    'name_en': nz(nameEn),
+    'surname': nz(surname) ?? surnameEn.text.trim(),
+    'surname_en': nz(surnameEn),
     'native_village': nz(village),
     'gotra_id': gotraId,
     'kuldevi': nz(kuldevi),

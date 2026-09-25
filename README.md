@@ -12,7 +12,9 @@ Flutter (Android, iOS, web) + Supabase (Postgres, Google sign-in, storage, realt
 - **Shared tree**: parent and spouse links across families, cycle and two-parent guards in the database, gotra inherited down the male line.
 - **Multiple views**: layered graph, pedigree (ancestors) chart, descendants outline, plus a per-person timeline of life events.
 - **Migration map**: birth place, migration events and current place drawn as paths over Indian government base maps (NIC Bharatmaps, ISRO Bhuvan) with OpenStreetMap as fallback. Locations are picked by tapping the map; no paid geocoding.
-- **Search** across names, villages and places, with an "only my ancestors" filter.
+- **Names in two scripts**: every person and family has a Gujarati and an English name. The app shows the reader's script first and the other below (Hindi readers see the Gujarati name converted to Devanagari). Forms suggest a transliteration when only one script is typed.
+- **Search that finds people**: partial typing in either script ("દીને", "dinesh solanki"); results show "son of / daughter of", family and years so same-named people can be told apart, grouped by family when long. Search boxes on Home, in each family, in the tree view and in the person picker.
+- **Focused tree view**: the person in the middle with two generations around them; tap anyone to move the focus, hold to open their page; search to jump; fit-to-screen.
 - **Matches**: suggests likely duplicates of the same person across families; admins merge them.
 - **Gotra & Kuldevi lookup** by surname and village. Members add and correct entries; admins mark them verified.
 - **Albums and media**: photos (compressed), video links, PDF documents.

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/l10n_ext.dart';
+import '../../core/names.dart';
 import '../../core/supabase_providers.dart';
 import '../../core/widgets.dart';
 import '../../data/providers.dart';
@@ -98,8 +99,8 @@ class _MatchCard extends ConsumerWidget {
                       builder: (ctx) => SimpleDialog(
                         title: Text(l.keepWhich),
                         children: [
-                          SimpleDialogOption(onPressed: () => Navigator.pop(ctx, a.id), child: Text(a.fullName)),
-                          SimpleDialogOption(onPressed: () => Navigator.pop(ctx, b.id), child: Text(b.fullName)),
+                          SimpleDialogOption(onPressed: () => Navigator.pop(ctx, a.id), child: Text(personName(context, a).oneLine)),
+                          SimpleDialogOption(onPressed: () => Navigator.pop(ctx, b.id), child: Text(personName(context, b).oneLine)),
                         ],
                       ),
                     );

@@ -1869,6 +1869,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Waiting'**
   String get statusPending;
+
+  /// No description provided for @firstNameGu.
+  ///
+  /// In en, this message translates to:
+  /// **'First name in Gujarati'**
+  String get firstNameGu;
+
+  /// No description provided for @firstNameEn.
+  ///
+  /// In en, this message translates to:
+  /// **'First name in English'**
+  String get firstNameEn;
+
+  /// No description provided for @middleNameGu.
+  ///
+  /// In en, this message translates to:
+  /// **'Father\'s or husband\'s name in Gujarati'**
+  String get middleNameGu;
+
+  /// No description provided for @middleNameEn.
+  ///
+  /// In en, this message translates to:
+  /// **'Father\'s or husband\'s name in English'**
+  String get middleNameEn;
+
+  /// No description provided for @lastNameGu.
+  ///
+  /// In en, this message translates to:
+  /// **'Surname in Gujarati'**
+  String get lastNameGu;
+
+  /// No description provided for @lastNameEn.
+  ///
+  /// In en, this message translates to:
+  /// **'Surname in English'**
+  String get lastNameEn;
+
+  /// No description provided for @maidenNameGu.
+  ///
+  /// In en, this message translates to:
+  /// **'Surname before marriage in Gujarati'**
+  String get maidenNameGu;
+
+  /// No description provided for @maidenNameEn.
+  ///
+  /// In en, this message translates to:
+  /// **'Surname before marriage in English'**
+  String get maidenNameEn;
+
+  /// No description provided for @familyNameGu.
+  ///
+  /// In en, this message translates to:
+  /// **'Family name in Gujarati'**
+  String get familyNameGu;
+
+  /// No description provided for @familyNameEn.
+  ///
+  /// In en, this message translates to:
+  /// **'Family name in English'**
+  String get familyNameEn;
+
+  /// No description provided for @surnameGu.
+  ///
+  /// In en, this message translates to:
+  /// **'Surname in Gujarati'**
+  String get surnameGu;
+
+  /// No description provided for @surnameEn.
+  ///
+  /// In en, this message translates to:
+  /// **'Surname in English'**
+  String get surnameEn;
+
+  /// No description provided for @suggestedSpelling.
+  ///
+  /// In en, this message translates to:
+  /// **'Filled in for you, please check'**
+  String get suggestedSpelling;
+
+  /// No description provided for @sonOf.
+  ///
+  /// In en, this message translates to:
+  /// **'son of {name}'**
+  String sonOf(String name);
+
+  /// No description provided for @daughterOf.
+  ///
+  /// In en, this message translates to:
+  /// **'daughter of {name}'**
+  String daughterOf(String name);
+
+  /// No description provided for @searchByName.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by name'**
+  String get searchByName;
+
+  /// No description provided for @findInTree.
+  ///
+  /// In en, this message translates to:
+  /// **'Find someone in this tree'**
+  String get findInTree;
+
+  /// No description provided for @filterMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'Search in this family'**
+  String get filterMembers;
+
+  /// No description provided for @fitToScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'See the whole tree'**
+  String get fitToScreen;
+
+  /// No description provided for @treeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a person to see their family around them. Hold to open their page.'**
+  String get treeHint;
+
+  /// No description provided for @showAround.
+  ///
+  /// In en, this message translates to:
+  /// **'Show family around {name}'**
+  String showAround(String name);
+
+  /// No description provided for @openPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Open their page'**
+  String get openPage;
+
+  /// No description provided for @otherFamilies.
+  ///
+  /// In en, this message translates to:
+  /// **'Other families'**
+  String get otherFamilies;
 }
 
 class _AppLocalizationsDelegate

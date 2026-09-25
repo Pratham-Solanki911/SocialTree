@@ -6,7 +6,9 @@
 > **Run `supabase/migrations/20260925000002_free_for_all_and_pdf_tree.sql` and then
 > `20260925000003_identity_claims.sql` in the SQL editor, in that order, once each.**
 > Identity claims ("this is me" flow, caretakers, admin confirmation for deaths)
-> live in 0003. If the local
+> live in 0003. **Handoff 3 (bilingual names + search): run
+> `20260925000005_bilingual_names_search.sql` once.** `0004_relock_functions.sql`
+> is committed as recreated from its description; keep the applied local copy if it differs. If the local
 > `20260925000001_function_grants.sql` differs from the committed one, keep the
 > local (already applied) version. Wordmark spelling used: "Machhukathiya"
 > (Gujarati: મચ્છુકાઠિયા); change `lib/core/branding.dart`, the two wordmark

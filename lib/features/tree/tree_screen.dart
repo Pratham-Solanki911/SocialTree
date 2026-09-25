@@ -4,14 +4,16 @@ import 'package:go_router/go_router.dart';
 import 'package:graphview/GraphView.dart';
 
 import '../../core/l10n_ext.dart';
+import '../../core/names.dart';
 import '../../core/widgets.dart';
 import '../../data/providers.dart';
 import '../../models/models.dart';
 import '../person/person_tile.dart';
 import 'tree_pdf.dart';
 
-/// Three views over the same subgraph: layered graph, pedigree chart, and a
-/// descendants outline.
+/// A focused view: the person in the middle with two generations around them.
+/// Tap someone to move the focus to them; hold to open their page. A search
+/// box jumps to anyone in the loaded tree. Three views share the data.
 class TreeScreen extends ConsumerStatefulWidget {
   const TreeScreen({super.key, required this.rootId});
   final String rootId;
@@ -21,42 +23,56 @@ class TreeScreen extends ConsumerStatefulWidget {
 }
 
 class _TreeScreenState extends ConsumerState<TreeScreen> {
-  int _hops = 4;
+  late String _root = widget.rootId;
+  int _hops = 2;
+  String? _highlight;
+  final _transform = TransformationController();
+  final _viewKey = GlobalKey();
+
+  void _focus(String id) => setState(() {
+        _root = id;
+        _highlight = id;
+        _transform.value = Matrix4.identity();
+      });
 
   @override
   Widget build(BuildContext context) {
     final l = context.l;
-    final tree = ref.watch(treeProvider((widget.rootId, _hops)));
+    final tree = ref.watch(treeProvider((_root, _hops)));
+    final rootPerson = tree.value?[_root];
     return DefaultTabController(
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(tree.value?[widget.rootId]?.shortName ?? l.familyTree),
+          title: rootPerson == null ? Text(l.familyTree) : NameText(personShortName(context, rootPerson), maxLines: 1),
           actions: [
-            if (tree.value?[widget.rootId] != null)
-              IconButton(
-                icon: const Icon(Icons.picture_as_pdf_outlined),
-                tooltip: l.downloadTreePdf,
-                onPressed: () => downloadTreePdf(context, ref, tree.value![widget.rootId]!),
-              ),
+            if (rootPerson != null)
+              IconButton(icon: const Icon(Icons.picture_as_pdf_outlined), tooltip: l.downloadTreePdf, onPressed: () => downloadTreePdf(context, ref, rootPerson)),
             PopupMenuButton<int>(
               tooltip: l.generations,
               icon: const Icon(Icons.unfold_more),
               initialValue: _hops,
               onSelected: (v) => setState(() => _hops = v),
-              itemBuilder: (_) => [for (final n in [2, 3, 4, 5, 6, 8]) PopupMenuItem(value: n, child: Text(l.generationsHint(n)))],
+              itemBuilder: (_) => [for (final n in [1, 2, 3, 4, 6]) PopupMenuItem(value: n, child: Text(l.generationsHint(n)))],
             ),
           ],
           bottom: TabBar(tabs: [Tab(text: l.treeGraph), Tab(text: l.ancestors), Tab(text: l.descendants)]),
         ),
         body: AsyncBody<TreeData>(
           value: tree,
-          onRetry: () => ref.invalidate(treeProvider((widget.rootId, _hops))),
-          builder: (t) => TabBarView(
+          onRetry: () => ref.invalidate(treeProvider((_root, _hops))),
+          builder: (t) => Column(
             children: [
-              _GraphView(tree: t, rootId: widget.rootId),
-              _PedigreeView(tree: t, rootId: widget.rootId, maxDepth: _hops),
-              _DescendantsView(tree: t, rootId: widget.rootId),
+              _TreeSearch(tree: t, onPick: _focus),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    _GraphView(key: _viewKey, tree: t, rootId: _root, highlight: _highlight, transform: _transform, onFocus: _focus),
+                    _PedigreeView(tree: t, rootId: _root, maxDepth: _hops),
+                    _DescendantsView(tree: t, rootId: _root),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -65,14 +81,64 @@ class _TreeScreenState extends ConsumerState<TreeScreen> {
   }
 }
 
-class _GraphView extends StatelessWidget {
-  const _GraphView({required this.tree, required this.rootId});
+class _TreeSearch extends StatefulWidget {
+  const _TreeSearch({required this.tree, required this.onPick});
   final TreeData tree;
-  final String rootId;
+  final ValueChanged<String> onPick;
+
+  @override
+  State<_TreeSearch> createState() => _TreeSearchState();
+}
+
+class _TreeSearchState extends State<_TreeSearch> {
+  String _q = '';
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l;
+    final q = _q.trim().toLowerCase();
+    final hits = q.length < 2
+        ? const <Person>[]
+        : widget.tree.persons.values.where((p) => '${p.fullName} ${p.fullNameEn ?? ''} ${p.nickname ?? ''}'.toLowerCase().contains(q)).take(6).toList();
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+          child: TextField(
+            decoration: InputDecoration(labelText: l.findInTree, prefixIcon: const Icon(Icons.search), border: const OutlineInputBorder(), isDense: true),
+            onChanged: (v) => setState(() => _q = v),
+          ),
+        ),
+        for (final p in hits)
+          ListTile(
+            dense: true,
+            leading: const Icon(Icons.center_focus_strong_outlined),
+            title: NameText(personName(context, p), maxLines: 1),
+            subtitle: Text(lifespan(context, p)),
+            onTap: () {
+              setState(() => _q = '');
+              widget.onPick(p.id);
+            },
+          ),
+        if (q.length < 2) Padding(padding: const EdgeInsets.fromLTRB(16, 4, 16, 0), child: Text(l.treeHint, style: Theme.of(context).textTheme.bodySmall)),
+      ],
+    );
+  }
+}
+
+class _GraphView extends StatelessWidget {
+  const _GraphView({super.key, required this.tree, required this.rootId, required this.highlight, required this.transform, required this.onFocus});
+  final TreeData tree;
+  final String rootId;
+  final String? highlight;
+  final TransformationController transform;
+  final ValueChanged<String> onFocus;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l;
     final graph = Graph()..isTree = false;
+    final gens = tree.generationsFrom(rootId);
     for (final id in tree.persons.keys) {
       graph.addNode(Node.Id(id));
     }
@@ -80,70 +146,102 @@ class _GraphView extends StatelessWidget {
       graph.addEdge(Node.Id(parent), Node.Id(child));
     }
     // mytail: spouse edges are not drawn (Sugiyama layers directed edges);
-    // spouses are listed on each card instead. Switch to a couple-node layout
-    // if the samaj asks for marriage lines.
+    // spouses are named on each card. Couples-as-one-node would be the upgrade.
     final config = SugiyamaConfiguration()
-      ..nodeSeparation = 24
-      ..levelSeparation = 48
+      ..nodeSeparation = 32
+      ..levelSeparation = 72
       ..orientation = SugiyamaConfiguration.ORIENTATION_TOP_BOTTOM;
-    final edgeColor = Theme.of(context).colorScheme.outline;
-    return InteractiveViewer(
-      constrained: false,
-      boundaryMargin: const EdgeInsets.all(600),
-      minScale: 0.05,
-      maxScale: 3,
-      child: Padding(
-        padding: const EdgeInsets.all(48),
-        child: GraphView(
-          graph: graph,
-          algorithm: SugiyamaAlgorithm(config),
-          paint: Paint()
-            ..color = edgeColor
-            ..strokeWidth = 1.5
-            ..style = PaintingStyle.stroke,
-          builder: (node) {
-            final id = node.key!.value as String;
-            final p = tree[id]!;
-            return _NodeCard(person: p, spouses: tree.spousesOf(id), isRoot: id == rootId);
-          },
+    final scheme = Theme.of(context).colorScheme;
+    return Stack(
+      children: [
+        InteractiveViewer(
+          transformationController: transform,
+          constrained: false,
+          boundaryMargin: const EdgeInsets.all(800),
+          minScale: 0.05,
+          maxScale: 3,
+          child: Padding(
+            padding: const EdgeInsets.all(64),
+            child: GraphView(
+              graph: graph,
+              algorithm: SugiyamaAlgorithm(config),
+              paint: Paint()
+                ..color = scheme.outline
+                ..strokeWidth = 1.5
+                ..style = PaintingStyle.stroke,
+              builder: (node) {
+                final id = node.key!.value as String;
+                final p = tree[id]!;
+                return _NodeCard(
+                  person: p,
+                  spouses: tree.spousesOf(id),
+                  isRoot: id == rootId,
+                  isHighlighted: id == highlight,
+                  generation: gens[id] ?? 0,
+                  onTap: () => onFocus(id),
+                  onLongPress: () => context.push('/persons/$id'),
+                );
+              },
+            ),
+          ),
         ),
-      ),
+        Positioned(
+          right: 12,
+          bottom: 12,
+          child: FilledButton.tonalIcon(
+            onPressed: () => transform.value = Matrix4.identity(),
+            icon: const Icon(Icons.fit_screen_outlined),
+            label: Text(l.fitToScreen),
+          ),
+        ),
+      ],
     );
   }
 }
 
 class _NodeCard extends StatelessWidget {
-  const _NodeCard({required this.person, required this.spouses, required this.isRoot});
+  const _NodeCard({required this.person, required this.spouses, required this.isRoot, required this.isHighlighted, required this.generation, required this.onTap, required this.onLongPress});
   final Person person;
   final List<Person> spouses;
   final bool isRoot;
+  final bool isHighlighted;
+  final int generation;
+  final VoidCallback onTap;
+  final VoidCallback onLongPress;
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    // Older generations fade slightly so the eye lands on the focus row.
+    final tint = switch (generation) { < 0 => scheme.surfaceContainerHigh, 0 => scheme.surfaceContainerHighest, _ => scheme.surfaceContainer };
+    final border = isHighlighted ? scheme.primary : person.gender == 'female' ? Colors.pink.shade300 : Colors.blue.shade300;
     return InkWell(
-      onTap: () => context.push('/persons/${person.id}'),
+      onTap: onTap,
+      onLongPress: onLongPress,
+      borderRadius: BorderRadius.circular(12),
       child: Container(
-        width: 150,
+        width: 160,
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: isRoot ? scheme.primaryContainer : scheme.surfaceContainerHigh,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: person.gender == 'female' ? Colors.pink.shade200 : Colors.blue.shade200, width: 1.5),
+          color: isRoot ? scheme.primaryContainer : tint,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: border, width: isHighlighted || isRoot ? 3 : 1.5),
+          boxShadow: isRoot ? [BoxShadow(color: scheme.shadow.withValues(alpha: 0.2), blurRadius: 8, offset: const Offset(0, 3))] : null,
         ),
         child: Row(
           children: [
-            PersonAvatar(path: person.passportPhotoPath, initials: person.initials, size: 30),
+            PersonAvatar(path: person.passportPhotoPath, initials: person.initials, size: 32),
             const SizedBox(width: 8),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(person.shortName, maxLines: 2, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.labelLarge),
-                  Text(lifespan(context, person), style: Theme.of(context).textTheme.labelSmall),
+                  NameText(personShortName(context, person), style: Theme.of(context).textTheme.labelLarge),
+                  Text(lifespan(context, person), style: Theme.of(context).textTheme.labelSmall, maxLines: 1, overflow: TextOverflow.ellipsis),
                   if (spouses.isNotEmpty)
-                    Text('⚭ ${spouses.map((s) => s.firstName).join(', ')}', maxLines: 1, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.labelSmall),
+                    Text('⚭ ${spouses.map((s) => displayName(context, gu: s.firstName, en: s.firstNameEn).primary).join(', ')}',
+                        maxLines: 1, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.labelSmall),
                 ],
               ),
             ),
@@ -185,16 +283,14 @@ class _PedigreeNode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final father = tree.fatherOf(person.id);
-    final mother = tree.motherOf(person.id);
-    final parents = [father, mother].whereType<Person>().toList();
+    final parents = [tree.fatherOf(person.id), tree.motherOf(person.id)].whereType<Person>().toList();
     final card = SizedBox(
-      width: 170,
+      width: 190,
       child: Card(
         child: ListTile(
           dense: true,
           leading: PersonAvatar(path: person.passportPhotoPath, initials: person.initials, size: 28),
-          title: Text(person.shortName, maxLines: 2, overflow: TextOverflow.ellipsis),
+          title: NameText(personShortName(context, person)),
           subtitle: Text(lifespan(context, person)),
           onTap: () => context.push('/persons/${person.id}'),
         ),
@@ -203,16 +299,13 @@ class _PedigreeNode extends StatelessWidget {
     if (parents.isEmpty || depth >= maxDepth) return card;
     return Row(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         card,
         const SizedBox(width: 12, child: Divider(thickness: 1.5)),
         Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            for (final p in parents) Padding(padding: const EdgeInsets.symmetric(vertical: 4), child: _PedigreeNode(tree: tree, person: p, depth: depth + 1, maxDepth: maxDepth)),
-          ],
+          children: [for (final p in parents) Padding(padding: const EdgeInsets.symmetric(vertical: 4), child: _PedigreeNode(tree: tree, person: p, depth: depth + 1, maxDepth: maxDepth))],
         ),
       ],
     );
@@ -236,7 +329,12 @@ class _DescendantsView extends StatelessWidget {
         for (final (p, depth) in rows)
           Padding(
             padding: EdgeInsets.only(left: 20.0 * depth),
-            child: PersonTile(person: p, subtitle: [lifespan(context, p), '⚭ ${tree.spousesOf(p.id).map((s) => s.firstName).join(', ')}'].where((s) => s.length > 2).join(' · ')),
+            child: PersonTile(
+              person: p,
+              subtitle: [lifespan(context, p), if (tree.spousesOf(p.id).isNotEmpty) '⚭ ${tree.spousesOf(p.id).map((s) => displayName(context, gu: s.firstName, en: s.firstNameEn).primary).join(', ')}']
+                  .where((s) => s.isNotEmpty)
+                  .join(' · '),
+            ),
           ),
       ],
     );

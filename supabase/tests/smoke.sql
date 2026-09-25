@@ -100,8 +100,26 @@ begin
   assert jsonb_array_length(t -> 'relationships') = 8, 'get_tree relationships';
   assert (select count(*) from public.get_ancestors('a0000000-0000-0000-0000-00000000000d')) = 3, 'ancestors of Ramesh';
   assert (select count(*) from public.get_descendants('a0000000-0000-0000-0000-00000000000a')) = 4, 'descendants of Govind';
-  assert (select count(*) from public.search_persons('ram sol')) = 1, 'prefix search';
-  assert (select count(*) from public.search_persons('')) = 0, 'empty search';
+  assert jsonb_array_length(public.search_persons('ram sol')) = 1, 'prefix search';
+  assert jsonb_array_length(public.search_persons('')) = 0, 'empty search';
+end $$;
+
+-- bilingual names: Dinesh son of Mithabhai, written in Gujarati with English spelling
+insert into public.persons (id, family_id, first_name, last_name, first_name_en, last_name_en, gender, dob) values
+  ('a0000000-0000-0000-0000-000000000020', 'f0000000-0000-0000-0000-000000000001', 'મીઠાભાઈ', 'સોલંકી', 'Mithabhai', 'Solanki', 'male', '1950-01-01'),
+  ('a0000000-0000-0000-0000-000000000021', 'f0000000-0000-0000-0000-000000000001', 'દીનેશ', 'સોલંકી', 'Dinesh', 'Solanki', 'male', '1978-05-05');
+insert into public.relationships (kind, person_id, related_id) values ('parent', 'a0000000-0000-0000-0000-000000000020', 'a0000000-0000-0000-0000-000000000021');
+do $$
+declare r text;
+begin
+  foreach r in array array['Dinesh', 'દીનેશ', 'દીને', 'dinesh solanki', 'DINESH'] loop
+    assert jsonb_array_length(public.search_persons(r)) = 1, 'search finds Dinesh for ' || r;
+    assert (public.search_persons(r) -> 0 ->> 'father_name') = 'મીઠાભાઈ', 'father shown for ' || r;
+  end loop;
+  assert exists (select 1 from jsonb_array_elements(public.search_persons('solanki')) x where x ->> 'first_name_en' = 'Dinesh'), 'surname search works in English';
+  -- find_myself from an English Google name against the Gujarati record
+  assert (select person_id from public.find_myself('Dineshbhai', 'Solanki') limit 1) = 'a0000000-0000-0000-0000-000000000021', 'find_myself matches English name with bhai suffix';
+  assert (select parents from public.find_myself('Dinesh', 'Solanki') limit 1) = 'Mithabhai Solanki', 'parents shown in English when known';
 end $$;
 
 -- matches: a duplicate Ramesh in the Rathod family

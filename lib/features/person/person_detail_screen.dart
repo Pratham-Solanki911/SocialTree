@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/l10n_ext.dart';
+import '../../core/names.dart';
 import '../../core/phone.dart';
 import '../../core/supabase_providers.dart';
 import '../../core/widgets.dart';
@@ -45,7 +46,7 @@ class PersonDetailScreen extends ConsumerWidget {
           length: 5,
           child: Scaffold(
             appBar: AppBar(
-              title: Text(p.fullName),
+              title: NameText(personName(context, p), maxLines: 1),
               actions: [
                 if (canEdit)
                   IconButton(
@@ -218,7 +219,7 @@ class _Header extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(p.fullName, style: Theme.of(context).textTheme.titleLarge),
+                NameText(personName(context, p), style: Theme.of(context).textTheme.titleLarge),
                 if (p.nickname != null) Text('"${p.nickname}"'),
                 Text(lifespan(context, p)),
                 const SizedBox(height: 6),

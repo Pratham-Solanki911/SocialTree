@@ -964,4 +964,80 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get statusPending => 'રાહમાં';
+
+  @override
+  String get firstNameGu => 'નામ ગુજરાતીમાં';
+
+  @override
+  String get firstNameEn => 'નામ અંગ્રેજીમાં';
+
+  @override
+  String get middleNameGu => 'પિતા કે પતિનું નામ ગુજરાતીમાં';
+
+  @override
+  String get middleNameEn => 'પિતા કે પતિનું નામ અંગ્રેજીમાં';
+
+  @override
+  String get lastNameGu => 'અટક ગુજરાતીમાં';
+
+  @override
+  String get lastNameEn => 'અટક અંગ્રેજીમાં';
+
+  @override
+  String get maidenNameGu => 'લગ્ન પહેલાંની અટક ગુજરાતીમાં';
+
+  @override
+  String get maidenNameEn => 'લગ્ન પહેલાંની અટક અંગ્રેજીમાં';
+
+  @override
+  String get familyNameGu => 'પરિવારનું નામ ગુજરાતીમાં';
+
+  @override
+  String get familyNameEn => 'પરિવારનું નામ અંગ્રેજીમાં';
+
+  @override
+  String get surnameGu => 'અટક ગુજરાતીમાં';
+
+  @override
+  String get surnameEn => 'અટક અંગ્રેજીમાં';
+
+  @override
+  String get suggestedSpelling => 'અમે ભરી આપ્યું છે, જરા તપાસી લો';
+
+  @override
+  String sonOf(String name) {
+    return '$name ના દીકરા';
+  }
+
+  @override
+  String daughterOf(String name) {
+    return '$name ની દીકરી';
+  }
+
+  @override
+  String get searchByName => 'નામથી શોધો';
+
+  @override
+  String get findInTree => 'આ વૃક્ષમાં કોઈને શોધો';
+
+  @override
+  String get filterMembers => 'આ પરિવારમાં શોધો';
+
+  @override
+  String get fitToScreen => 'આખું વૃક્ષ જુઓ';
+
+  @override
+  String get treeHint =>
+      'કોઈ વ્યક્તિ પર આંગળી મૂકો, તેમની આસપાસનો પરિવાર દેખાશે. દબાવી રાખો તો તેમનું પાનું ખૂલશે.';
+
+  @override
+  String showAround(String name) {
+    return '$name ની આસપાસનો પરિવાર બતાવો';
+  }
+
+  @override
+  String get openPage => 'તેમનું પાનું ખોલો';
+
+  @override
+  String get otherFamilies => 'બીજા પરિવારો';
 }

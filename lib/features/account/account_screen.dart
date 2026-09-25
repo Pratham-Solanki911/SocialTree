@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/l10n_ext.dart';
+import '../../core/names.dart';
 import '../../core/supabase_providers.dart';
 import '../../core/widgets.dart';
 import '../../data/providers.dart';
@@ -76,7 +77,7 @@ class AccountScreen extends ConsumerWidget {
           if (me != null)
             ListTile(
               leading: PersonAvatar(path: me.passportPhotoPath, initials: me.initials, size: 36),
-              title: Text(me.fullName),
+              title: NameText(personName(context, me)),
               trailing: const Icon(Icons.chevron_right),
               onTap: () => context.push('/persons/${me.id}'),
             ),

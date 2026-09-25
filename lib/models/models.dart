@@ -62,6 +62,8 @@ class Family {
     this.description,
     this.coverPath,
     this.createdBy,
+    this.nameEn,
+    this.surnameEn,
   });
   final String id;
   final String name;
@@ -73,6 +75,8 @@ class Family {
   final String? description;
   final String? coverPath;
   final String? createdBy;
+  final String? nameEn;
+  final String? surnameEn;
 
   factory Family.fromMap(Map<String, dynamic> m) => Family(
         id: m['id'] as String,
@@ -85,6 +89,8 @@ class Family {
         description: m['description'] as String?,
         coverPath: m['cover_path'] as String?,
         createdBy: m['created_by'] as String?,
+        nameEn: m['name_en'] as String?,
+        surnameEn: m['surname_en'] as String?,
       );
 }
 
@@ -138,6 +144,14 @@ class Person {
     this.claimedBy,
     this.caretakerId,
     this.createdBy,
+    this.firstNameEn,
+    this.middleNameEn,
+    this.lastNameEn,
+    this.maidenNameEn,
+    this.fatherName,
+    this.fatherNameEn,
+    this.familyName,
+    this.familyNameEn,
   });
   final String id;
   final String familyId;
@@ -173,10 +187,26 @@ class Person {
   final String? claimedBy;
   final String? caretakerId;
   final String? createdBy;
+  final String? firstNameEn;
+  final String? middleNameEn;
+  final String? lastNameEn;
+  final String? maidenNameEn;
+  // Present only on search results.
+  final String? fatherName;
+  final String? fatherNameEn;
+  final String? familyName;
+  final String? familyNameEn;
 
   String get fullName => [firstName, middleName, lastName].where((s) => s != null && s.isNotEmpty).join(' ');
   String get shortName => '$firstName $lastName';
-  String get initials => '${firstName.isNotEmpty ? firstName[0] : ''}${lastName.isNotEmpty ? lastName[0] : ''}'.toUpperCase();
+  bool get hasEnglish => (firstNameEn ?? '').isNotEmpty || (lastNameEn ?? '').isNotEmpty;
+  String? get fullNameEn => hasEnglish ? [firstNameEn, middleNameEn, lastNameEn].where((s) => s != null && s.isNotEmpty).join(' ') : null;
+  String? get shortNameEn => hasEnglish ? [firstNameEn, lastNameEn].where((s) => s != null && s.isNotEmpty).join(' ') : null;
+  String get initials {
+    final f = (firstNameEn ?? '').isNotEmpty ? firstNameEn! : firstName;
+    final l = (lastNameEn ?? '').isNotEmpty ? lastNameEn! : lastName;
+    return '${f.isNotEmpty ? f[0] : ''}${l.isNotEmpty ? l[0] : ''}'.toUpperCase();
+  }
   int? get birthYear => dob?.year;
 
   factory Person.fromMap(Map<String, dynamic> m) => Person(
@@ -216,6 +246,14 @@ class Person {
         claimedBy: m['claimed_by'] as String?,
         caretakerId: m['caretaker_id'] as String?,
         createdBy: m['created_by'] as String?,
+        firstNameEn: m['first_name_en'] as String?,
+        middleNameEn: m['middle_name_en'] as String?,
+        lastNameEn: m['last_name_en'] as String?,
+        maidenNameEn: m['maiden_name_en'] as String?,
+        fatherName: m['father_name'] as String?,
+        fatherNameEn: m['father_name_en'] as String?,
+        familyName: m['family_name'] as String?,
+        familyNameEn: m['family_name_en'] as String?,
       );
 }
 
