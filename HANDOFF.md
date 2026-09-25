@@ -74,14 +74,17 @@ GitHub repo → Settings → Secrets and variables → Actions → add:
 - `SUPABASE_ANON_KEY` = the publishable key above
 Then Actions → "Supabase keep-alive" → Run workflow once to confirm it passes.
 
-### 6. Optional: host the web build
-```bash
-flutter build web --release \
-  --dart-define=SUPABASE_URL=https://dcrggwdfanqmbyjanbaq.supabase.co \
-  --dart-define=SUPABASE_ANON_KEY=sb_publishable_q5IYwBYNPa3rDlrHTg1cKA_-31R75OK
-```
-Deploy `build/web` to GitHub Pages / Cloudflare Pages / Netlify, then add the
-final URL to Supabase Redirect URLs and Site URL (step 3.3).
+### 6. Host the web app on GitHub Pages (this is the main distribution channel)
+1. GitHub repo → Settings → Pages → Build and deployment → Source: **GitHub Actions**.
+2. Secrets from step 5 must exist (`SUPABASE_URL`, `SUPABASE_ANON_KEY`).
+3. Actions → "Deploy web" → Run workflow (it also runs on every push to
+   `main` and to `claude/fervent-wozniak-mfafkt`).
+4. The site URL is `https://<github-username>.github.io/SocialTree/`.
+5. Supabase → Authentication → URL Configuration:
+   - Site URL: `https://<github-username>.github.io/SocialTree/`
+   - Redirect URLs: add `https://<github-username>.github.io/SocialTree/**`
+Verify: open the site on a phone, sign in with Google, use "Add to Home
+screen" (it is an installable PWA).
 
 ## Troubleshooting
 

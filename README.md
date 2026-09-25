@@ -69,6 +69,8 @@ flutter build web --release --dart-define=SUPABASE_URL=... --dart-define=SUPABAS
 
 The web build can be hosted for free on GitHub Pages, Cloudflare Pages or Netlify.
 
+**GitHub Pages (automated):** `.github/workflows/deploy-web.yml` builds and publishes on every push to `main`. Enable Settings → Pages → Source "GitHub Actions", add the two secrets, and the app is live at `https://<owner>.github.io/SocialTree/`. Add that URL (with `/**`) to Supabase Redirect URLs. The page is an installable PWA, so members can add it to their home screen without any app store.
+
 ### 4. Keep the free project awake
 
 Add repository secrets `SUPABASE_URL` and `SUPABASE_ANON_KEY` so the keep-alive workflow can run.

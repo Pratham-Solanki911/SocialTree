@@ -25,7 +25,9 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
       // link in Env.authRedirect brings the session back on mobile.
       await ref.read(supabaseProvider).auth.signInWithOAuth(
             OAuthProvider.google,
-            redirectTo: kIsWeb ? null : Env.authRedirect,
+            // Web: come back to this exact page (works under a /repo/ base href
+            // on GitHub Pages). Mobile: the app's deep link.
+            redirectTo: kIsWeb ? Uri.base.removeFragment().toString() : Env.authRedirect,
             authScreenLaunchMode: kIsWeb ? LaunchMode.platformDefault : LaunchMode.externalApplication,
           );
     } catch (e) {
