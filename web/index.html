@@ -32,7 +32,10 @@
   <title>SocialTree</title>
   <link rel="manifest" href="manifest.json">
 </head>
-<body>
+<body style="margin:0;background:#FBF1E3">
+  <style>#splash{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;font-family:sans-serif;color:#9C5426;background:#FBF1E3}#splash p{margin:0;font-size:15px;letter-spacing:1px}</style>
+  <div id="splash"><img src="icons/Icon-192.png" width="96" height="96" alt=""><p>Machhukathiya Sai Suthar Samaj</p></div>
+  <script>addEventListener('flutter-first-frame',()=>{const s=document.getElementById('splash');if(s)s.remove();});</script>
   <!--
     You can customize the "flutter_bootstrap.js" script.
     This is useful to provide a custom configuration to the Flutter loader

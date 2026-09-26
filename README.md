@@ -47,7 +47,9 @@ Flutter (Android, iOS, web) + Supabase (Postgres, Google sign-in, storage, realt
 
 ## Branding
 
-Logo and wordmarks live in `assets/branding/` (SVG). Launcher icons and the favicon are generated from them with `dart run flutter_launcher_icons`. The in-app mark is drawn in Dart (`lib/core/branding.dart`) so no SVG runtime is needed.
+Logo and wordmarks live in `assets/branding/` (SVG): a banyan-like tree whose canopy holds a small family graph, on spreading roots, in a cream badge with a gold ring. Launcher icons, the favicon and the web splash are generated from it with `dart run flutter_launcher_icons`. The in-app mark is drawn in Dart (`lib/core/branding.dart`) so no SVG runtime is needed. The wordmark uses Baloo Bhai 2 (Gujarati, Latin) and Baloo 2 (Devanagari), bundled under `assets/fonts/`.
+
+The theme (`lib/app/theme.dart`) is tuned for elders: 16 to 17 px body text, 52 px buttons, always-visible navigation labels, filled rounded inputs, and Noto Gujarati / Devanagari as fallback fonts so Indic text looks the same on every device.
 
 ## Setup
 

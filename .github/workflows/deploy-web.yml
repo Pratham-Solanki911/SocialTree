@@ -27,7 +27,7 @@ jobs:
       - run: flutter gen-l10n
       - name: Build
         run: |
-          flutter build web --release \
+          flutter build web --release --no-web-resources-cdn \
             --base-href "/${{ github.event.repository.name }}/" \
             --dart-define=SUPABASE_URL="${{ secrets.SUPABASE_URL }}" \
             --dart-define=SUPABASE_ANON_KEY="${{ secrets.SUPABASE_ANON_KEY }}"

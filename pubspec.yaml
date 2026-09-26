@@ -79,6 +79,12 @@ flutter:
     - family: NotoSansDevanagari
       fonts:
         - asset: assets/fonts/NotoSansDevanagari.ttf
+    - family: BalooBhai2
+      fonts:
+        - asset: assets/fonts/BalooBhai2.ttf
+    - family: Baloo2
+      fonts:
+        - asset: assets/fonts/Baloo2.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -121,10 +127,10 @@ flutter_launcher_icons:
   android: true
   ios: true
   remove_alpha_ios: true
-  adaptive_icon_background: "#FFF4E6"
+  adaptive_icon_background: "#FBF1E3"
   adaptive_icon_foreground: assets/branding/png/logo-fg-1024.png
   web:
     generate: true
     image_path: assets/branding/png/logo-1024.png
-    background_color: "#FFF4E6"
-    theme_color: "#8B4513"
+    background_color: "#FBF1E3"
+    theme_color: "#9C5426"

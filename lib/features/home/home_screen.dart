@@ -46,7 +46,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: const Padding(padding: EdgeInsets.all(8), child: LogoMark(size: 40)),
-        title: Text(greetings(context)[_greetingIndex], style: Theme.of(context).textTheme.titleMedium),
+        title: const Wordmark(scale: 0.62),
         actions: [
           IconButton(
             onPressed: () => context.push('/notifications'),
@@ -62,6 +62,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         },
         child: ListView(
           children: [
+            _GreetingBanner(greeting: greetings(context)[_greetingIndex], name: profile?.displayName),
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
               child: TextField(
@@ -71,34 +72,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
             ),
             SectionTitle(l.quickActions),
-            SizedBox(
-              height: 96,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 12),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 220, mainAxisExtent: 76, mainAxisSpacing: 8, crossAxisSpacing: 8),
                 itemCount: actions.length,
-                separatorBuilder: (_, _) => const SizedBox(width: 8),
                 itemBuilder: (context, i) {
                   final (icon, label, onTap) = actions[i];
-                  return SizedBox(
-                    width: 104,
-                    child: Card(
-                      child: InkWell(
-                        onTap: onTap,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(icon),
-                              const SizedBox(height: 6),
-                              Text(label, textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.labelMedium),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
+                  return _ActionTile(icon: icon, label: label, onTap: onTap);
                 },
               ),
             ),
@@ -111,6 +94,69 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   : Column(children: [for (final f in items) _FeedTile(item: f)]),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _GreetingBanner extends StatelessWidget {
+  const _GreetingBanner({required this.greeting, this.name});
+  final String greeting;
+  final String? name;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Container(
+      margin: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        gradient: LinearGradient(colors: [scheme.primaryContainer, scheme.tertiaryContainer.withValues(alpha: 0.7)]),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(greeting, style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: scheme.onPrimaryContainer)),
+                if (name != null && name!.isNotEmpty) Text(name!, style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: scheme.onPrimaryContainer.withValues(alpha: 0.8))),
+              ],
+            ),
+          ),
+          const LogoMark(size: 56),
+        ],
+      ),
+    );
+  }
+}
+
+class _ActionTile extends StatelessWidget {
+  const _ActionTile({required this.icon, required this.label, required this.onTap});
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Material(
+      color: scheme.surfaceContainerLow,
+      borderRadius: BorderRadius.circular(14),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(14),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          child: Row(
+            children: [
+              CircleAvatar(radius: 22, backgroundColor: scheme.secondaryContainer, child: Icon(icon, color: scheme.onSecondaryContainer)),
+              const SizedBox(width: 12),
+              Expanded(child: Text(label, maxLines: 2, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.labelLarge)),
+            ],
+          ),
         ),
       ),
     );
@@ -132,12 +178,15 @@ class _FeedTile extends StatelessWidget {
     final date = item.event.eventDate == null
         ? null
         : DateFormat.yMMMd(Localizations.localeOf(context).toString()).format(item.event.eventDate!);
-    return ListTile(
-      leading: PersonAvatar(path: item.photoPath, initials: item.personName.isEmpty ? '?' : item.personName[0], size: 36),
-      title: Text('${kind.$2}: ${item.personName}'),
-      subtitle: Text([item.event.title, ?date].join(' · ')),
-      trailing: Icon(kind.$1),
-      onTap: () => context.push('/persons/${item.personId}'),
+    final scheme = Theme.of(context).colorScheme;
+    return Card(
+      child: ListTile(
+        leading: CircleAvatar(backgroundColor: scheme.tertiaryContainer, child: Icon(kind.$1, color: scheme.onTertiaryContainer)),
+        title: Text('${kind.$2}: ${item.personName}'),
+        subtitle: Text([item.event.title, ?date].join(' · ')),
+        trailing: PersonAvatar(path: item.photoPath, initials: item.personName.isEmpty ? '?' : item.personName[0], size: 32),
+        onTap: () => context.push('/persons/${item.personId}'),
+      ),
     );
   }
 }

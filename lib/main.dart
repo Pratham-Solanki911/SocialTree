@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'app/router.dart';
+import 'app/theme.dart';
 import 'core/env.dart';
 import 'core/l10n_ext.dart';
 import 'core/supabase_providers.dart';
@@ -23,7 +24,6 @@ class SocialTreeApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = Env.isConfigured ? ref.watch(localeProvider) : null;
     final largeText = Env.isConfigured && (ref.watch(myProfileProvider).value?.largeText ?? false);
-    final scheme = ColorScheme.fromSeed(seedColor: const Color(0xFF8B4513));
     return MaterialApp.router(
       title: 'SocialTree',
       routerConfig: ref.watch(routerProvider),
@@ -41,8 +41,8 @@ class SocialTreeApp extends ConsumerWidget {
         maxScaleFactor: 2.0,
         child: child ?? const SizedBox.shrink(),
       ),
-      theme: ThemeData(colorScheme: scheme, useMaterial3: true),
-      darkTheme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF8B4513), brightness: Brightness.dark), useMaterial3: true),
+      theme: buildTheme(Brightness.light),
+      darkTheme: buildTheme(Brightness.dark),
     );
   }
 }

@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'l10n_ext.dart';
 
-const brandBrown = Color(0xFF8B4513);
-const brandGreen = Color(0xFF3E7D3A);
-const brandLeaf = Color(0xFF6FAE5B);
-const brandCream = Color(0xFFFFF4E6);
+const brandBrown = Color(0xFF9C5426);
+const brandBrownDark = Color(0xFF7A3E14);
+const brandGreen = Color(0xFF3F8A3D);
+const brandLeaf = Color(0xFF7BBE63);
+const brandGold = Color(0xFFD9A441);
+const brandCream = Color(0xFFFBF1E3);
 
 /// The tree-with-roots mark, drawn in Dart so it scales from 24 px to 512 px
 /// without an SVG dependency. Source of truth: assets/branding/logo.svg.
@@ -30,69 +32,93 @@ class _LogoPainter extends CustomPainter {
     final s = size.width / 512;
     canvas.scale(s);
     if (withBackground) {
-      canvas.drawCircle(const Offset(256, 256), 240, Paint()..color = brandCream);
+      canvas.drawCircle(
+        const Offset(256, 256),
+        244,
+        Paint()
+          ..shader = const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFFF8EE), Color(0xFFF6E7D0)])
+              .createShader(const Rect.fromLTWH(12, 12, 488, 488)),
+      );
+      canvas.drawCircle(const Offset(256, 256), 244, Paint()..color = brandGold..style = PaintingStyle.stroke..strokeWidth = 6);
+      canvas.drawOval(const Rect.fromLTWH(106, 404, 300, 28), Paint()..color = brandGold.withValues(alpha: 0.35));
     }
-    final leaf = Paint()
+    final wood = Paint()
+      ..shader = const LinearGradient(colors: [brandBrownDark, brandBrown, brandBrownDark]).createShader(const Rect.fromLTWH(150, 246, 212, 190));
+    final root = Paint()
+      ..shader = wood.shader
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 14
+      ..strokeCap = StrokeCap.round;
+    for (final path in [
+      Path()..moveTo(256, 372)..cubicTo(240, 392, 200, 396, 150, 420),
+      Path()..moveTo(256, 372)..cubicTo(272, 392, 312, 396, 362, 420),
+      Path()..moveTo(250, 376)..cubicTo(236, 400, 214, 408, 196, 428),
+      Path()..moveTo(262, 376)..cubicTo(276, 400, 298, 408, 316, 428),
+      Path()..moveTo(256, 378)..lineTo(256, 430),
+    ]) {
+      canvas.drawPath(path, root);
+    }
+    canvas.drawPath(
+      Path()..moveTo(234, 246)..cubicTo(240, 300, 236, 340, 220, 384)..lineTo(292, 384)..cubicTo(276, 340, 272, 300, 278, 246)..close(),
+      wood,
+    );
+    final canopy = Paint()
       ..shader = const LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [brandLeaf, brandGreen])
-          .createShader(const Rect.fromLTWH(74, 54, 364, 266));
-    for (final (c, r) in [(const Offset(256, 150), 96.0), (const Offset(170, 210), 82.0), (const Offset(342, 210), 82.0), (const Offset(256, 230), 90.0)]) {
-      canvas.drawCircle(c, r, leaf);
+          .createShader(const Rect.fromLTWH(104, 58, 304, 264));
+    for (final (c, r) in [(const Offset(256, 150), 92.0), (const Offset(178, 206), 74.0), (const Offset(334, 206), 74.0), (const Offset(206, 262), 60.0), (const Offset(306, 262), 60.0), (const Offset(256, 240), 68.0)]) {
+      canvas.drawCircle(c, r, canopy);
     }
-    final wood = Paint()..color = brandBrown;
-    canvas.drawRect(const Rect.fromLTWH(238, 250, 36, 130), wood);
-    final roots = Path()
-      ..moveTo(256, 370)
-      ..cubicTo(216, 410, 166, 400, 106, 440)
-      ..cubicTo(166, 420, 206, 410, 256, 400)
-      ..cubicTo(306, 410, 346, 420, 406, 440)
-      ..cubicTo(346, 400, 296, 410, 256, 370)
-      ..close();
-    canvas.drawPath(roots, wood);
-    canvas.drawPath(Path()..moveTo(256, 372)..cubicTo(246, 402, 244, 427, 250, 450)..lineTo(262, 450)..cubicTo(268, 427, 266, 402, 256, 372)..close(), wood);
-    // Family nodes and links inside the canopy.
-    final node = Paint()..color = brandCream.withValues(alpha: 0.9);
+    canvas.drawPath(
+      Path()..moveTo(196, 118)..cubicTo(214, 88, 262, 74, 300, 92)..cubicTo(268, 94, 230, 108, 206, 140)..close(),
+      Paint()..color = Colors.white.withValues(alpha: 0.22),
+    );
     final link = Paint()
-      ..color = brandCream.withValues(alpha: 0.9)
-      ..strokeWidth = 7
+      ..color = const Color(0xFFFFF8EE)
+      ..strokeWidth = 8
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke;
-    canvas.drawPath(Path()..moveTo(256, 150)..lineTo(220, 185)..lineTo(186, 215), link);
-    canvas.drawPath(Path()..moveTo(256, 150)..lineTo(292, 185)..lineTo(326, 215), link);
-    canvas.drawLine(const Offset(256, 150), const Offset(256, 232), link);
-    for (final (c, r) in [(const Offset(256, 150), 10.0), (const Offset(186, 215), 10.0), (const Offset(326, 215), 10.0), (const Offset(256, 232), 10.0), (const Offset(220, 185), 7.0), (const Offset(292, 185), 7.0)]) {
+    for (final (a, b) in [
+      (const Offset(256, 150), const Offset(206, 200)), (const Offset(256, 150), const Offset(306, 200)),
+      (const Offset(206, 200), const Offset(180, 250)), (const Offset(206, 200), const Offset(232, 250)),
+      (const Offset(306, 200), const Offset(280, 250)), (const Offset(306, 200), const Offset(332, 250)),
+    ]) {
+      canvas.drawLine(a, b, link);
+    }
+    final node = Paint()..color = const Color(0xFFFFF8EE);
+    for (final (c, r) in [(const Offset(256, 150), 15.0), (const Offset(206, 200), 12.0), (const Offset(306, 200), 12.0), (const Offset(180, 250), 9.0), (const Offset(232, 250), 9.0), (const Offset(280, 250), 9.0), (const Offset(332, 250), 9.0)]) {
       canvas.drawCircle(c, r, node);
     }
+    canvas.drawCircle(const Offset(256, 150), 7, Paint()..color = brandGold);
   }
 
   @override
   bool shouldRepaint(_LogoPainter old) => old.withBackground != withBackground;
 }
 
-/// Community wordmark as styled text; follows the active locale.
+/// Community wordmark in the Baloo display face; follows the active locale.
 class Wordmark extends StatelessWidget {
-  const Wordmark({super.key, this.scale = 1, this.color});
+  const Wordmark({super.key, this.scale = 1, this.color, this.accent});
   final double scale;
   final Color? color;
+  final Color? accent;
 
   @override
   Widget build(BuildContext context) {
     final lang = Localizations.localeOf(context).languageCode;
-    final (top, bottom) = switch (lang) {
-      'gu' => ('શ્રી મચ્છુકાઠિયા', 'સઈ સુથાર સમાજ'),
-      'hi' => ('श्री मच्छुकाठिया', 'सई सुथार समाज'),
-      _ => ('MACHHUKATHIYA', 'SAI SUTHAR SAMAJ'),
+    final (top, bottom, family) = switch (lang) {
+      'gu' => ('શ્રી મચ્છુકાઠિયા', 'સઈ સુથાર સમાજ', 'BalooBhai2'),
+      'hi' => ('श्री मच्छुकाठिया', 'सई सुथार समाज', 'Baloo2'),
+      _ => ('Machhukathiya', 'Sai Suthar Samaj', 'BalooBhai2'),
     };
-    final latin = lang == 'en';
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(top,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 22 * scale, fontWeight: FontWeight.w800, letterSpacing: latin ? 2.5 : 0, color: color ?? brandBrown, fontFamily: latin ? 'serif' : null)),
-        Container(height: 1.5, width: 120 * scale, margin: EdgeInsets.symmetric(vertical: 4 * scale), color: (color ?? brandBrown).withValues(alpha: 0.5)),
+            style: TextStyle(fontFamily: family, fontSize: 26 * scale, fontWeight: FontWeight.w700, height: 1.15, color: color ?? brandBrown)),
         Text(bottom,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 13 * scale, fontWeight: FontWeight.w600, letterSpacing: latin ? 4 : 0, color: color ?? brandGreen, fontFamily: latin ? 'serif' : null)),
+            style: TextStyle(fontFamily: family, fontSize: 17 * scale, fontWeight: FontWeight.w600, height: 1.1, letterSpacing: lang == 'en' ? 1.5 : 0, color: accent ?? brandGreen)),
       ],
     );
   }

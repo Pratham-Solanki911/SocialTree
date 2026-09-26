@@ -26,8 +26,6 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
       // link in Env.authRedirect brings the session back on mobile.
       await ref.read(supabaseProvider).auth.signInWithOAuth(
             OAuthProvider.google,
-            // Web: come back to this exact page (works under a /repo/ base href
-            // on GitHub Pages). Mobile: the app's deep link.
             redirectTo: kIsWeb ? Uri.base.removeFragment().toString() : Env.authRedirect,
             authScreenLaunchMode: kIsWeb ? LaunchMode.platformDefault : LaunchMode.externalApplication,
           );
@@ -41,30 +39,69 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     final l = context.l;
+    final dark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(32),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const LogoMark(size: 120),
-              const SizedBox(height: 16),
-              const Wordmark(scale: 1.2),
-              const SizedBox(height: 8),
-              Text(l.signInTagline, textAlign: TextAlign.center),
-              const SizedBox(height: 32),
-              FilledButton.icon(
-                onPressed: _busy ? null : _google,
-                icon: _busy
-                    ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
-                    : const Icon(Icons.login),
-                label: Text(l.signInWithGoogle),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: dark ? const [Color(0xFF2A2019), Color(0xFF1A1512)] : const [Color(0xFFFFF6E8), Color(0xFFFCF8F2)],
+          ),
+        ),
+        child: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 32),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 420),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const LogoMark(size: 150),
+                    const SizedBox(height: 20),
+                    const Wordmark(scale: 1.25),
+                    const SizedBox(height: 10),
+                    Text(l.signInTagline, textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant)),
+                    const SizedBox(height: 40),
+                    FilledButton(
+                      onPressed: _busy ? null : _google,
+                      style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(60)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          if (_busy)
+                            const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white))
+                          else
+                            const _GoogleG(),
+                          const SizedBox(width: 14),
+                          Flexible(child: Text(l.signInWithGoogle, style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600))),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 28),
+                    Text(l.samajName, textAlign: TextAlign.center, style: Theme.of(context).textTheme.labelMedium?.copyWith(color: Theme.of(context).colorScheme.outline)),
+                  ],
+                ),
               ),
-            ],
+            ),
           ),
         ),
       ),
     );
   }
+}
+
+/// A small "G" badge so the button is recognisable without the Google SDK.
+class _GoogleG extends StatelessWidget {
+  const _GoogleG();
+
+  @override
+  Widget build(BuildContext context) => Container(
+        width: 30,
+        height: 30,
+        decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+        alignment: Alignment.center,
+        child: const Text('G', style: TextStyle(color: Color(0xFF4285F4), fontSize: 19, fontWeight: FontWeight.w800, height: 1)),
+      );
 }
