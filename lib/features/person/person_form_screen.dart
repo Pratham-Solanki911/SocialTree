@@ -166,7 +166,7 @@ class _PersonFormScreenState extends ConsumerState<PersonFormScreen> {
         ref.invalidate(myProfileProvider);
       }
       if (_photo != null) {
-        await repos.uploadPassport(id, _photo!);
+        await repos.uploadPassport(id, _photo!, oldPath: _existing?.passportPhotoPath);
       } else if (_photoRemoved && _existing?.passportPhotoPath != null) {
         await repos.removePassport(id, _existing!.passportPhotoPath!);
       }

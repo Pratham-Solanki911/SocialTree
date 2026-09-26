@@ -132,10 +132,16 @@ class Repos {
   }
 
   /// Stores the compressed passport JPEG and records its path on the person.
-  Future<String> uploadPassport(String personId, Uint8List jpeg) async {
-    final path = 'passport/$personId.jpg';
-    await bucket.uploadBinary(path, jpeg, fileOptions: const FileOptions(contentType: 'image/jpeg', upsert: true));
+  Future<String> uploadPassport(String personId, Uint8List jpeg, {String? oldPath}) async {
+    // New path per upload: signed URLs and CDN caches never serve the old photo.
+    final path = 'passport/$personId-${DateTime.now().millisecondsSinceEpoch}.jpg';
+    await bucket.uploadBinary(path, jpeg, fileOptions: const FileOptions(contentType: 'image/jpeg'));
     await updatePerson(personId, {'passport_photo_path': path});
+    if (oldPath != null && oldPath != path) {
+      try {
+        await bucket.remove([oldPath]);
+      } catch (_) {/* old file may already be gone */}
+    }
     return path;
   }
 
@@ -284,6 +290,8 @@ class Repos {
   Future<void> deleteSurnameMapping(String id) => db.from('surname_gotras').delete().eq('id', id);
 
   // ----------------------------------------------------------------- matches
+  Future<int> refreshAllMatches() async => (await db.rpc('refresh_all_matches') as num).toInt();
+
   Future<int> refreshMatches(String personId) async =>
       (await db.rpc('refresh_matches', params: {'p': personId}) as num).toInt();
 

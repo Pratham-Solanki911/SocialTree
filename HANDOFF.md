@@ -8,7 +8,10 @@
 > Identity claims ("this is me" flow, caretakers, admin confirmation for deaths)
 > live in 0003. **Handoff 3 (bilingual names + search): run
 > `20260925000005_bilingual_names_search.sql` once.** `0004_relock_functions.sql`
-> is committed as recreated from its description; keep the applied local copy if it differs. If the local
+> is committed as recreated from its description; keep the applied local copy if it differs.
+> **Gap fixes: run `20260925000006_gaps.sql` once** (localisable notifications,
+> admin sign-up alerts, death event marks deceased, bilingual matching, bulk match
+> check, large-text setting). If the local
 > `20260925000001_function_grants.sql` differs from the committed one, keep the
 > local (already applied) version. Wordmark spelling used: "Machhukathiya"
 > (Gujarati: મચ્છુકાઠિયા); change `lib/core/branding.dart`, the two wordmark

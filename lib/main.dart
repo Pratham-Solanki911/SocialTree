@@ -22,6 +22,7 @@ class SocialTreeApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = Env.isConfigured ? ref.watch(localeProvider) : null;
+    final largeText = Env.isConfigured && (ref.watch(myProfileProvider).value?.largeText ?? false);
     final scheme = ColorScheme.fromSeed(seedColor: const Color(0xFF8B4513));
     return MaterialApp.router(
       title: 'SocialTree',
@@ -34,6 +35,12 @@ class SocialTreeApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
+      // Elders: one switch for bigger letters everywhere, saved on the profile.
+      builder: (context, child) => MediaQuery.withClampedTextScaling(
+        minScaleFactor: largeText ? 1.3 : 1.0,
+        maxScaleFactor: 2.0,
+        child: child ?? const SizedBox.shrink(),
+      ),
       theme: ThemeData(colorScheme: scheme, useMaterial3: true),
       darkTheme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF8B4513), brightness: Brightness.dark), useMaterial3: true),
     );

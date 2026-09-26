@@ -14,6 +14,7 @@ insert into auth.users (id, email, raw_user_meta_data) values
 do $$ begin
   assert (select is_admin and status = 'approved' from public.profiles where id = '00000000-0000-0000-0000-000000000001'), 'first user is bootstrap admin';
   assert (select status = 'pending' from public.profiles where id = '00000000-0000-0000-0000-000000000002'), 'later users start pending';
+  assert (select count(*) from public.notifications where user_id = '00000000-0000-0000-0000-000000000001' and data ->> 'subkind' = 'new_member') = 2, 'admin told about new members';
 end $$;
 
 -- admin approves the others
@@ -177,8 +178,10 @@ do $$ begin
 exception when others then
   if sqlerrm = 'sentinel' then raise exception 'second claim should have failed'; end if;
 end $$;
--- deceased Govind can never be claimed
-update public.persons set is_alive = false, dod = '2020-01-15' where id = 'a0000000-0000-0000-0000-00000000000a';
+-- deceased Govind can never be claimed (the death event already marked him)
+do $$ begin
+  assert (select not is_alive and dod = '2020-01-15' from public.persons where id = 'a0000000-0000-0000-0000-00000000000a'), 'death event marks the person deceased';
+end $$;
 select set_config('request.jwt.claim.sub', :'u3', false);
 do $$ begin
   perform public.request_claim('a0000000-0000-0000-0000-00000000000a');
@@ -228,6 +231,7 @@ select set_config('request.jwt.claim.sub', :'u2', false);
 
 -- admin merges the duplicate; any member can start a chat
 select set_config('request.jwt.claim.sub', :'u1', false);
+do $$ begin assert public.refresh_all_matches() >= 0, 'bulk match check runs for admins'; end $$;
 select public.merge_persons('a0000000-0000-0000-0000-00000000000d', 'a0000000-0000-0000-0000-000000000011');
 select set_config('request.jwt.claim.sub', :'u2', false);
 do $$
@@ -272,6 +276,9 @@ reset role;
 do $$ begin
   assert (select verified from public.gotras where name = 'Khodiyar'), 'admin verified gotra';
   assert (select count(*) from public.notifications where kind = 'event' and title like 'Death: Govind%') = 2, 'death fan-out to two others';
+  assert (select data ->> 'event_kind' from public.notifications where kind = 'event' limit 1) = 'death', 'event notification carries kind';
+  assert (select data ->> 'person_name' from public.notifications where kind = 'event' limit 1) = 'Govind Solanki', 'event notification carries name';
+  assert (select data ->> 'subkind' from public.notifications where kind = 'claim' and user_id = '00000000-0000-0000-0000-000000000003' order by created_at desc limit 1) = 'approved', 'claim decision carries subkind';
   assert (select count(*) from public.notifications where kind = 'match') >= 1, 'match notification';
   assert (select count(*) from public.notifications where kind = 'chat' and user_id = '00000000-0000-0000-0000-000000000003') = 1, 'chat notification';
   assert (select count(*) from public.notifications where kind = 'support' and user_id = '00000000-0000-0000-0000-000000000002') = 1, 'support notification';

@@ -41,6 +41,19 @@ class AdminScreen extends ConsumerWidget {
             child: ListView(
               children: [
                 ListTile(leading: const Icon(Icons.how_to_reg_outlined), title: Text(l.claimsTitle), trailing: const Icon(Icons.chevron_right), onTap: () => context.push('/claims')),
+                ListTile(
+                  leading: const Icon(Icons.join_full_outlined),
+                  title: Text(l.checkAllMatches),
+                  onTap: () async {
+                    try {
+                      final n = await ref.read(reposProvider).refreshAllMatches();
+                      ref.invalidate(pendingMatchesProvider);
+                      if (context.mounted) showMessage(context, l.matchesRefreshed(n));
+                    } catch (e) {
+                      if (context.mounted) showError(context, e);
+                    }
+                  },
+                ),
                 SectionTitle(l.pendingMembers),
                 if (pending.isEmpty) Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Text(l.noPending)),
                 for (final p in pending)

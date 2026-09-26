@@ -2007,6 +2007,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Other families'**
   String get otherFamilies;
+
+  /// No description provided for @largeText.
+  ///
+  /// In en, this message translates to:
+  /// **'Bigger letters'**
+  String get largeText;
+
+  /// No description provided for @checkAllMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the whole Samaj for double entries'**
+  String get checkAllMatches;
+
+  /// No description provided for @notifNewMember.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} wants to join the Samaj'**
+  String notifNewMember(String name);
+
+  /// No description provided for @notifWelcome.
+  ///
+  /// In en, this message translates to:
+  /// **'You are in. You can now build your family tree.'**
+  String get notifWelcome;
+
+  /// No description provided for @notifClaimRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} says: this is me'**
+  String notifClaimRequest(String name);
+
+  /// No description provided for @notifClaimApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'The family confirmed that you are {name}'**
+  String notifClaimApproved(String name);
+
+  /// No description provided for @notifClaimRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'The family could not confirm that you are {name}'**
+  String notifClaimRejected(String name);
+
+  /// No description provided for @notifChat.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} sent you a message'**
+  String notifChat(String name);
+
+  /// No description provided for @notifMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Two records may be the same person. Please have a look.'**
+  String get notifMatch;
+
+  /// No description provided for @notifSupportStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Your help request: {status}'**
+  String notifSupportStatus(String status);
+
+  /// No description provided for @notifSupportReply.
+  ///
+  /// In en, this message translates to:
+  /// **'Someone replied to your help request'**
+  String get notifSupportReply;
+
+  /// No description provided for @errAskAdminDeceased.
+  ///
+  /// In en, this message translates to:
+  /// **'Only a Samaj admin can mark a member who uses the app as passed away. Please ask an admin.'**
+  String get errAskAdminDeceased;
+
+  /// No description provided for @errAlreadyLinked.
+  ///
+  /// In en, this message translates to:
+  /// **'This record is already someone else\'s.'**
+  String get errAlreadyLinked;
+
+  /// No description provided for @errPassedAway.
+  ///
+  /// In en, this message translates to:
+  /// **'This record is of someone who has passed away, so it cannot be yours.'**
+  String get errPassedAway;
+
+  /// No description provided for @errRequestWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'You already have a request waiting for an answer.'**
+  String get errRequestWaiting;
+
+  /// No description provided for @errUnlinkFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'You are already joined to a record. Unlink it first from My account.'**
+  String get errUnlinkFirst;
+
+  /// No description provided for @errCycle.
+  ///
+  /// In en, this message translates to:
+  /// **'That would make someone their own ancestor. Please check the relation.'**
+  String get errCycle;
+
+  /// No description provided for @errTwoParents.
+  ///
+  /// In en, this message translates to:
+  /// **'A person can have only two parents here.'**
+  String get errTwoParents;
+
+  /// No description provided for @errNotApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'You have not been let in yet.'**
+  String get errNotApproved;
+
+  /// No description provided for @errAdminsOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Only a Samaj admin can do this.'**
+  String get errAdminsOnly;
+
+  /// No description provided for @errBothMine.
+  ///
+  /// In en, this message translates to:
+  /// **'Both records must be yours to join them.'**
+  String get errBothMine;
 }
 
 class _AppLocalizationsDelegate

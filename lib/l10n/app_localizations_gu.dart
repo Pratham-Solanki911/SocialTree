@@ -1040,4 +1040,82 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get otherFamilies => 'બીજા પરિવારો';
+
+  @override
+  String get largeText => 'મોટા અક્ષર';
+
+  @override
+  String get checkAllMatches => 'આખા સમાજમાં બેવડી નોંધ તપાસો';
+
+  @override
+  String notifNewMember(String name) {
+    return '$name સમાજમાં જોડાવા માંગે છે';
+  }
+
+  @override
+  String get notifWelcome => 'તમે અંદર આવી ગયા. હવે તમે વંશવૃક્ષ બનાવી શકો છો.';
+
+  @override
+  String notifClaimRequest(String name) {
+    return '$name કહે છે: આ હું છું';
+  }
+
+  @override
+  String notifClaimApproved(String name) {
+    return 'પરિવારે ખાતરી કરી કે તમે $name છો';
+  }
+
+  @override
+  String notifClaimRejected(String name) {
+    return 'પરિવાર ખાતરી ન કરી શક્યો કે તમે $name છો';
+  }
+
+  @override
+  String notifChat(String name) {
+    return '$name એ તમને સંદેશ મોકલ્યો';
+  }
+
+  @override
+  String get notifMatch => 'બે નોંધ એક જ વ્યક્તિની હોઈ શકે. જરા જોઈ લો.';
+
+  @override
+  String notifSupportStatus(String status) {
+    return 'તમારી મદદની વિનંતી: $status';
+  }
+
+  @override
+  String get notifSupportReply => 'તમારી મદદની વિનંતીનો જવાબ આવ્યો';
+
+  @override
+  String get errAskAdminDeceased =>
+      'એપ વાપરતા સભ્યને અવસાન પામેલા લખવાનું ફક્ત સમાજ સંચાલક કરી શકે. સંચાલકને કહો.';
+
+  @override
+  String get errAlreadyLinked => 'આ નોંધ પહેલેથી બીજા કોઈની છે.';
+
+  @override
+  String get errPassedAway =>
+      'આ નોંધ અવસાન પામેલી વ્યક્તિની છે, એટલે તમારી ન હોઈ શકે.';
+
+  @override
+  String get errRequestWaiting => 'તમારી એક વિનંતી પહેલેથી જવાબની રાહમાં છે.';
+
+  @override
+  String get errUnlinkFirst =>
+      'તમે પહેલેથી એક નોંધ સાથે જોડાયેલા છો. પહેલાં મારું ખાતું માંથી છૂટા કરો.';
+
+  @override
+  String get errCycle => 'આનાથી કોઈ પોતાનો જ પૂર્વજ બની જાય. સંબંધ તપાસો.';
+
+  @override
+  String get errTwoParents => 'અહીં એક વ્યક્તિના બે જ માતા-પિતા હોઈ શકે.';
+
+  @override
+  String get errNotApproved => 'તમને હજુ અંદર લેવાયા નથી.';
+
+  @override
+  String get errAdminsOnly => 'આ ફક્ત સમાજ સંચાલક કરી શકે.';
+
+  @override
+  String get errBothMine => 'બંને નોંધ તમારી હોય તો જ જોડી શકાય.';
 }

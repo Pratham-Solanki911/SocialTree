@@ -32,7 +32,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
             authScreenLaunchMode: kIsWeb ? LaunchMode.platformDefault : LaunchMode.externalApplication,
           );
     } catch (e) {
-      if (mounted) showMessage(context, context.l.signInFailed(friendlyError(e)));
+      if (mounted) showMessage(context, context.l.signInFailed(friendlyError(context, e)));
     } finally {
       if (mounted) setState(() => _busy = false);
     }

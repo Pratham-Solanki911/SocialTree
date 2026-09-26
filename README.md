@@ -18,7 +18,9 @@ Flutter (Android, iOS, web) + Supabase (Postgres, Google sign-in, storage, realt
 - **Matches**: suggests likely duplicates of the same person across families; admins merge them.
 - **Gotra & Kuldevi lookup** by surname and village. Members add and correct entries; admins mark them verified.
 - **Albums and media**: photos (compressed), video links, PDF documents.
-- **Samaj feed and notifications**: births, marriages and deaths go to everyone; personal notifications for chat, matches, support and approvals (in-app, realtime).
+- **Samaj feed and notifications**: births, marriages and deaths go to everyone; personal notifications for chat, matches, support, approvals and "this is me" requests (in-app, realtime, shown in the reader's language). Admins are told when someone new signs up. A recorded passing marks the person deceased.
+- **Bigger letters**: one switch in My account, saved on the profile.
+- **Plain error messages**: the common server refusals are shown as everyday sentences in all three languages.
 - **Chat**: 1:1 messaging between members.
 - **Support tickets**; admin tickets are prioritised.
 - **Family tree PDF**: download a landscape PDF of any person's tree, five generations up and down, wide (siblings and spouses), with optional passport photos. Gujarati and Hindi names render with bundled Noto fonts.

@@ -31,7 +31,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     final actions = <(IconData, String, VoidCallback)>[
       if (me == null)
-        (Icons.person_add_alt_1_outlined, l.createMyProfile, () => context.push('/persons/new'))
+        (Icons.person_search_outlined, l.findMyselfAgain, () => context.push('/find-me'))
       else
         (Icons.account_box_outlined, l.myProfile, () => context.push('/persons/${me.id}')),
       if (me != null) (Icons.account_tree_outlined, l.viewTree, () => context.push('/persons/${me.id}/tree')),

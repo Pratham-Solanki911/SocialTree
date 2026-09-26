@@ -1043,4 +1043,84 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get otherFamilies => 'अन्य परिवार';
+
+  @override
+  String get largeText => 'बड़े अक्षर';
+
+  @override
+  String get checkAllMatches => 'पूरे समाज में दोहरी प्रविष्टि जाँचें';
+
+  @override
+  String notifNewMember(String name) {
+    return '$name समाज में जुड़ना चाहते हैं';
+  }
+
+  @override
+  String get notifWelcome => 'आप अंदर आ गए। अब आप वंशवृक्ष बना सकते हैं।';
+
+  @override
+  String notifClaimRequest(String name) {
+    return '$name कहते हैं: यह मैं हूँ';
+  }
+
+  @override
+  String notifClaimApproved(String name) {
+    return 'परिवार ने पुष्टि की कि आप $name हैं';
+  }
+
+  @override
+  String notifClaimRejected(String name) {
+    return 'परिवार पुष्टि नहीं कर सका कि आप $name हैं';
+  }
+
+  @override
+  String notifChat(String name) {
+    return '$name ने आपको संदेश भेजा';
+  }
+
+  @override
+  String get notifMatch =>
+      'दो रिकॉर्ड एक ही व्यक्ति के हो सकते हैं। ज़रा देख लें।';
+
+  @override
+  String notifSupportStatus(String status) {
+    return 'आपकी मदद की माँग: $status';
+  }
+
+  @override
+  String get notifSupportReply => 'आपकी मदद की माँग का जवाब आया';
+
+  @override
+  String get errAskAdminDeceased =>
+      'ऐप चलाने वाले सदस्य को दिवंगत लिखना केवल समाज संचालक कर सकते हैं। संचालक से कहें।';
+
+  @override
+  String get errAlreadyLinked => 'यह रिकॉर्ड पहले से किसी और का है।';
+
+  @override
+  String get errPassedAway =>
+      'यह रिकॉर्ड दिवंगत व्यक्ति का है, इसलिए आपका नहीं हो सकता।';
+
+  @override
+  String get errRequestWaiting =>
+      'आपका एक अनुरोध पहले से जवाब के इंतज़ार में है।';
+
+  @override
+  String get errUnlinkFirst =>
+      'आप पहले से एक रिकॉर्ड से जुड़े हैं। पहले मेरा खाता से अलग करें।';
+
+  @override
+  String get errCycle => 'इससे कोई अपना ही पूर्वज बन जाएगा। रिश्ता जाँचें।';
+
+  @override
+  String get errTwoParents => 'यहाँ एक व्यक्ति के दो ही माता-पिता हो सकते हैं।';
+
+  @override
+  String get errNotApproved => 'आपको अभी अंदर नहीं लिया गया है।';
+
+  @override
+  String get errAdminsOnly => 'यह केवल समाज संचालक कर सकते हैं।';
+
+  @override
+  String get errBothMine => 'दोनों रिकॉर्ड आपके हों तभी जोड़े जा सकते हैं।';
 }

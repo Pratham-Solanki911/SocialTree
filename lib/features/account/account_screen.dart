@@ -93,6 +93,12 @@ class AccountScreen extends ConsumerWidget {
               ],
             ),
           ),
+          SwitchListTile(
+            secondary: const Icon(Icons.format_size),
+            title: Text(l.largeText),
+            value: profile.largeText,
+            onChanged: (v) => patch({'large_text': v}),
+          ),
           SectionTitle(l.digitalAccount),
           ListTile(
             leading: const Icon(Icons.family_restroom_outlined),

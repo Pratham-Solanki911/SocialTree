@@ -20,6 +20,7 @@ class Profile {
     this.locale,
     this.successorId,
     this.onboardingDone = false,
+    this.largeText = false,
   });
   final String id;
   final String? fullName;
@@ -31,6 +32,7 @@ class Profile {
   final String? locale; // en | gu | hi, null until chosen on first login
   final String? successorId;
   final bool onboardingDone;
+  final bool largeText;
 
   bool get isApproved => status == 'approved';
   bool get canSupport => isAdmin || isSupport;
@@ -47,6 +49,7 @@ class Profile {
         locale: m['locale'] as String?,
         successorId: m['successor_id'] as String?,
         onboardingDone: m['onboarding_done'] as bool? ?? false,
+        largeText: m['large_text'] as bool? ?? false,
       );
 }
 

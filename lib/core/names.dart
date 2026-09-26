@@ -28,7 +28,7 @@ DisplayName displayNameFor(String lang, {required String? gu, required String? e
   if (g.isEmpty && e.isEmpty) return const DisplayName('?', null);
   if (g.isEmpty) return DisplayName(e, null);
   final local = lang == 'hi' && _hasGujarati(g) ? gujaratiToDevanagari(g) : g;
-  if (e.isEmpty) return DisplayName(local, null);
+  if (e.isEmpty || e.toLowerCase() == g.toLowerCase()) return DisplayName(local, null);
   return lang == 'en' ? DisplayName(e, local) : DisplayName(local, e);
 }
 

@@ -37,7 +37,7 @@ class ErrorView extends StatelessWidget {
           children: [
             const Icon(Icons.error_outline, size: 40),
             const SizedBox(height: 8),
-            Text(context.l.errorWithMessage(friendlyError(error)), textAlign: TextAlign.center),
+            Text(context.l.errorWithMessage(friendlyError(context, error)), textAlign: TextAlign.center),
             if (onRetry != null) ...[
               const SizedBox(height: 12),
               FilledButton.tonal(onPressed: onRetry, child: Text(context.l.retry)),
@@ -75,17 +75,33 @@ class EmptyState extends StatelessWidget {
   }
 }
 
-String friendlyError(Object e) {
-  if (e is PostgrestException) return e.message;
-  if (e is StorageException) return e.message;
-  if (e is AuthException) return e.message;
-  return e.toString();
+/// Server messages elders will actually see, in their language.
+String friendlyError(BuildContext context, Object e) {
+  final raw = switch (e) {
+    PostgrestException() => e.message,
+    StorageException() => e.message,
+    AuthException() => e.message,
+    _ => e.toString(),
+  };
+  final l = context.l;
+  final m = raw.toLowerCase();
+  if (m.contains('ask an admin to confirm')) return l.errAskAdminDeceased;
+  if (m.contains('already linked')) return l.errAlreadyLinked;
+  if (m.contains('passed away')) return l.errPassedAway;
+  if (m.contains('request waiting')) return l.errRequestWaiting;
+  if (m.contains('unlink it first')) return l.errUnlinkFirst;
+  if (m.contains('cycle:')) return l.errCycle;
+  if (m.contains('at most two parents')) return l.errTwoParents;
+  if (m.contains('not approved')) return l.errNotApproved;
+  if (m.contains('admin only') || m.contains('only admins')) return l.errAdminsOnly;
+  if (m.contains('both records must be yours')) return l.errBothMine;
+  return raw;
 }
 
 void showError(BuildContext context, Object e) {
   ScaffoldMessenger.of(context)
     ..hideCurrentSnackBar()
-    ..showSnackBar(SnackBar(content: Text(context.l.errorWithMessage(friendlyError(e)))));
+    ..showSnackBar(SnackBar(content: Text(context.l.errorWithMessage(friendlyError(context, e)))));
 }
 
 void showMessage(BuildContext context, String text) {

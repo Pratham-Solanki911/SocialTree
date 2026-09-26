@@ -1044,4 +1044,85 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get otherFamilies => 'Other families';
+
+  @override
+  String get largeText => 'Bigger letters';
+
+  @override
+  String get checkAllMatches => 'Check the whole Samaj for double entries';
+
+  @override
+  String notifNewMember(String name) {
+    return '$name wants to join the Samaj';
+  }
+
+  @override
+  String get notifWelcome => 'You are in. You can now build your family tree.';
+
+  @override
+  String notifClaimRequest(String name) {
+    return '$name says: this is me';
+  }
+
+  @override
+  String notifClaimApproved(String name) {
+    return 'The family confirmed that you are $name';
+  }
+
+  @override
+  String notifClaimRejected(String name) {
+    return 'The family could not confirm that you are $name';
+  }
+
+  @override
+  String notifChat(String name) {
+    return '$name sent you a message';
+  }
+
+  @override
+  String get notifMatch =>
+      'Two records may be the same person. Please have a look.';
+
+  @override
+  String notifSupportStatus(String status) {
+    return 'Your help request: $status';
+  }
+
+  @override
+  String get notifSupportReply => 'Someone replied to your help request';
+
+  @override
+  String get errAskAdminDeceased =>
+      'Only a Samaj admin can mark a member who uses the app as passed away. Please ask an admin.';
+
+  @override
+  String get errAlreadyLinked => 'This record is already someone else\'s.';
+
+  @override
+  String get errPassedAway =>
+      'This record is of someone who has passed away, so it cannot be yours.';
+
+  @override
+  String get errRequestWaiting =>
+      'You already have a request waiting for an answer.';
+
+  @override
+  String get errUnlinkFirst =>
+      'You are already joined to a record. Unlink it first from My account.';
+
+  @override
+  String get errCycle =>
+      'That would make someone their own ancestor. Please check the relation.';
+
+  @override
+  String get errTwoParents => 'A person can have only two parents here.';
+
+  @override
+  String get errNotApproved => 'You have not been let in yet.';
+
+  @override
+  String get errAdminsOnly => 'Only a Samaj admin can do this.';
+
+  @override
+  String get errBothMine => 'Both records must be yours to join them.';
 }
